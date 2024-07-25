@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <nav
+      id="menu"
+      th:fragment="nav"
+      class="col-md-2 d-none d-md-block bg-light sidebar"
+    >
+      <div class="sidebar-sticky">
+        <ul class="nav flex-cloumn">
+          <li class="nav-item">
+            <a class="nav-link active" th:href="@{/directory}">
+              <i class="fa-solid fa-folder fa-xl" style="color: #1e3050"; margin-right: 50px; ></i>
+              Pastas</a
+            >
+          </li>
+          <li class="nav-item">
+            <a th:href="@{/user}">
+              <i class="fa-solid fa-users fa-xl" style="color: #1e3050"></i>
+              Usuários</a
+            >
+          </li>
+          <li class="nav-item">
+            <a th:href="@{/contract}">
+              <i class="fa-solid fa-timeline fa-xl" style="color: #1e3050"></i>
+              Contratos</a
+            >
+          </li>
+          <li class="nav-item"></li>
+        </ul>
+        <!-- <p th:text="${user.name}"></p> <i class="fa-solid fa-right-from-bracket fa-xl" style="color: #1E3050;"></i> -->
+
+      </div>
+    </nav>
+
+  </body>
+</html>

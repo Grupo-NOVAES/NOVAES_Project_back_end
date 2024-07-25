@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" th:href="@{/css/diretorio.css}" />
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+	crossorigin="anonymous" />
+<script src="https://kit.fontawesome.com/a56b5a1294.js"
+	crossorigin="anonymous"></script>
+<title>Diretórios</title>
+</head>
+<body>
+
+	
+	<div th:replace="fragments/header :: header"></div>
+	<div th:replace="fragments/nav :: nav"></div>
+
+	<div class="container-fluid row">
+		
+		
+		<main role="main" class="light-theme">   
+			
+			<div id="btnAlterTheme">
+				<button id="ThemeButton" class="btn btn-outline-secondary">
+				  <i
+					class="fa-solid fa-circle-half-stroke fa-lg"
+					style="color: #b3c7e6"
+				  ></i>
+				</button>
+			  </div>
+			
+	
+			  <div> 
+				
+        <div class="listParentDirectory">
+			<div th:each="directory : ${listNameParentDirectory}" class="listParentDirectory">
+				<a th:href="@{/directory/{id}(id=${directory.id_Directory})}">
+					<button class="buttonBackDirectory" type="button" th:text="${directory.name}"></button>
+				</a>
+				<p class="buttonBackDirectory">></p>
+			</div>
+		</div>
+    </div>
+
+
+		  <div id="srch" class="input-group-sm mb-3">
+			<span class="input-group-text-sm"><i class="fa-solid fa-magnifying-glass fa-xl-"></i> </span>
+			<div class="form-floating">
+			  <input type="text" class="form-control" id="floatingInputGroup1-sizing-default" placeholder="Pesquisar">
+			  <label for="floatingInputGroup1">Pesquisar</label>
+			</div>
+		  </div>
+	
+
+	
+			<div class="table-container">
+				<table id="tabela" class="table table-dark">		
+					<tbody>
+                        <tr id="folder" class="folderItem" 
+                            th:each="directory : ${listDirectory}" 
+                            th:data-id="${directory.id_Directory}" 
+                            th:data-name="${directory.name}">
+                              
+                                <td><i class="fa-solid fa-folder fa-2xl" style="color: #1E3050;"></i></td>
+                              	<td th:text="${directory.name}"></td>
+                                <td style="white-space: nowrap">
+									<a class="btn" th:href="@{/archive/directory(id=${directory.id_Directory})}">
+										<i class="fa-regular fa-pen-to-square fa-xl" style="color: #1E3050;"></i>
+									</a>
+                                  	<a class="btn" th:href="@{/archive/directory(id=${directory.id_Directory})}" onclick="return confirm('Tem certeza?')">
+										<i class="fa-regular fa-trash-can fa-xl" style="color: #e66565;"></i>
+									</a>
+								</td>
+                              
+                        </tr>
+                    </tbody>
+		
+				</table>
+			</div>
+			
+	
+		</main>
+
+
+<script th:src="@{/js/directory.js}"></script>
+</body>
+</html>
