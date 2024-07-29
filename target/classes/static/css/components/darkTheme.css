@@ -1,0 +1,56 @@
+.dark-theme {
+    background-color: #444444;
+    color: white;
+  }
+
+  body.dark-theme {
+    background-color: #444444;
+    border-width: 10px;
+    border-radius: 10px;
+    border-color: #D1E6E9;
+  }
+  
+  .dark-theme-header {
+    background-color: #2d2d2d;
+    color: white;
+  }
+  
+  .dark-theme-nav {
+    background-color: #444444;
+    color: white;
+    box-shadow: inset -1px 0px 0px 0px rgba(255, 255, 255, 0.15);
+  }
+  
+  .dark-theme .table, .dark-theme table {
+    background-color: #323232; /* Cor de fundo da tabela no tema escuro */
+    color: white; /* Cor do texto da tabela no tema escuro */
+  }
+  
+  .dark-theme-a {
+    color: white;
+  }
+  
+  .dark-theme .btnProfile {
+    background-color: #2d2d2d;
+  }
+  
+  .dark-theme .CartBtn {
+    background-color: #2d2d2d;
+  }
+  
+  .dark-theme .active {
+    background-color: #2d2d2d;
+  }
+  #theme-checkbox:checked + label {
+    background-color: #3a3a3a;
+  }
+  #theme-checkbox:checked + label div {
+    /* left: calc(2.5em - .8em - .1em); */
+    left: 1.6em;
+    background-color: #212121;
+  }
+
+  .dark-theme-header {
+    background-color: #323232;
+    color: white;
+  }
