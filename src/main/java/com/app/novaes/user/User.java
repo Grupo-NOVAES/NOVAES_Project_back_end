@@ -20,6 +20,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import static java.util.Collections.singleton;
 
+import java.util.Base64;
+
 @Entity
 @Data
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -51,6 +53,10 @@ public class User implements UserDetails{
     
     @Column(nullable = false)
     private Role role;
+    
+    public String getProfilePhotoBase64() {
+        return this.profilePhoto != null ? Base64.getEncoder().encodeToString(this.profilePhoto) : null;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

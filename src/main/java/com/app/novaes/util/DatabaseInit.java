@@ -54,6 +54,7 @@ public class DatabaseInit implements CommandLineRunner{
         	admin.setLastname("ADM");
         	admin.setLogin("admin@gmail.com");
         	admin.setPassword(passwordEncoder.encode("123456"));
+        	admin.setPhoneNumber("(16) 99999-9999");
         	admin.setEnabled(true);
         	admin.setRole(Role.ADMIN);
         	admin.setOffice("Gerente");
@@ -67,6 +68,7 @@ public class DatabaseInit implements CommandLineRunner{
         	gerente.setLastname("Employee");
         	gerente.setLogin("gerente@novaes.com");
         	gerente.setPassword(passwordEncoder.encode("123456"));
+        	gerente.setPhoneNumber("(16) 99999-9999");
         	gerente.setEnabled(true);
         	gerente.setRole(Role.ADMIN);
         	gerente.setOffice("Funcionario");
@@ -80,6 +82,7 @@ public class DatabaseInit implements CommandLineRunner{
             employee.setLastname("Employee");
             employee.setLogin("eng@novaes.com");
             employee.setPassword(passwordEncoder.encode("123456"));
+            employee.setPhoneNumber("(16) 99999-9999");
             employee.setEnabled(true);
             employee.setRole(Role.EMPLOYEE);
             employee.setOffice("Funcionario");
@@ -92,6 +95,7 @@ public class DatabaseInit implements CommandLineRunner{
         	client.setLastname("de Araçoiaba");
         	client.setLogin("client@novaes.com");
         	client.setPassword(passwordEncoder.encode("123456"));
+        	client.setPhoneNumber("(16) 99999-9999");
         	client.setEnabled(true);
         	client.setRole(Role.USER);
         	client.setEntrerprise_name("Aguas de Araçoiaba");

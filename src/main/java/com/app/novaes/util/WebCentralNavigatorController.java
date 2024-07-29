@@ -24,6 +24,8 @@ import com.app.novaes.client.ClientRepository;
 import com.app.novaes.contract.Contract;
 import com.app.novaes.contract.ContractNotFoundException;
 import com.app.novaes.contract.ContractRepository;
+import com.app.novaes.directoryArchive.Archive;
+import com.app.novaes.directoryArchive.ArchiveDTO;
 import com.app.novaes.directoryArchive.Directory;
 import com.app.novaes.directoryArchive.DirectoryDTO;
 import com.app.novaes.directoryArchive.DirectoryNotFoundException;
@@ -62,6 +64,9 @@ public class WebCentralNavigatorController {
     	UserDetails userDetails = getUserAuthInfo();
     	List<Contract> listContract = contractRepository.findAll();
     	
+    	User user = getUserInfo();
+    	modelAndView.addObject("user", user);
+    	
 
     	modelAndView.addObject("listContract", listContract);
     	
@@ -81,6 +86,8 @@ public class WebCentralNavigatorController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		UserDetails userDetails = getUserAuthInfo();
+		User user = getUserInfo();
+    	modelAndView.addObject("user", user);
 		
 		
 		
@@ -89,9 +96,12 @@ public class WebCentralNavigatorController {
     			List<DirectoryDTO> listDirectory = getListDirectory();
     			List<DirectoryDTO> nameParentDirectory = getPathDirectoryById((long)1);
     			
+    			List<ArchiveDTO> listArchive = getListArchive();
+    			
     			
     			modelAndView.addObject("listNameParentDirectory" , nameParentDirectory);
     	        modelAndView.addObject("listDirectory" , listDirectory);
+    	        modelAndView.addObject("listArchive" , listArchive);
     	        
     			modelAndView.setViewName("/employee/directory.html");
     		}else {
@@ -115,15 +125,19 @@ public class WebCentralNavigatorController {
 		ModelAndView modelAndView = new ModelAndView();
 			
 		UserDetails userDetails = getUserAuthInfo();
+		User user = getUserInfo();
+    	modelAndView.addObject("user", user);
 
     	for(GrantedAuthority authorities : userDetails.getAuthorities()) {
     		if(authorities == Role.ADMIN ||authorities == Role.EMPLOYEE) {
     			List<DirectoryDTO> listDirectory = getListSubDirectory(id);
     			List<DirectoryDTO> listNameParentDirectory = getPathDirectoryById(id);
+    			List<ArchiveDTO> listArchive = getListArchive();
     			
     			
     			modelAndView.addObject("listNameParentDirectory" , listNameParentDirectory);
     	        modelAndView.addObject("listDirectory" , listDirectory);
+    	        modelAndView.addObject("listArchive" , listArchive);
     	        
     			modelAndView.setViewName("/employee/directory.html");
     		}else {
@@ -162,6 +176,9 @@ public class WebCentralNavigatorController {
 		
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+		User user = getUserInfo();
+    	modelAndView.addObject("user", user);
+    	
 
     	for(GrantedAuthority authorities : userDetails.getAuthorities()) {
     		if(authorities == Role.ADMIN ||authorities == Role.EMPLOYEE) {
@@ -187,6 +204,8 @@ public class WebCentralNavigatorController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
+        User user = getUserInfo();
+    	modelAndView.addObject("user", user);
 
         UserDetails userDetails = (UserDetails) principal;
         
@@ -194,12 +213,7 @@ public class WebCentralNavigatorController {
         		.anyMatch(authority -> authority.getAuthority()
         				.equals("ROLE_ADMIN") || authority.getAuthority().equals("ROLE_EMPLOYEE"));
 
-        if (ifEmployee) {
-            User userIdObject = (User) principal;
-            User user = userRepository.findById(userIdObject.getId())
-            		.orElseThrow(UserNotFoundException :: new);
-
-            modelAndView.addObject("user", user);
+        if (ifEmployee) {           
             
             byte[] profilePhoto = user.getProfilePhoto();
             if (profilePhoto != null) {
@@ -223,17 +237,19 @@ public class WebCentralNavigatorController {
     public ModelAndView profileScreen(@PathVariable Long id) {
         ModelAndView modelAndView = new ModelAndView();
         
-        User user = userRepository.findById(id)
+        User userFound = userRepository.findById(id)
         		.orElseThrow(UserNotFoundException :: new);
+        User user = getUserInfo();
+    	modelAndView.addObject("user", user);
         
-        modelAndView.addObject("user", user);
+        modelAndView.addObject("user", userFound);
         
-        byte[] profilePhoto = user.getProfilePhoto();
+        byte[] profilePhoto = userFound.getProfilePhoto();
         if (profilePhoto != null) {
             String base64Image = Base64.encodeBase64String(profilePhoto);
             modelAndView.addObject("imageProfile", base64Image);
         }
-        if(user.getRole() == Role.USER) {
+        if(userFound.getRole() == Role.USER) {
         	
         }else {
         	
@@ -250,7 +266,9 @@ public class WebCentralNavigatorController {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
     	UserDetails userDetails = (UserDetails) authentication.getPrincipal();
     	
-    	List<Stages> listStages = stagesRepository.findStagesByContract(idContract);    	
+    	List<Stages> listStages = stagesRepository.findStagesByContract(idContract); 
+    	User user = getUserInfo();
+    	modelAndView.addObject("user", user);
     	
     	
     	for(GrantedAuthority authorities : userDetails.getAuthorities()) {
@@ -273,6 +291,24 @@ public class WebCentralNavigatorController {
 
 		
 		return modelAndView;
+	}
+	
+	private User getUserInfo() {
+		User user = (User) getUserAuthInfo();
+		return user;
+	}
+	
+	private List<ArchiveDTO> getListArchive(){
+		Directory root = directoryRepository.findByName("jau");
+        if (root == null) {
+            throw new RuntimeException("Root directory not found");
+           
+        }
+        List<ArchiveDTO> listArchive = new ArrayList<>();
+        for(Archive archive : root.getArchives()) {
+        	listArchive.add(directoryAndArchivesService.convertToDTO(archive));
+        }
+        return listArchive;
 	}
 	
 	

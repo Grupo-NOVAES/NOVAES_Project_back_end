@@ -116,6 +116,7 @@ public class MobileEmployeeController {
 	        funcionario.setName(employeeDetails.getName());
 	        funcionario.setLastname(employeeDetails.getLastname());
 	        funcionario.setLogin(employeeDetails.getLogin());
+	        funcionario.setPhoneNumber(employeeDetails.getPhoneNumber());
 
 
 	        return employeeRepository.save(funcionario);

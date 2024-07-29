@@ -88,6 +88,7 @@ public class MobileClientController {
         cliente.setName(clientDetails.getName());
         cliente.setLastname(clientDetails.getLastname());
         cliente.setLogin(clientDetails.getLogin());
+        cliente.setPhoneNumber(clientDetails.getPhoneNumber());
         cliente.setEntrerprise_name(clientDetails.getEntrerprise_name());
         Directory directoryFound = directoryRepository.findById(clientDetails.getReferences_directory())
         		.orElse(null);

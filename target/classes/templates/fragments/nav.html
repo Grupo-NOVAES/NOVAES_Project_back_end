@@ -7,35 +7,75 @@
   <body>
     <nav
       id="menu"
-      th:fragment="nav"
-      class="col-md-2 d-none d-md-block bg-light sidebar"
-    >
-      <div class="sidebar-sticky">
-        <ul class="nav flex-cloumn">
-          <li class="nav-item">
-            <a class="nav-link active" th:href="@{/directory}">
-              <i class="fa-solid fa-folder fa-xl" style="color: #1e3050"; margin-right: 50px; ></i>
-              Pastas</a
-            >
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/user}">
-              <i class="fa-solid fa-users fa-xl" style="color: #1e3050"></i>
-              Usuários</a
-            >
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/contract}">
-              <i class="fa-solid fa-timeline fa-xl" style="color: #1e3050"></i>
-              Contratos</a
-            >
-          </li>
-          <li class="nav-item"></li>
-        </ul>
-        <!-- <p th:text="${user.name}"></p> <i class="fa-solid fa-right-from-bracket fa-xl" style="color: #1E3050;"></i> -->
+      th:fragment="nav">
+      <ul>
+        <li class="nav-item">
+          <a th:href="@{/directory}" style="text-decoration: none;">
+            <i class="fa-solid fa-folder fa-xl" ></i>
+            Pastas</a
+          >
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/user}" style="text-decoration: none;">
+            <i class="fa-solid fa-users fa-xl"></i>
+            Usuários</a
+          >
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/contract}" style="text-decoration: none;">
+            <i class="fa-solid fa-handshake fa-xl"></i>
+            Contratos</a
+          >
+        </li>
+      </ul>
 
+      
+      
+      <div id="perfil">
+        <div class="theme-switch">
+          <input type="checkbox" id="theme-checkbox" />
+          <label for="theme-checkbox">
+            <div></div>
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </span>
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"
+                ></path>
+              </svg>
+            </span>
+          </label>
+        </div>
+        <div class="btnProfile" id="btnprofile">
+          <i class="fa-solid fa-circle fa-2xl" style="color: #b0b0b0;"></i>
+          <p id="nomeUser" th:text="${user.name}"></p> 
+          	<button class="Btn btnLogout" >
+            <div class="sign btnLogout">
+              <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" viewBox="0 0 512 512" class="btnLogout"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#1e3050" d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 192 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l210.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128zM160 96c17.7 0 32-14.3 32-32s-14.3-32-32-32L96 32C43 32 0 75 0 128L0 384c0 53 43 96 96 96l64 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-64 0c-17.7 0-32-14.3-32-32l0-256c0-17.7 14.3-32 32-32l64 0z"/></svg>
+            </div>
+            <div class="text">Sair</div>
+          </button>
+        </div>
       </div>
-    </nav>
-
+      
+  </nav>
   </body>
 </html>

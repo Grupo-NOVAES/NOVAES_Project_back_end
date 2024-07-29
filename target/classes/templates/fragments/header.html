@@ -5,34 +5,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-    <header class="d-flex justfy-content-btween align-itens-center p-3 text-white" th:fragment="header">
-        <img id="logo" th:src="@{/icones/LogoGrupoNovaes.png}" alt="Novaes Logo" height="50px" width="200px">
+    <header class="d-flex justfy-content-btween align-itens-center p-3 text-white"  th:fragment="header">
+        <img id="logo" th:src="@{/img/LogoGrupoNovaesBranca.png}" alt="Novaes Logo" height="50px" width="200px">
         <section id="links">
-            <a class="a_links" href="https://gruponovaes.com/" id="h">HOME</a>
+            <a class="a_links" href="https://gruponovaes.com/" >HOME</a>
+
             <div class="dropdown">
-                <button class="dropbtn">ÁREAS DE ATUAÇÃO</button>
-                <div class="dropdown-content">
-                <a href="https://gruponovaes.com/portfolio-saneamento-meio-ambiente/">SANEAMENTO E MEIO AMBIENTE</a>
+              <button id="btndpd" class="dropbtn"> <a  >ÁREAS DE ATUAÇÃO</a></button>
+              <div class="dropdown-content">
+                <a href="https://gruponovaes.com/portfolio-saneamento-meio-ambiente/" class="a">SANEAMENTO E MEIO AMBIENTE</a>
                 <a href="https://gruponovaes.com/arquitetura/">ARQUITETURA E CONSTRUÇÃO</a>
                 <a href="https://gruponovaes.com/empreendimentos/">EMPREENDIMENTOS À VENDA</a>
                 </div>
-              </div>
-            <a class="a_links" href="https://gruponovaes.com/?page_id=230773" id="a">SOLIDARIEDADE</a>
-            <a class="a_links" href="https://gruponovaes.com/blog/" id="a">BLOG</a>
+            </div>
+			  
+            <a class="a_links" href="https://gruponovaes.com/?page_id=230773" >SOLIDARIEDADE</a>
+            <a class="a_links" href="https://gruponovaes.com/blog/" >BLOG</a>
         </section>
+        
         <section id="icones">
             <a href="https://www.instagram.com/grupo_novaes/">
-                <i class="fa-brands fa-instagram fa-lg" style="color: #1E3050;"></i>
+                <i class="fa-brands fa-instagram fa-lg" style="color: #929497;"></i>
             </a>
             <a href="https://www.facebook.com/gruponovaes/">
-                <i class="fa-brands fa-facebook-f" style="color: #1E3050;"></i>            </a>
+                <i class="fa-brands fa-facebook-f" style="color: #929497;"></i>            </a>
             </a>
             <a href="https://www.youtube.com/channel/UC0HGGKKsSjs9tDrGgZGUwnw">
-                <i class="fa-brands fa-youtube" style="color: #1E3050;"></i>
+                <i class="fa-brands fa-youtube" style="color: #929497;"></i>
             <a href="https://www.linkedin.com/company/gruponovaes">
-                <i class="fa-brands fa-linkedin-in" style="color: #1E3050;"></i>
+                <i class="fa-brands fa-linkedin-in" style="color: #929497;"></i>
             </a>
         </section>
+
     </header>
 </body>
 </html>

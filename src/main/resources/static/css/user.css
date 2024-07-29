@@ -1,3 +1,12 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+body, h1, h2, h3, h4, h5, h6, p, ul, ol, li {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #f9f9f9;
@@ -5,22 +14,26 @@ body {
   flex-direction: column;
   height: 100vh;
 }
+
+
+
 .container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   height: calc(100vh - 80px);
-  width: 100vw;
+  width: calc(100vw - 200px);
+  overflow: hidden;
 }
+
+
 main {
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
-  margin-left: calc(100vw - 90vw);
-  flex: 1;
-  justify-content: space-around;
+  margin-left: 125px;
+
 }
+
 
 .listParentDirectory {
   display: flex;
@@ -28,15 +41,18 @@ main {
   max-height: 10px;
   width: 95%;
   margin-left: 30px;
-  margin-bottom: 20px;
+
 }
 
-.header-table {
+.headerTable {
   display: flex;
   flex-direction: row;
   width: 95%;
   margin-left: 20px;
   margin: 5px;
+
+  margin-top: 3%;
+
 }
 
 .container-input {
@@ -47,7 +63,7 @@ main {
 
 .input {
   height: 30px;
-  width: 175px;
+  width: 80%;
   padding: 10px 0px 10px 40px;
   border-radius: 5px;
   border: solid 1px #b5b5b5;
@@ -68,13 +84,16 @@ main {
   width: 250px;
 }
 
-.btnCreate {
+.btnAddUser {
   display: flex;
   justify-content: flex-end;
   width: 50%;
   align-items: center;
 }
-
+#linkAddUser{
+    text-decoration: none;
+    color: none;
+}
 .CartBtn {
   width: 175px;
   height: 30px;
@@ -138,6 +157,13 @@ main {
   transition-duration: .5s;
 }
 
+.profilePhotoIcon{
+    width: 60px;
+    height: 60px;
+    border-radius: 70px;
+    border: 0.5px solid rgba(0, 0, 0, 0.658);
+}
+
 table {
   background-color: white;
   height: 100%;
@@ -147,8 +173,8 @@ table {
 }
 
 .table-container {
+  margin-top: 5%;
   max-height: 60%; 
-  min-height: 300px;
   overflow: scroll;
   width: 100%;
   border-radius: 10px;
@@ -156,16 +182,17 @@ table {
 }
 
 td {
+  width: 10px;
   vertical-align: middle;
   text-align: left;
-  padding-left: 50px;
+  padding-left: 15px;
 }
 
 tr {
-  height: 60px;
+  height: 90px;
   width: 80px;
   box-shadow: 0px 1px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  text-align: middle;
 }
 
 .table-container::-webkit-scrollbar {
@@ -193,14 +220,8 @@ tr {
 }
 
 
-.theme-switch {
-  width: 96%;
-  position: relative;
-  display: flex;
-  justify-content: flex-start;
-  direction: rtl;
-  margin-top: 5px;
-}
+
+
 
 
 .buttonBackDirectory {
@@ -209,6 +230,9 @@ tr {
   margin-left: 2px;
 }
 
+.ContainerlistParentDirectory {
+  height: 90%;
+}
 
 .listParentDirectory {
   display: flex;
@@ -220,13 +244,21 @@ tr {
   font-size: 22pt;
 }
 
-
+.theme-switch {
+  width: 96%;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  direction: rtl;
+  margin-top: 5px;
+}
 
 #theme-checkbox {
   display: none;
 }
 
 #theme-checkbox + label {
+  /* change the font-size below to change the size of the switch button*/
   font-size: 2rem;
   height: 1em;
   width: 2.5em;
@@ -284,35 +316,6 @@ tr {
 #theme-checkbox + label span:last-of-type {
   color: #cecece;
 }
-
-/* Menu de Contexto */
-.context-menu {
-  width: 120px;
-  height: 150px;
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  z-index: 1000;
-}
-.context-menu > a{
-  width: 100%;
-}
-.btnOption{
-  width: 100%;
-  height: 33%;
-  background-color: #ffffff;
-  border: none;
-  box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.15);
-
-}
-.btnOption:hover{
-  background-color: #c4c4c4;
-}
-
 
 @media only screen and (max-width: 923px) {
   main {

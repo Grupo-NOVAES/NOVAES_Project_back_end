@@ -60,6 +60,7 @@ public class MobileUserController {
 	        responseUser.setLastname(user.getLastname());
 	        responseUser.setRole(user.getRole());
 	        responseUser.setLogin(user.getLogin());
+	        responseUser.setPhoneNumber(user.getPhoneNumber());
 	        
 	        return responseUser;
 	    }
