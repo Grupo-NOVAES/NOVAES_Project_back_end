@@ -1,8 +1,0 @@
-const folderItems = document.getElementsByClassName("contractItem");
-
-for (let i = 0; i < folderItems.length; i++) {
-    folderItems[i].addEventListener('dblclick', function() {
-        const contractId = this.getAttribute("data-id");
-        window.location.href = "/stages/" + contractId;
-    });
-}
