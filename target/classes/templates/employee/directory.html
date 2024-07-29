@@ -81,7 +81,7 @@
           </div>
 
           <div class="btnCreate">
-            <button class="CartBtn">
+            <button class="CartBtn" onclick="showModal()">
               <span class="IconContainer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -99,6 +99,17 @@
               </span>
               <p class="text">Adicionar Pasta</p>
             </button>
+          </div>
+        </div>
+
+        <div class="AddFolderModal" id="AddFolderModal">
+          <div class="labelinput">
+            <label for="name">Adicionar Pasta</label>
+            <input type="text" name="name" class="input">
+          </div>
+          <div class="actions">
+            <button class="savebtn" onclick="saveButtonAddFolder()">Salvar</button>
+            <p onclick="hideModalAddFolder()">Cancelar</p>
           </div>
         </div>
 
@@ -125,6 +136,8 @@
             </tbody>
           </table>
         </div>
+
+
       </main>
     </div>
 
