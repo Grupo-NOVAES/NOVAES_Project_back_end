@@ -313,6 +313,10 @@ tr {
   background-color: #c4c4c4;
 }
 
+.listParentDirectory{
+  height: 50px;
+  align-items: center;
+}
 
 @media only screen and (max-width: 923px) {
   main {

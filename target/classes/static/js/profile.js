@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const inputs = document.querySelectorAll('input');
-    const button = document.querySelector('#saveButton');
+    const button = document.querySelector('.CartBtnEdit');
     
     const initialValues = {};
     inputs.forEach(input => {
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     isChanged = true;
                 }
             });
-            button.style.display = isChanged ? 'block' : 'none';
+            button.style.display = isChanged ? 'flex' : 'none';
         });
     });
 });

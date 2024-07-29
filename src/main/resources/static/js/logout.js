@@ -1,12 +1,18 @@
 const btnLogoutElements = document.querySelectorAll(".btnLogout");
 const btnProfile = document.getElementById("btnprofile");
+var goToLogout = false;
 
 function logout() {
-    console.log("saindo...");
+    goToLogout=true;
+    window.location.href="/logout";
 }
 
 function goProfile() {
-	console.log("Indo para Profile");
+	if(!goToLogout){
+        window.location.href="/profile";
+        
+    }
+    goToLogout=false;
 }
 
 

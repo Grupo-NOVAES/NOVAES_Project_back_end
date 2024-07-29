@@ -3,10 +3,13 @@ package com.app.novaes.util;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
+import org.apache.tika.Tika;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -26,6 +29,7 @@ import com.app.novaes.contract.ContractNotFoundException;
 import com.app.novaes.contract.ContractRepository;
 import com.app.novaes.directoryArchive.Archive;
 import com.app.novaes.directoryArchive.ArchiveDTO;
+import com.app.novaes.directoryArchive.ArchiveRepository;
 import com.app.novaes.directoryArchive.Directory;
 import com.app.novaes.directoryArchive.DirectoryDTO;
 import com.app.novaes.directoryArchive.DirectoryNotFoundException;
@@ -42,6 +46,9 @@ public class WebCentralNavigatorController {
 	
 	@Autowired
 	private DirectoryRepository directoryRepository;
+	
+	@Autowired
+	private ArchiveRepository archiveRepository;
 	
 	@Autowired
 	private ContractRepository contractRepository;	
@@ -168,6 +175,39 @@ public class WebCentralNavigatorController {
 		
 		return modelAndView;
 
+	}
+	
+	@GetMapping("/archive/download/{id}")
+	public ResponseEntity<ByteArrayResource> downloadArchiveById(@PathVariable Long id) {
+	    Archive archive = archiveRepository.findById(id)
+	            .orElseThrow(() -> new RuntimeException("Archive not found"));
+
+	    ByteArrayResource resource = new ByteArrayResource(archive.getContent());
+
+	    Tika tika = new Tika();
+	    String mimeType = tika.detect(archive.getContent());
+
+	    MediaType mediaType;
+	    try {
+	        mediaType = MediaType.parseMediaType(mimeType);
+	    } catch (IllegalArgumentException e) {
+	        mediaType = MediaType.APPLICATION_OCTET_STREAM;
+	    }
+
+	    String fileExtension = getFileExtensionFromMimeType(mimeType);
+	    if (fileExtension == null) {
+	        fileExtension = "bin"; 
+	    }
+
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + archive.getName() + "." + fileExtension + "\"");
+
+	    return ResponseEntity
+	            .ok()
+	            .headers(headers)
+	            .contentType(mediaType)
+	            .contentLength(archive.getContent().length)
+	            .body(resource);
 	}
 
 	@GetMapping("/user")
@@ -440,6 +480,33 @@ public class WebCentralNavigatorController {
         }
     }
     	
+    private String getFileExtensionFromMimeType(String mimeType) {
+        switch (mimeType) {
+            case "application/pdf":
+                return "pdf";
+            case "image/jpeg":
+                return "jpg";
+            case "image/png":
+                return "png";
+            case "text/plain":
+                return "txt";
+            case "application/zip":
+                return "zip";
+            case "application/acad":
+            case "application/x-autocad":
+                return "dwg";
+            case "application/dxf":
+                return "dxf";
+            case "application/sldprt":
+                return "sldprt";
+            case "application/sldasm":
+                return "sldasm";
+            case "application/slddrw":
+                return "slddrw";
+            default:
+                return null; 
+        }
+    }
     	
 	
 	

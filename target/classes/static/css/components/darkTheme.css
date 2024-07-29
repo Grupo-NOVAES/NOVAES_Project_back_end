@@ -37,6 +37,10 @@
   .dark-theme .CartBtn {
     background-color: #2d2d2d;
   }
+
+  .dark-theme .CartBtnEdit {
+    background-color: #2d2d2d;
+  }
   
   .dark-theme .active {
     background-color: #2d2d2d;
@@ -52,5 +56,9 @@
 
   .dark-theme-header {
     background-color: #323232;
+    color: white;
+  }
+
+  .dark-theme .buttonBackDirectory{
     color: white;
   }
