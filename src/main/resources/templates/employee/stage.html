@@ -44,24 +44,43 @@
         </div>
 
         <div class="btnCreate">
-          <button class="CartBtn" onclick="showModalFile()">
+          <button class="CartBtn" onclick="showModalStage()">
             <span class="IconContainer">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="1em"
                 viewBox="0 0 576 512"
-                fill="rgb(17, 17, 17)"
+                fill="#989EA7"
                 class="cart"
               >
                 <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
-                <path
-                  fill="#989EA7"
-                  d="M0 64C0 28.7 28.7 0 64 0L224 0l0 128c0 17.7 14.3 32 32 32l128 0 0 288c0 35.3-28.7 64-64 64L64 512c-35.3 0-64-28.7-64-64L0 64zm384 64l-128 0L256 0 384 128z"
-                />
+                <path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120l0 136c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2 280 120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/>
               </svg>
             </span>
-            <p class="text">Adicionar Arquivo</p>
+            <p class="text">Adicionar Etapa</p>
           </button>
+        </div>
+
+        <!--
+        <div>
+          <p th:href="@{/stages/{id}(id=${stages.contract_id})}"></p>
+        </div>>
+        -->
+
+
+        <div class="AddModalStage" id="AddModalStage">
+          <div class="labelinput">
+            <label for="title">Titulo da Etapa</label>
+            <input type="text" name="title" id="title" class="inputlabel">
+            <label for="description">Descrição da Etapa</label>
+            <input type="text" name="description" id="description" class="inputlabel">
+            <label for="datehour">Data limite da Etapa </label>
+            <input type="date" name="datehour" id="datehour" class="inputlabeldate">
+          </div>
+          <div class="actions">
+            <button onclick="saveButton()" class="savebtn">Salvar</button>
+            <p onclick="hideButton()">Sair</p>
+          </div>
         </div>
       </div>
 
@@ -71,7 +90,7 @@
         <tbody>
           <tr  id="stages" class="folderItem" th:each="stages : ${listStages}" th:data-id="${stages.id}" th:data-name="${stages.title}">
             <td>
-              <i class="fa-solid fa-clock fa-xl"></i>
+              <i class="fa-solid fa-clock fa-2xl"></i>
             </td>
             <td th:text="${stages.title}"></td>
             <td th:text="${stages.description}"></td>
@@ -91,5 +110,6 @@
 </div>
 <script th:src="@{/js/darkTheme.js}"></script>
 <script th:src="@{/js/logout.js}"></script>
+<script th:src="@{/js/stage.js}"></script>
 </body>
 </html>

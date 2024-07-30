@@ -238,6 +238,87 @@ body {
   #theme-checkbox + label span:last-of-type {
     color: #cecece;
   }
+
+
+  .AddModalStage {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 350px;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    z-index: 1;
+    background-color: #F9F9F9;
+    color: #1e3050;
+  }
+  
+  .AddModalStage label, .AddModalStage input, .AddModalStage button, .AddModalStage p {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .AddModalStage button, .AddModalStage p {
+    cursor: pointer;
+  
+  }
+  
+  .AddModalStage .actions {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .AddModalStage .labelinput {
+    position: relative;
+    padding-left: 45px;
+  }
+
+  .AddModalStage .inputlabel {
+    height: 30px;
+    width: 175px;
+    padding: 10px 0px 10px 40px;
+    border-radius: 5px;
+    border: solid 1px #b5b5b5;
+    transition: all .2s ease-in-out;
+    outline: none;
+    opacity: 0.8;
+  }
+
+  .AddModalStage .inputlabel:hover {
+    width: 210px;
+  }
+
+  .AddModalStage .inputlabeldate {
+    border: solid 1px #b5b5b5;
+    width: 175px;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .AddModalStage .savebtn {
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: #1e3050;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+
+
+
+
+
   @media only screen and (max-width: 923px) {
     main {
       height: calc(100vh - 330px);
