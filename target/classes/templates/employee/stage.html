@@ -17,11 +17,11 @@
     <title>Etapas</title>
 </head>
 <body>
-  <div th:replace="~{fragments/header :: header}"></div>
-
+    <!-- Agrupa os elementos que compõe o cabeçalho. -->
+    <div th:replace="fragments/header :: header"></div>
 
   <div class="container">
-    <div th:replace="~{fragments/nav :: nav}"></div>
+	<div th:replace="fragments/nav :: nav"></div>
 
 	<main>
 
@@ -75,7 +75,7 @@
             </td>
             <td th:text="${stages.title}"></td>
             <td th:text="${stages.description}"></td>
-            <td th:text="${stages.datehour}"></td>
+            <td th:text="${stages.dateHour}"></td>
             <td th:text="${stages.status}"></td>
             <td style="white-space: nowrap">
               <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
@@ -87,7 +87,6 @@
 
 
   </main>
-  </div>
 
 </div>
 <script th:src="@{/js/darkTheme.js}"></script>
