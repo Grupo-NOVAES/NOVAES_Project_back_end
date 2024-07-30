@@ -166,6 +166,72 @@ tr {
     align-items: center;
 }
 
+.AddModalContract {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  z-index: 1;
+  background-color: #F9F9F9;
+  color: #1e3050;
+}
+
+.AddModalContract label, .AddModalContract input, .AddModalContract button, .AddModalContract p {
+  display: block;
+  margin: 10px 0;
+}
+
+.AddModalContract button, .AddModalContract p {
+  cursor: pointer;
+
+}
+
+.AddModalContract .actions {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.AddModalContract .labelinput {
+  position: relative;
+  padding-left: 45px;
+}
+
+.AddModalContract .savebtn {
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #1e3050;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.AddModalContract .inputmodal {
+  border-radius: 5px;
+  border: solid 1px #b5b5b5;
+  outline: none;
+}
+.AddModalContract .inputmodal:hover {
+  width: 225px;
+}
+.AddModalContract .inputmodaldate {
+  border-radius: 5px;
+  border: solid 1px #b5b5b5;
+}
+
+
 @media only screen and (max-width: 923px) {
   main {
     height: calc(100vh - 330px);
