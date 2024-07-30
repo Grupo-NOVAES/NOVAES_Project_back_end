@@ -1,13 +1,12 @@
 nav {
     background-color: #f3f3f3;
     width: 220px;
-    height: 100%;
+    height: 100dvh;
     box-shadow: inset -1px 0px 0px 0px rgba(0, 0, 0, 0.15);
     position: fixed;
     z-index: 1000;
     left: 0;
     top: 80px;
-    flex: 1;
   }
 
   .nav-item {
