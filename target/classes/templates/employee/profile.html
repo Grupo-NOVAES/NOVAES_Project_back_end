@@ -18,12 +18,12 @@
 </head>
 <body>
     <!-- Agrupa os elementos que compõe o cabeçalho. -->
-    <div th:replace="fragments/header :: header"></div>
+    <div th:replace="~{fragments/header :: header}"></div>
 
 
     <div class="container">
     	<!-- Agrupa links de navegação no site. -->
-    <div th:replace="fragments/nav :: nav"></div>
+        <div th:replace="~{fragments/nav :: nav}"></div>
 
     <main>
         <section id="principal">
@@ -63,5 +63,4 @@
 <script th:src="@{/js/profile.js}"></script>
 <script th:src="@{/js/darkTheme.js}"></script>
 <script th:src="@{/js/logout.js}"></script>
-<script th:src="@{/js/saveThemeSelected.js}"></script>
 </html>

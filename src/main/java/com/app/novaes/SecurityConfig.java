@@ -72,7 +72,7 @@ public class SecurityConfig {
                 )
                 .rememberMe(rememberMe -> rememberMe
                         .tokenRepository(jpaPersistentTokenRepository())
-                        .tokenValiditySeconds(60 * 60 * 24 * 365) // 1 ano
+                        .tokenValiditySeconds(60 * 60 * 24 * 365)
                         .userDetailsService(userDetailsService())
                 )
                 .build();

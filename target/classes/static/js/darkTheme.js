@@ -25,6 +25,8 @@ function alterTheme() {
         }
     });
 
+
+
     tableElements.forEach(tableElement => {
         if (isDarkTheme) {
             tableElement.classList.add("dark-theme-table");
@@ -112,6 +114,7 @@ function loadTheme() {
         mainElement.classList.add("dark-theme");
         headerElement.classList.add("dark-theme-header");
         navElement.classList.add("dark-theme-nav");
+
     }
     alterTheme(); 
 }

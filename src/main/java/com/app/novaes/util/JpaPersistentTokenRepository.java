@@ -23,6 +23,7 @@ public class JpaPersistentTokenRepository implements PersistentTokenRepository {
 
     @Override
     public void createNewToken(PersistentRememberMeToken token) {
+        System.out.println("Creating new token: " + token);
         PersistentLogin persistentLogin = new PersistentLogin();
         persistentLogin.setSeries(token.getSeries());
         persistentLogin.setUsername(token.getUsername());
@@ -34,6 +35,7 @@ public class JpaPersistentTokenRepository implements PersistentTokenRepository {
 
     @Override
     public void updateToken(String series, String tokenValue, Date lastUsed) {
+        System.out.println("Updating token: " + series);
         Optional<PersistentLogin> optional = persistentLoginRepository.findById(series);
         if (optional.isPresent()) {
             PersistentLogin persistentLogin = optional.get();
@@ -46,6 +48,7 @@ public class JpaPersistentTokenRepository implements PersistentTokenRepository {
 
     @Override
     public PersistentRememberMeToken getTokenForSeries(String seriesId) {
+        System.out.println("Getting token for series: " + seriesId);
         Optional<PersistentLogin> optional = persistentLoginRepository.findById(seriesId);
         if (optional.isPresent()) {
             PersistentLogin persistentLogin = optional.get();
@@ -61,6 +64,7 @@ public class JpaPersistentTokenRepository implements PersistentTokenRepository {
 
     @Override
     public void removeUserTokens(String username) {
+        System.out.println("Removing tokens for username: " + username);
         persistentLoginRepository.deleteByUsername(username);
     }
 

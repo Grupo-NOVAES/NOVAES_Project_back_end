@@ -17,12 +17,11 @@
     <title>Etapas</title>
 </head>
 <body>
-    <!-- Agrupa os elementos que compõe o cabeçalho. -->
-    <div th:replace="fragments/header :: header"></div>
+  <div th:replace="~{fragments/header :: header}"></div>
 
 
-	<!-- Agrupa links de navegação no site. -->
-	<div th:replace="fragments/nav :: nav"></div>
+  <div class="container">
+    <div th:replace="~{fragments/nav :: nav}"></div>
 
 	<main>
 
@@ -88,7 +87,10 @@
 
 
   </main>
+  </div>
 
 </div>
+<script th:src="@{/js/darkTheme.js}"></script>
+<script th:src="@{/js/logout.js}"></script>
 </body>
 </html>
