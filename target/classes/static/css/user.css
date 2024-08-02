@@ -310,16 +310,6 @@ tr {
   color: #cecece;
 }
 
-@media only screen and (max-width: 923px) {
-  main {
-    height: calc(100vh - 330px);
-  }
-
-  aside {
-    height: 100px;
-  }
-}
-
 @media only screen and (max-width: 717px) {
   #openMenu,
   #closeMenu {
@@ -348,4 +338,64 @@ tr {
     opacity: 0;
     transition: 0.3s;
   }
+}
+@media (max-width: 1115px) {
+  .container {
+    margin-left: 220px;
+  }
+}
+
+@media only screen and (max-width: 717px) {
+	#openMenu, #closeMenu {
+		/* Retorna a visibilidade padrão. */
+		display: block;
+	}
+
+	#openMenu {
+		/* Espaço a esquerda será preenchido automaticamente
+		   colocando os itens a direita. */
+		margin-left: auto;
+	}
+
+	#closeMenu {
+		/* Torna a posição do elemento fixa. */
+		position: fixed;
+
+		/* Dispõe o elemento a 15px da esquerda. */
+		right: 15px;
+
+		/* Dispõe o elemento a 15px do topo. */
+		top: 15px;
+	}
+
+	nav {
+		/* Torna a posição do elemento fixa. */
+		position: fixed;
+
+		/* Ocupa 100% da largura da tela de exibição. */
+		width: 100vw;
+
+		/* Ocupa 100% da altura da tela de exibição. */
+		height: 100vh;
+
+		/* Cor em RGB, mais transparência. */
+		background: #f3f3f3;
+
+		/* Alinha os itens na horizontal. */
+		align-items: center;
+
+		/* Alinha os itens na vertical. */
+		justify-content: center;
+
+		/* Remove a margem externa de todos os lados do elemento. */
+		margin: 0;
+
+		/* Oculta o elemento. */
+		display: none;
+
+		/* Velocidade de transição de um estado para outro. */
+		transition: 0.3s;
+
+    z-index: 1;
+	}
 }
