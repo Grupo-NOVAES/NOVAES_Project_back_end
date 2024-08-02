@@ -1,13 +1,13 @@
 header {
     background: #1e3050;
-    padding: 15px 30px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
     height: 80px;
-    width: 100%;
+    flex: 1 1 100vw;
     z-index: 1;
   }
   #links {
@@ -71,7 +71,7 @@ header {
     padding: 20px 20px;
     text-decoration: none;
     display: flex;
-  }
+  }                                                             
   
   .dropdown-content a:hover {background-color: #f1f1f1}
   

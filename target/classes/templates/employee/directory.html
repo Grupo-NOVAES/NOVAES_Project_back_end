@@ -22,9 +22,9 @@
   <body>
 
     <div th:replace="~{fragments/header :: header}"></div>
-    <div class="container">
-      <div th:replace="~{fragments/nav :: nav}"></div>
 
+      <div th:replace="~{fragments/nav :: nav}"></div>
+      <div class="container">
       <main role="main" class="main">
         <div class="listParentDirectory">
           <div
@@ -187,5 +187,6 @@
     <script th:src="@{/js/darkTheme.js}"></script>
     <script th:src="@{/js/logout.js}"></script>
     <script th:src="@{/js/directory.js}"></script>
+    <script th:src="@{/js/directoryResponsivity.js}"></script>
   </body>
 </html>

@@ -1,24 +1,28 @@
+*{
+  margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 body {
   font-family: 'Montserrat', sans-serif;
   background-color: #f9f9f9;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+	display: flex;
+	flex-wrap: wrap;
+	flex: 1 1 100vw;
+  overflow: hidden;
+
 }
 .container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  height: calc(100vh - 80px);
-  width: 100vw;
+	flex: 20 1 500px;
   margin-top: 20px;
 }
 main {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 100%;
-  margin-left: calc(100vw - 90vw);
+  height: 90vh;
   flex: 1;
 }
 
@@ -329,11 +333,6 @@ tr {
 }
 
 
-
-
-
-
-
 /*MODAIS*/
 .AddFolderModal {
   display: none;
@@ -549,15 +548,6 @@ tr {
 }
 /*MODAIS*/
 
-@media only screen and (max-width: 923px) {
-  main {
-    height: calc(100vh - 330px);
-  }
-
-  aside {
-    height: 100px;
-  }
-}
 
 @media only screen and (max-width: 717px) {
   #openMenu,
@@ -587,4 +577,65 @@ tr {
     opacity: 0;
     transition: 0.3s;
   }
+}
+@media (max-width: 1115px) {
+  .container {
+    margin-left: 220px;
+  }
+}
+
+@media only screen and (max-width: 717px) {
+	#openMenu, #closeMenu {
+		/* Retorna a visibilidade padrão. */
+		display: block;
+	}
+
+	#openMenu {
+		/* Espaço a esquerda será preenchido automaticamente
+		   colocando os itens a direita. */
+		margin-left: auto;
+	}
+
+	#closeMenu {
+		/* Torna a posição do elemento fixa. */
+		position: fixed;
+
+		/* Dispõe o elemento a 15px da esquerda. */
+		right: 15px;
+
+		/* Dispõe o elemento a 15px do topo. */
+		top: 15px;
+	}
+
+	nav {
+		/* Torna a posição do elemento fixa. */
+		position: fixed;
+
+		/* Ocupa 100% da largura da tela de exibição. */
+		width: 100vw;
+
+		/* Ocupa 100% da altura da tela de exibição. */
+		height: 100vh;
+
+		/* Cor em RGB, mais transparência. */
+		background: rgba(255, 255, 255, 0.8);
+
+		/* Alinha os itens na horizontal. */
+		align-items: center;
+
+		/* Alinha os itens na vertical. */
+		justify-content: center;
+
+		/* Remove a margem externa de todos os lados do elemento. */
+		margin: 0;
+
+		/* Oculta o elemento. */
+		display: none;
+
+		/* Invisivel */
+		opacity: 0;
+
+		/* Velocidade de transição de um estado para outro. */
+		transition: 0.3s;
+	}
 }

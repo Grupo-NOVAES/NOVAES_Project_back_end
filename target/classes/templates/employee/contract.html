@@ -21,12 +21,12 @@
   </head>
   <body>
 
-    <div th:replace="~{fragments/header :: header}"></div>
+    <div th:replace="fragments/header :: header"></div>
 
-    <div class="container">
+
       
-      <div th:replace="~{fragments/nav :: nav}"></div>
-
+      <div th:replace="fragments/nav :: nav"></div>
+      <div class="container">
       <main role="main" class="main">
 
         <div class="filters">
@@ -63,7 +63,7 @@
           <table class="tabela">
               <tbody>
                 <tr th:each="contract : ${listContract}" th:data-id="${contract.id}" th:data-name="${contract.title}">
-                  <td><i class="fa-solid fa-handshake fa-xl"></i></td>
+                  <td><i class="fa-solid fa-handshake fa-2xl"></i></td>
                   <td th:text="${contract.title}"></td>
                   <td th:text="${contract.time}"></td>
                   <td th:text="${contract.concluded}"></td>
