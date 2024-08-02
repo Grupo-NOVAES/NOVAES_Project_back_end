@@ -17,7 +17,6 @@ body {
   flex-direction: row;
   justify-content: space-between;
 	flex: 20 1 500px;
-  margin-top: 20px;
 }
 main {
   display: flex;
@@ -618,7 +617,7 @@ tr {
 		height: 100vh;
 
 		/* Cor em RGB, mais transparência. */
-		background: rgba(255, 255, 255, 0.8);
+		background: #f3f3f3;
 
 		/* Alinha os itens na horizontal. */
 		align-items: center;
@@ -632,10 +631,9 @@ tr {
 		/* Oculta o elemento. */
 		display: none;
 
-		/* Invisivel */
-		opacity: 0;
-
 		/* Velocidade de transição de um estado para outro. */
 		transition: 0.3s;
+
+    z-index: 1;
 	}
 }
