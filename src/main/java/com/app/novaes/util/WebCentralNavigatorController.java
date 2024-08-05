@@ -31,6 +31,7 @@ import com.app.novaes.directoryArchive.Archive;
 import com.app.novaes.directoryArchive.ArchiveDTO;
 import com.app.novaes.directoryArchive.ArchiveRepository;
 import com.app.novaes.directoryArchive.Directory;
+import com.app.novaes.directoryArchive.DirectoryAndArchivesService;
 import com.app.novaes.directoryArchive.DirectoryDTO;
 import com.app.novaes.directoryArchive.DirectoryNotFoundException;
 import com.app.novaes.directoryArchive.DirectoryRepository;
@@ -47,8 +48,7 @@ public class WebCentralNavigatorController {
 	@Autowired
 	private DirectoryRepository directoryRepository;
 	
-	@Autowired
-	private ArchiveRepository archiveRepository;
+
 	
 	@Autowired
 	private ContractRepository contractRepository;	
@@ -88,127 +88,7 @@ public class WebCentralNavigatorController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/directory")
-	public ModelAndView homeClient() {
-		ModelAndView modelAndView = new ModelAndView();
-		
-		UserDetails userDetails = getUserAuthInfo();
-		User user = getUserInfo();
-    	modelAndView.addObject("user", user);
-		
-		
-		
-    	for(GrantedAuthority authorities : userDetails.getAuthorities()) {
-    		if(authorities == Role.ADMIN ||authorities == Role.EMPLOYEE) {
-    			List<DirectoryDTO> listDirectory = getListDirectory();
-    			List<DirectoryDTO> nameParentDirectory = getPathDirectoryById((long)1);
-    			
-    			List<ArchiveDTO> listArchive = getListArchive();
-    			
-    			
-    			modelAndView.addObject("listNameParentDirectory" , nameParentDirectory);
-    	        modelAndView.addObject("listDirectory" , listDirectory);
-    	        modelAndView.addObject("listArchive" , listArchive);
-    	        
-    			modelAndView.setViewName("/employee/directory.html");
-    		}else {
-    			Client client = (Client) userDetails;
-    			List<DirectoryDTO> accessibleDirectories = getAccessibleDirectories(client.getId());
-    			List<DirectoryDTO> nameParentDirectory = getPathDirectoryById(client.getReferences_directory());
-    			nameParentDirectory.remove(0);
-    			
-    			modelAndView.addObject("listNameParentDirectory" , nameParentDirectory);
-    			modelAndView.addObject("listDirectory", accessibleDirectories);
-    			
-    			modelAndView.setViewName("/client/directory.html");
-    		}
-    	}
-		
-		return modelAndView;
-	}
 	
-	@GetMapping("/directory/{id}")
-	public ModelAndView homeClient(@PathVariable Long id) {
-		ModelAndView modelAndView = new ModelAndView();
-			
-		UserDetails userDetails = getUserAuthInfo();
-		User user = getUserInfo();
-    	modelAndView.addObject("user", user);
-
-    	for(GrantedAuthority authorities : userDetails.getAuthorities()) {
-    		if(authorities == Role.ADMIN ||authorities == Role.EMPLOYEE) {
-    			List<DirectoryDTO> listDirectory = getListSubDirectory(id);
-    			List<DirectoryDTO> listNameParentDirectory = getPathDirectoryById(id);
-    			List<ArchiveDTO> listArchive = getListArchive();
-    			
-    			
-    			modelAndView.addObject("listNameParentDirectory" , listNameParentDirectory);
-    	        modelAndView.addObject("listDirectory" , listDirectory);
-    	        modelAndView.addObject("listArchive" , listArchive);
-    	        
-    			modelAndView.setViewName("/employee/directory.html");
-    		}else {
-    			Client client = (Client) userDetails;
-    			
-    			List<Long> listIdOfDirectoryPermited = new ArrayList<>();
-    			
-    			listIdOfDirectoryPermited.addAll(getAllSubDirectoryIds(client.getReferences_directory()));
-    			listIdOfDirectoryPermited.add(client.getReferences_directory());
-    			
-    			boolean permited = listIdOfDirectoryPermited.contains(id);
-    			
-                if(permited) {
-                	List<DirectoryDTO> accessibleSubDirectories = getSubDirectoryByParentDirectory(id);
-                    List<DirectoryDTO> listNameParentDirectory = getPathDirectoryById(id);
-                    listNameParentDirectory.remove(0);
-                    
-                    modelAndView.addObject("listNameParentDirectory" , listNameParentDirectory);
-                    modelAndView.addObject("listDirectory", accessibleSubDirectories);
-                    
-                    modelAndView.setViewName("/client/directory.html");
-                }else {
-                	modelAndView.setViewName("/ErrorPage.html");
-                }
-
-    		}
-    	}
-		
-		return modelAndView;
-
-	}
-	
-	@GetMapping("/archive/download/{id}")
-	public ResponseEntity<ByteArrayResource> downloadArchiveById(@PathVariable Long id) {
-	    Archive archive = archiveRepository.findById(id)
-	            .orElseThrow(() -> new RuntimeException("Archive not found"));
-
-	    ByteArrayResource resource = new ByteArrayResource(archive.getContent());
-
-	    Tika tika = new Tika();
-	    String mimeType = tika.detect(archive.getContent());
-
-	    MediaType mediaType;
-	    try {
-	        mediaType = MediaType.parseMediaType(mimeType);
-	    } catch (IllegalArgumentException e) {
-	        mediaType = MediaType.APPLICATION_OCTET_STREAM;
-	    }
-
-	    String fileExtension = getFileExtensionFromMimeType(mimeType);
-	    if (fileExtension == null) {
-	        fileExtension = "bin"; 
-	    }
-
-	    HttpHeaders headers = new HttpHeaders();
-	    headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + archive.getName() + "." + fileExtension + "\"");
-
-	    return ResponseEntity
-	            .ok()
-	            .headers(headers)
-	            .contentType(mediaType)
-	            .contentLength(archive.getContent().length)
-	            .body(resource);
-	}
 
 	@GetMapping("/user")
 	public ModelAndView managersListScreenClient() {
@@ -337,92 +217,17 @@ public class WebCentralNavigatorController {
 		User user = (User) getUserAuthInfo();
 		return user;
 	}
-	
-	private List<ArchiveDTO> getListArchive(){
-		Directory root = directoryRepository.findByName("jau");
-        if (root == null) {
-            throw new RuntimeException("Root directory not found");
-           
-        }
-        List<ArchiveDTO> listArchive = new ArrayList<>();
-        for(Archive archive : root.getArchives()) {
-        	listArchive.add(directoryAndArchivesService.convertToDTO(archive));
-        }
-        return listArchive;
-	}
-	
-	
-	private List<DirectoryDTO> getListDirectory() {
-		Directory root = directoryRepository.findByName("root");
-        if (root == null) {
-            throw new RuntimeException("Root directory not found");
-           
-        }
-        List<DirectoryDTO> listDirectory = new ArrayList<>();
-        for(Directory directory : root.getSubDirectories()) {
-        	listDirectory.add(DirectoryAndArchivesService.convertToDTORecursive(directory));
-        }
-       
-        
-        return listDirectory;
-	}
-	
-	private List<DirectoryDTO> getListSubDirectory(Long id){
-		Directory directory = directoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Directory not found"));
-        
-        List<DirectoryDTO> listDirectory = new ArrayList<>();
-        
-        for(Directory directorys : directory.getSubDirectories()) {
-        	listDirectory.add(DirectoryAndArchivesService.convertToDTORecursive(directorys));
-        }
-        
-        for(DirectoryDTO dto : listDirectory ) {
-        	dto.setSubDirectories(null);
-        }
-        return listDirectory;
-	}
-	
+
 	private UserDetails getUserAuthInfo() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		return (UserDetails) authentication.getPrincipal();
 	}
 	
-	private List<DirectoryDTO> getPathDirectoryById(Long id) {
-        Directory directory = directoryRepository.findById(id)
-                .orElseThrow(DirectoryNotFoundException::new);
-        List<DirectoryDTO> listPath = buildPath(directory);
-        
-        return listPath;
-    }
+	
 
-	private List<DirectoryDTO> buildPath(Directory directory) {
-        List<DirectoryDTO> path = new ArrayList<>();
-        while (directory != null) {
-            DirectoryDTO dto = new DirectoryDTO();
-            dto.setId_Directory(directory.getId());
-            dto.setName(directory.getName());
-            if (directory.getParentDirectory() != null) {
-                dto.setParentDirectoryId(directory.getParentDirectory().getId());
-                dto.setNameParentDirectory(directory.getParentDirectory().getName());
-            }
-            path.add(dto);
-            directory = directory.getParentDirectory();
-        }
-        Collections.reverse(path);
-        return path;
-    }
+	
     
-    private List<String> getNameSubDirectoryByRoot() {
-    	List<String> nameSubDirectoryByRoot = new ArrayList<>();
-    	Directory root = directoryRepository.findById((long)1)
-    				.orElseThrow(DirectoryNotFoundException :: new);
-    	for(Directory directory : root.getSubDirectories()) {
-    		nameSubDirectoryByRoot.add(directory.getName());
-    	}
-    	
-    	return nameSubDirectoryByRoot;
-    }
+    
     
     private ClientDTO convertAClientToClientDTO(Client client) {
 		ClientDTO clientDTO = new ClientDTO();
@@ -435,78 +240,13 @@ public class WebCentralNavigatorController {
 	}
     
     
-    private List<DirectoryDTO> getAccessibleDirectories(long clientId) {
-    	Client client = clientRepository.findById(clientId)
-    			.orElseThrow(ClientNotFoundException :: new);
-    	
-    	Directory directoryFound = directoryRepository.findById(client.getReferences_directory())
-    			.orElseThrow(DirectoryNotFoundException :: new);
-  
-    	List<DirectoryDTO> listDirectoryDTO = new ArrayList<>();
-    	
-    	for(Directory directory : directoryFound.getSubDirectories()) {
-    		DirectoryDTO subDirectory = directoryAndArchivesService.convertToDTORecursive(directory);
-    		listDirectoryDTO.add(subDirectory);
-    	}
-    	return listDirectoryDTO;
-    }
     
-    private List<DirectoryDTO> getSubDirectoryByParentDirectory(long directoryId){
-    	Directory directoryFound = directoryRepository.findById(directoryId)
-    			.orElseThrow(DirectoryNotFoundException :: new);
-    	
-    	List<DirectoryDTO> listDirectoryDTO = new ArrayList<>();
-    	
-    	for(Directory directory : directoryFound.getSubDirectories()) {
-    		DirectoryDTO subDirectory = directoryAndArchivesService.convertToDTORecursive(directory);
-    		listDirectoryDTO.add(subDirectory);
-    	}
-    	return listDirectoryDTO;
-    }
     
-    private List<Long> getAllSubDirectoryIds(Long directoryId) {
-        List<Long> subDirectoryIds = new ArrayList<>();
-        Directory directory = directoryRepository.findById(directoryId)
-                .orElseThrow(DirectoryNotFoundException::new);
-        
-        collectSubDirectoryIds(directory, subDirectoryIds);
-        return subDirectoryIds;
-    }
+    
 
-    private void collectSubDirectoryIds(Directory directory, List<Long> subDirectoryIds) {
-        for (Directory subDirectory : directory.getSubDirectories()) {
-            subDirectoryIds.add(subDirectory.getId());
-            collectSubDirectoryIds(subDirectory, subDirectoryIds); // Chamada recursiva
-        }
-    }
+    
     	
-    private String getFileExtensionFromMimeType(String mimeType) {
-        switch (mimeType) {
-            case "application/pdf":
-                return "pdf";
-            case "image/jpeg":
-                return "jpg";
-            case "image/png":
-                return "png";
-            case "text/plain":
-                return "txt";
-            case "application/zip":
-                return "zip";
-            case "application/acad":
-            case "application/x-autocad":
-                return "dwg";
-            case "application/dxf":
-                return "dxf";
-            case "application/sldprt":
-                return "sldprt";
-            case "application/sldasm":
-                return "sldasm";
-            case "application/slddrw":
-                return "slddrw";
-            default:
-                return null; 
-        }
-    }
+    
     	
 	
 	

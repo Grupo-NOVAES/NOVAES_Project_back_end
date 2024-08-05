@@ -12,7 +12,13 @@ public class ArchiveDTO {
     private String name;
     private String type;
     private Long parentDirectoryId;
-    private List<User> listUserPermited;
     
+    public ArchiveDTO(Long id, String name, String type, Long parentDirectoryId) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.parentDirectoryId = parentDirectoryId;
+    }
     
+    public ArchiveDTO() {};
 }
