@@ -16,13 +16,15 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-	flex: 20 1 500px;
+	flex: 20 10 500px;
 }
 main {
   display: flex;
   flex-direction: column;
   height: 90vh;
   flex: 1;
+  align-items: center;
+  justify-content: center;
 }
 
 .listParentDirectory {
