@@ -18,4 +18,9 @@ function hideModalContract() {
 
 function saveButton(){
     console.log('Salvar Add Contrato!');
+    hideModalContract();
+}
+
+function showModalaActionsContract() {
+    document.getElementById('ModalOptions').style.display = "block";
 }

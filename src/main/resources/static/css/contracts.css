@@ -237,6 +237,49 @@ tr {
   border: solid 1px #b5b5b5;
 }
 
+.listParentDirectory{
+  height: 50px;
+  align-items: center;
+}
+.folderItem{
+  cursor: pointer;
+}
+.fileItem{
+  cursor: pointer;
+}
+
+
+.ModalOptions {
+  display: none;
+  position: fixed;
+  top: 50%;
+  right: 10%;
+  width: 100px;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  z-index: 1;
+  color: #1e3050;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.ModalOptions .a {
+width: 100%;
+}
+
+.btnOption{
+  width: 100%;
+  height: 33%;
+  background-color: #ffffff;
+  border: none;
+  box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.15);
+
+}
+.btnOption:hover{
+  background-color: #c4c4c4;
+}
 
 @media only screen and (max-width: 717px) {
   #openMenu,
