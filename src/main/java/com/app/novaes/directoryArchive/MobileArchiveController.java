@@ -188,20 +188,18 @@ public class MobileArchiveController {
     }
     
     @PostMapping("")
-    public ArchiveDTO createArchive(@RequestParam("contentArchive") MultipartFile pdf, 
-                                    @RequestParam String name, 
-                                    @RequestParam Long directoryID, 
-                                    @RequestParam String type) throws Exception {
+    public ArchiveDTO createArchive(@RequestParam("contentArchive") MultipartFile archiveData,
+                                    @RequestParam("id_directory") Long directoryID) throws Exception {
 
         Directory directory = directoryRepository.findById(directoryID)
                 .orElseThrow(() -> new RuntimeException("Directory not found"));
         
-        byte[] content = pdf.getBytes();
+        byte[] content = archiveData.getBytes();
         
         Archive archive = new Archive();
-        archive.setName(name);
+        archive.setName(archiveData.getOriginalFilename());
         archive.setDirectory(directory);
-        archive.setType(type.toLowerCase());
+        archive.setType(archiveData.getContentType());
         archive.setContent(content);
         archiveRepository.save(archive);
         

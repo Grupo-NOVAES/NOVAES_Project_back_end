@@ -30,6 +30,6 @@ public class WebContractController {
         contract.setClient(client);
         contractRepository.save(contract);
         redirectAttributes.addFlashAttribute("message", "Contrato adicionado com sucesso!");
-        return "redirect:/contract";
+        return "/contract";
     }
 }

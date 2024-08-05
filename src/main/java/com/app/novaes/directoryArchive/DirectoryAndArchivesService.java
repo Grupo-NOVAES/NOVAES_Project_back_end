@@ -149,8 +149,8 @@ public class DirectoryAndArchivesService {
                 return "jpg";
             case "image/png":
                 return "png";
-            case "text/plain":
-                return "txt";
+            case "image/jfif":
+            	return "jfif";         
             case "application/zip":
                 return "zip";
             case "application/acad":
@@ -166,6 +166,22 @@ public class DirectoryAndArchivesService {
                 return "slddrw";
             case "application/x-tika-msoffice":
                 return "rvt";
+            case "application/octet-stream":
+            	return "cpg";
+            case "application/vnd.dbf":
+            	return "dbf";
+            case "text/html":
+            	return "html";
+            case "text/css":
+            	return "css";
+            case "application/javascript":
+            	return "js";
+            case "image/svg+xml":
+            	return "svg";
+            case "text/plain":
+                return "txt";
+            case "application/xml":
+            	return "xml";
             default:
                 return null; 
         }
