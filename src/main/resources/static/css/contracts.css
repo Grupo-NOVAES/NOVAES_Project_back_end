@@ -157,7 +157,6 @@ tr {
     display: flex;
     flex-direction: column;
     width: 50%;
-    align-items: center;
 }
 #time{
     margin-right: 4px;
@@ -169,7 +168,6 @@ tr {
     display: flex;
     flex-direction: column;
     width: 50%;
-    align-items: center;
 }
 
 .AddModalContract {
@@ -209,6 +207,7 @@ tr {
   position: relative;
   padding-left: 45px;
 }
+
 
 .AddModalContract .savebtn {
   width: 100px;
@@ -259,7 +258,7 @@ tr {
   background-color: rgb(255, 255, 255);
   border: 1px solid #ddd;
   border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 0px rgba(0,0,0,0.2);
   z-index: 1000;
 }
 .ModalOptions> a{
@@ -270,8 +269,8 @@ tr {
   height: 33.4%;
   background-color: #ffffff;
   border: none;
-  box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.15);
-
+  box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.309);
+  color: #1e3050;
 }
 .btnOption:hover{
   background-color: #c4c4c4;
@@ -328,7 +327,7 @@ tr {
   cursor: pointer;
 }
 
-.EditModalContract .inputRenameContract {
+.inputRenameContract {
   height: 30px;
   width: 200px;
   padding: 10px 0px 10px 40px;

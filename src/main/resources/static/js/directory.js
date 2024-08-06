@@ -105,3 +105,7 @@ function saveButtonEditFolder () {
     console.log('Salvar Edição Pasta!')
     hideModalEdit();
 }
+
+function showModalActionsArchive() {
+    document.getElementById('ModalOptions').style.display = "block";
+}

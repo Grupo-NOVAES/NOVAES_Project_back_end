@@ -20,9 +20,9 @@
     <!-- Agrupa os elementos que compõe o cabeçalho. -->
     <div th:replace="fragments/header :: header"></div>
 
-  <div class="container">
-	<div th:replace="fragments/nav :: nav"></div>
 
+	<div th:replace="fragments/nav :: nav"></div>
+  <div class="container">
 	<main>
 
 
@@ -70,6 +70,7 @@
 
         <div class="AddModalStage" id="AddModalStage">
           <div class="labelinput">
+            <form th:action="@{/stage}" method="post"></form>
             <label for="title">Titulo da Etapa</label>
             <input type="text" name="title" id="title" class="inputlabel">
             <label for="description">Descrição da Etapa</label>
@@ -78,7 +79,7 @@
             <input type="date" name="datehour" id="datehour" class="inputlabeldate">
           </div>
           <div class="actions">
-            <button onclick="saveButton()" class="savebtn">Salvar</button>
+            <button type="submit" onclick="saveButton()" class="savebtn">Salvar</button>
             <p onclick="hideButton()">Sair</p>
           </div>
         </div>
