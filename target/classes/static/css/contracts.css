@@ -195,7 +195,6 @@ tr {
 
 .AddModalContract button, .AddModalContract p {
   cursor: pointer;
-
 }
 
 .AddModalContract .actions {
@@ -249,29 +248,26 @@ tr {
 }
 
 
-.ModalOptions {
-  display: none;
-  position: fixed;
+.ModalOptions{
+  width: 120px;
+  height: 150px;
   top: 50%;
-  right: 10%;
-  width: 100px;
-  transform: translate(-50%, -50%);
-  padding: 20px;
-  z-index: 1;
-  color: #1e3050;
+  right: 15%;
+  display: none;
+  flex-direction: column;
+  position: absolute;
   background-color: rgb(255, 255, 255);
   border: 1px solid #ddd;
   border-radius: 4px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
 }
-
-.ModalOptions .a {
-width: 100%;
+.ModalOptions> a{
+  width: 100%;
 }
-
 .btnOption{
   width: 100%;
-  height: 33%;
+  height: 33.4%;
   background-color: #ffffff;
   border: none;
   box-shadow: inset 0px 0px 2px 0px rgba(0, 0, 0, 0.15);
@@ -279,6 +275,72 @@ width: 100%;
 }
 .btnOption:hover{
   background-color: #c4c4c4;
+}
+
+.EditModalContract {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  z-index: 1;
+  background-color: #F9F9F9;
+  color: #1e3050;
+}
+
+.EditModalContract label, .EditModalContract input, .EditModalContract button, .EditModalContract p {
+  display: block;
+  margin: 10px 0;
+}
+
+.EditModalContract button, .EditModalContract p {
+  cursor: pointer;
+}
+
+.EditModalContract .actions {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.EditModalContract .labelinput {
+  position: relative;
+  padding-left: 45px;
+}
+
+.EditModalContract .savebtn {
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #1e3050;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.EditModalContract .inputRenameContract {
+  height: 30px;
+  width: 200px;
+  padding: 10px 0px 10px 40px;
+  border-radius: 5px;
+  border: solid 1px #b5b5b5;
+  transition: all .2s ease-in-out;
+  outline: none;
+  opacity: 0.8;
+}
+.inputRenameContract:focus {
+  opacity: 1;
+  width: 220px;
 }
 
 @media only screen and (max-width: 717px) {

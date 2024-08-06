@@ -177,11 +177,24 @@
           </div>
         </div>
 
-        <div class="ModalOptions" id="ModalOptions">
+        <div id="ModalOptions" class="ModalOptions">
           <a><button onclick="showModalContractName()" class="btnOption"><i class="fa-solid fa-pencil fa-sm"style=" color: #1e3050;"></i> Renomear</button></a>
-          <a><button onclick="alert('Deseja Excluir esse Contrato?')" class="btnOption"> <i class="fa-solid fa-trash fa-sm"style=" color: #1e3050;"></i>Deletar</button></a>
+          <a><button onclick="alert('Deseja Excluir esse Contrato?')" class="btnOption"> <i class="fa-solid fa-trash fa-sm"style=" color: #1e3050;"></i> Deletar</button></a>
+          <a><button onclick="hideModalActionsContract()" class="btnOption">Sair</button></a>
         </div>
         
+        <div class="EditModalContract" id="EditModalContract">
+          <div class="labelinput">
+            <label for="nameFolder">Renomear Contrato</label>
+            <input type="text" class="inputRenameContract" id="name">
+          </div>
+  
+          <div class="actions">
+            <button class="savebtn" onclick="saveButtonEditFolder()">Salvar</button>
+            <p onclick="hideModalNameContract()">Sair</p>
+          </div>
+        </div>
+
       </main>
     </div>
 

@@ -21,6 +21,24 @@ function saveButton(){
     hideModalContract();
 }
 
+
+
 function showModalaActionsContract() {
     document.getElementById('ModalOptions').style.display = "block";
+}
+
+
+function hideModalActionsContract() {
+    document.getElementById('ModalOptions').style.display = "none";
+}
+
+
+
+
+function showModalContractName() {
+    document.getElementById('EditModalContract').style.display = "block";
+}
+
+function hideModalNameContract() {
+    document.getElementById('EditModalContract').style.display = "none";
 }
