@@ -29,7 +29,6 @@ function hideModalContract() {
 
 function showModalContractName() {
     document.getElementById('EditModalContract').style.display = 'block';
-    // Preenche o campo de entrada com o título do contrato selecionado
     const contractRow = document.querySelector(`tr[data-id="${selectedContractId}"]`);
     document.getElementById('name').value = contractRow.getAttribute('data-title');
 }
@@ -40,7 +39,6 @@ function hideModalNameContract() {
 
 function saveButtonEditContract() {
     const newTitle = document.getElementById('name').value;
-    // Envia a solicitação para atualizar o contrato
     updateContract(selectedContractId, newTitle);
     hideModalNameContract();
 }
@@ -65,7 +63,7 @@ function updateContract(id, title) {
     .then(response => {
         if (response.ok) {
             alert('Contrato atualizado com sucesso!');
-            location.reload(); // Recarrega a página para refletir as mudanças
+            location.reload();
         } else {
             alert('Erro ao atualizar contrato.');
         }
