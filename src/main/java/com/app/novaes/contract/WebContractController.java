@@ -2,12 +2,14 @@ package com.app.novaes.contract;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -69,21 +71,19 @@ public class WebContractController {
     }
     
     @PutMapping("/{id}")
-    public void updateContract(@PathVariable Long id,
-    						   @RequestParam("title") String title,
-    						   @RequestParam("time") String time,
-    						   @RequestParam("id_client") Long id_client) {
-    	
-    	Contract contract = contractService.findContractById(id);
-    	
-    	if(title != null) {
-    		contract.setTitle(title);
-    	}else if(time != null) {
-    		contract.setTime(time);
-    	}else if(id_client != null) {
-    		Client client = clientService.getClientById(id_client);
-    		contract.setClient(client);
-    	}
+    public ResponseEntity<Contract> updateContract(
+            @PathVariable Long id,
+            @RequestBody ContractDto contractDto) {
+        // Verifica se o contrato existe
+        Contract contract = contractService.findContractById(id);
+        if (contract == null) {
+            return ResponseEntity.notFound().build();
+        }
+        // Atualiza o contrato
+        contract.setTitle(contractDto.getTitle());
+        // Salva as mudanças
+        contractService.saveContract(contract);
+        return ResponseEntity.ok(contract);
     }
     
     @DeleteMapping("/{id}")
