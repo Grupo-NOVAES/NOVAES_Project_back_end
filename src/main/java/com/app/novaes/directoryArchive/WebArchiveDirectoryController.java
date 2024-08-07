@@ -9,18 +9,16 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.novaes.client.Client;
 import com.app.novaes.client.ClientService;
-import com.app.novaes.user.Role;
 import com.app.novaes.user.User;
 import com.app.novaes.user.UserService;
 
@@ -40,16 +38,17 @@ public class WebArchiveDirectoryController {
 	}
 	
 	@GetMapping("/directory")
-	public ModelAndView homeClient() {
+	public ModelAndView directoryListRoot() {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		User user = getUserInfo();
+		User user = userService.getUserAuthInfo();
     	modelAndView.addObject("user", user);
     	
 		List<DirectoryDTO> nameParentDirectory = directoryAndArchivesService.getPathDirectoryById((long)1);
 		modelAndView.addObject("listNameParentDirectory" , nameParentDirectory);
 
 
+        modelAndView.addObject("parentDirectoryId", (long)1);
 
     	if(userService.getTypeUser()) {
     		List<DirectoryDTO> listDirectory = directoryAndArchivesService.getListDirectory();
@@ -72,11 +71,14 @@ public class WebArchiveDirectoryController {
 	}
 	
 	@GetMapping("/directory/{id}")
-	public ModelAndView homeClient(@PathVariable Long id) {
+	public ModelAndView directoryListRoot(@PathVariable Long id) {
 		ModelAndView modelAndView = new ModelAndView();
 			
-		User user = getUserInfo();
+		User user = userService.getUserAuthInfo();
     	modelAndView.addObject("user", user);
+    	
+    	
+
 
     		if(userService.getTypeUser()) {
     			List<DirectoryDTO> listDirectory = directoryAndArchivesService.getListSubDirectory(id);
@@ -152,16 +154,21 @@ public class WebArchiveDirectoryController {
 	            .body(resource);
 	}
 	
-	private User getUserInfo() {
-		User user = (User) getUserAuthInfo();
-		return user;
-	}
-
-	private UserDetails getUserAuthInfo() {
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		return (UserDetails) authentication.getPrincipal();
+	@PostMapping("/directory")
+	public ModelAndView addDirectory(@RequestParam("folderName") String folderName, @RequestParam("parentId") Long parentId) {
+	    directoryAndArchivesService.addDirectory(folderName, parentId);
+	    return directoryListRoot();
 	}
 	
+	@PutMapping("/directory")
+	public ModelAndView renameDirectory(@RequestParam("directoryId") Long directoryId,@RequestParam("newNameFolder") String newNameFolder) {
+		directoryAndArchivesService.renameFolder(directoryId , newNameFolder);
+		return null;
+	}
+
+
+
+
 	
 
 }

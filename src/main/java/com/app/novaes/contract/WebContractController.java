@@ -56,14 +56,16 @@ public class WebContractController {
 	}
 
     @PostMapping
-    public void addContract(@ModelAttribute Contract contract, RedirectAttributes redirectAttributes) {
+    public ModelAndView addContract(@ModelAttribute Contract contract, RedirectAttributes redirectAttributes) {
         Client client = clientService.getClientByLogin(contract.getClient().getLogin());
         if (client == null) {
             redirectAttributes.addFlashAttribute("message", "Client not found");
+            
         }
         contract.setClient(client);
         contractService.saveContract(contract);
         redirectAttributes.addFlashAttribute("message", "Contrato adicionado com sucesso!");
+        return contractScreenClient();
     }
     
     @PutMapping("/{id}")

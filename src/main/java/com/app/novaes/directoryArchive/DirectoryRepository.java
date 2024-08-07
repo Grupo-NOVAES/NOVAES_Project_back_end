@@ -3,8 +3,11 @@ package com.app.novaes.directoryArchive;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import jakarta.transaction.Transactional;
 
 public interface DirectoryRepository extends JpaRepository<Directory, Long>{
 	
@@ -21,6 +24,11 @@ public interface DirectoryRepository extends JpaRepository<Directory, Long>{
     
     @Query("SELECT new com.app.novaes.directoryArchive.DirectoryDTO(d.id, d.name, d.parentDirectory.id, d.parentDirectory.name) FROM Directory d WHERE d.parentDirectory.id = 1")
     List<DirectoryDTO> findSubDirectoriesOfRoot();
+    
+    @Modifying
+    @Transactional
+    @Query("UPDATE Directory d SET d.name = :name WHERE d.id = :id")
+    void updateDirectoryName(Long id, String name);
     
 
 	

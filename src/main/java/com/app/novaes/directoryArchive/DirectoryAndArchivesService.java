@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.app.novaes.client.Client;
 import com.app.novaes.client.ClientNotFoundException;
 import com.app.novaes.client.ClientRepository;
-import com.app.novaes.user.User;
 
 @Service
 public class DirectoryAndArchivesService {
@@ -135,7 +134,7 @@ public class DirectoryAndArchivesService {
 	protected void collectSubDirectoryIds(Directory directory, List<Long> subDirectoryIds) {
         for (Directory subDirectory : directory.getSubDirectories()) {
             subDirectoryIds.add(subDirectory.getId());
-            collectSubDirectoryIds(subDirectory, subDirectoryIds); // Chamada recursiva
+            collectSubDirectoryIds(subDirectory, subDirectoryIds); 
         }
     }
     
@@ -185,15 +184,7 @@ public class DirectoryAndArchivesService {
                 return null; 
         }
     }
-    
-	protected List<DirectoryDTO> getPathDirectoryById(Long id) {
-        Directory directory = directoryRepository.findById(id)
-                .orElseThrow(DirectoryNotFoundException::new);
-        List<DirectoryDTO> listPath = buildPath(directory);
-        
-        return listPath;
-    }
-
+	
 	private List<DirectoryDTO> buildPath(Directory directory) {
         List<DirectoryDTO> path = new ArrayList<>();
         while (directory != null) {
@@ -211,9 +202,23 @@ public class DirectoryAndArchivesService {
         return path;
     }
     
-	
-	
-	
-	
+	protected List<DirectoryDTO> getPathDirectoryById(Long id) {
+        Directory directory = directoryRepository.findById(id)
+                .orElseThrow(DirectoryNotFoundException::new);
+        List<DirectoryDTO> listPath = buildPath(directory);
+        
+        return listPath;
+    }
 
+	protected void addDirectory(String folderName , Long parentId) {
+		Directory parentDirectory = directoryRepository.findById(parentId).orElseThrow(DirectoryNotFoundException::new);
+		Directory directory = new Directory();
+		directory.setName(folderName);
+		directory.setParentDirectory(parentDirectory);
+		directoryRepository.save(directory);
+	}
+
+	public void renameFolder(Long directoryId, String newNameFolder) {
+		directoryRepository.updateDirectoryName(directoryId , newNameFolder);
+	}
 }

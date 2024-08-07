@@ -102,19 +102,25 @@
           </div>
         </div>
 
+                <!-- Modal para Adicionar Pasta -->
         <div class="AddFolderModal" id="AddFolderModal">
           <div class="labelinput">
-            <label for="name">Adicionar Pasta</label>
-            <input type="text" name="name" class="input">
-          </div>
-          <div class="actions">
-            <button class="savebtn" onclick="saveButtonAddFolder()">Salvar</button>
-            <p onclick="hideModalAddFolder()">Cancelar</p>
+            <form method="post" th:action="@{/directory}">
+              <label for="name">Adicionar Pasta</label>
+              <input type="text" name="folderName" class="input" placeholder="Nome da Pasta" required>
+              <input type="hidden" name="parentId" th:value="${parentDirectoryId}" />
+              <div class="actions">
+                <button type="submit" class="savebtn">Salvar</button>
+                <p onclick="hideModalAddFolder()">Cancelar</p>
+              </div>
+            </form>
           </div>
         </div>
 
 
-        <div class="AddFolderModalFile" id="AddFolderModalFile">
+
+
+                <div class="AddFolderModalFile" id="AddFolderModalFile">
           <div class="labelinput">
             <form class="file-upload-form">
               <label for="file" class="file-upload-label">

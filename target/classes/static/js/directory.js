@@ -73,7 +73,9 @@ function hideModalAddFolder() {
 
 function saveButtonAddFolder() {
     console.log('Salvar Pasta');
-    hideModal();
+    let id = document.getElementById("inputParentDirectoryId").value;
+    console.log(id);
+    hideModalAddFolder();
 }
 
 
