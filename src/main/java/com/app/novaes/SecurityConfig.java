@@ -23,7 +23,6 @@ import com.app.novaes.client.ClientRepository;
 import com.app.novaes.employee.Employee;
 import com.app.novaes.employee.EmployeeRepository;
 import com.app.novaes.user.*;
-import com.app.novaes.util.JpaPersistentTokenRepository;
 
 @Configuration
 @EnableWebSecurity

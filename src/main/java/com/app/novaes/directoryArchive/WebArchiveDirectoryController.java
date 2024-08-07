@@ -1,7 +1,6 @@
 package com.app.novaes.directoryArchive;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.apache.tika.Tika;
@@ -20,54 +19,54 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.novaes.client.Client;
+import com.app.novaes.client.ClientService;
 import com.app.novaes.user.Role;
 import com.app.novaes.user.User;
+import com.app.novaes.user.UserService;
 
 @RestController
 public class WebArchiveDirectoryController {
 	
 	@Autowired
 	private ArchiveRepository archiveRepository;
+	private final DirectoryAndArchivesService directoryAndArchivesService;
+	private final UserService userService;
+	private final ClientService clientService;
 	
-	private DirectoryAndArchivesService directoryAndArchivesService;
-	
-	public WebArchiveDirectoryController(DirectoryAndArchivesService directoryAndArchivesService) {
+	public WebArchiveDirectoryController(DirectoryAndArchivesService directoryAndArchivesService,UserService userService,ClientService clientService) {
 		this.directoryAndArchivesService=directoryAndArchivesService;
+		this.userService=userService;
+		this.clientService=clientService;
 	}
 	
 	@GetMapping("/directory")
 	public ModelAndView homeClient() {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		UserDetails userDetails = getUserAuthInfo();
 		User user = getUserInfo();
     	modelAndView.addObject("user", user);
-		
-		
-		
-    	for(GrantedAuthority authorities : userDetails.getAuthorities()) {
-    		if(authorities == Role.ADMIN ||authorities == Role.EMPLOYEE) {
-    			List<DirectoryDTO> listDirectory = directoryAndArchivesService.getListDirectory();
-    			List<DirectoryDTO> nameParentDirectory = directoryAndArchivesService.getPathDirectoryById((long)1);
-    			List<ArchiveDTO> listArchive = new ArrayList<>();
+    	
+		List<DirectoryDTO> nameParentDirectory = directoryAndArchivesService.getPathDirectoryById((long)1);
+		modelAndView.addObject("listNameParentDirectory" , nameParentDirectory);
+
+
+
+    	if(userService.getTypeUser()) {
+    		List<DirectoryDTO> listDirectory = directoryAndArchivesService.getListDirectory();
     			
-    			modelAndView.addObject("listNameParentDirectory" , nameParentDirectory);
-    	        modelAndView.addObject("listDirectory" , listDirectory);
-    	        modelAndView.addObject("listArchive" , listArchive);
+    	    modelAndView.addObject("listDirectory" , listDirectory);
+    	    modelAndView.addObject("listArchive" , new ArrayList<>());
     	        
-    			modelAndView.setViewName("/employee/directory.html");
-    		}else {
-    			Client client = (Client) userDetails;
-    			List<DirectoryDTO> accessibleDirectories = directoryAndArchivesService.getAccessibleDirectories(client.getId());
-    			List<DirectoryDTO> nameParentDirectory = directoryAndArchivesService.getPathDirectoryById((long)1);
-    			nameParentDirectory.remove(0);
+    		modelAndView.setViewName("/employee/directory.html");
+    	}else {
+    		Client client = clientService.getClientAuthInfo();
+    		List<DirectoryDTO> accessibleDirectories = directoryAndArchivesService.getAccessibleDirectories(client.getId());
     			
-    			modelAndView.addObject("listNameParentDirectory" , nameParentDirectory);
-    			modelAndView.addObject("listDirectory", accessibleDirectories);
+    		modelAndView.addObject("listDirectory", accessibleDirectories);
     			
-    			modelAndView.setViewName("/client/directory.html");
-    		}
+    		modelAndView.setViewName("/client/directory.html");
     	}
+    	
 		
 		return modelAndView;
 	}
@@ -76,12 +75,10 @@ public class WebArchiveDirectoryController {
 	public ModelAndView homeClient(@PathVariable Long id) {
 		ModelAndView modelAndView = new ModelAndView();
 			
-		UserDetails userDetails = getUserAuthInfo();
 		User user = getUserInfo();
     	modelAndView.addObject("user", user);
 
-    	for(GrantedAuthority authorities : userDetails.getAuthorities()) {
-    		if(authorities == Role.ADMIN ||authorities == Role.EMPLOYEE) {
+    		if(userService.getTypeUser()) {
     			List<DirectoryDTO> listDirectory = directoryAndArchivesService.getListSubDirectory(id);
     			List<DirectoryDTO> listNameParentDirectory = directoryAndArchivesService.getPathDirectoryById(id);
     			List<ArchiveDTO> listArchive = directoryAndArchivesService.getListArchive(id);
@@ -93,7 +90,7 @@ public class WebArchiveDirectoryController {
     	        
     			modelAndView.setViewName("/employee/directory.html");
     		}else {
-    			Client client = (Client) userDetails;
+    			Client client = clientService.getClientAuthInfo();
     			
     			List<Long> listIdOfDirectoryPermited = new ArrayList<>();
     			
@@ -116,7 +113,7 @@ public class WebArchiveDirectoryController {
                 }
 
     		}
-    	}
+    	
 		
 		return modelAndView;
 

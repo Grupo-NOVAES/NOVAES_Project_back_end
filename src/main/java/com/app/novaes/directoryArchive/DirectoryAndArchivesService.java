@@ -12,8 +12,6 @@ import com.app.novaes.client.ClientNotFoundException;
 import com.app.novaes.client.ClientRepository;
 import com.app.novaes.user.User;
 
-
-
 @Service
 public class DirectoryAndArchivesService {
 	
@@ -108,6 +106,7 @@ public class DirectoryAndArchivesService {
     		DirectoryDTO subDirectory = convertToDTORecursive(directory);
     		listDirectoryDTO.add(subDirectory);
     	}
+    	listDirectoryDTO.remove(0);
     	return listDirectoryDTO;
     }
 	

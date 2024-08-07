@@ -1,4 +1,4 @@
-package com.app.novaes.util;
+package com.app.novaes.user;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -8,9 +8,6 @@ import java.util.Optional;
 import org.springframework.security.web.authentication.rememberme.PersistentRememberMeToken;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.stereotype.Service;
-
-import com.app.novaes.user.PersistentLogin;
-import com.app.novaes.user.PersistentLoginRepository;
 
 @Service
 public class JpaPersistentTokenRepository implements PersistentTokenRepository {
