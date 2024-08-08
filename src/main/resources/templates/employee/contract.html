@@ -135,17 +135,18 @@
                 <td th:text="${contract.client.name}"></td>
                 <td style="white-space: nowrap">
                   <button
-                    style="
-                      border: none;
-                      height: 50px;
-                      width: 50px;
-                      border-radius: 15px;
-                    "
-                    onclick="showModalActionsContract(this)"
+                      style="
+                          border: none;
+                          height: 50px;
+                          width: 50px;
+                          border-radius: 15px;
+                          background-color: white;
+                      "
+                      onclick="showModalActionsContract(this)"
                   >
-                    <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                      <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
                   </button>
-                </td>
+              </td>
               </tr>
             </tbody>
           </table>
@@ -198,24 +199,14 @@
         </div>
 
         <div id="ModalOptions" class="ModalOptions">
-          <a
-            ><button onclick="showModalContractName()" class="btnOption">
-              <i class="fa-solid fa-pencil fa-sm" style="color: #1e3050"></i>
-              Renomear
-            </button></a
-          >
-          <a
-            ><button onclick="confirmDeleteContract()" class="btnOption">
-              <i class="fa-solid fa-trash fa-sm" style="color: #1e3050"></i>
-              Deletar
-            </button></a
-          >
-          <a
-            ><button onclick="hideModalActionsContract()" class="btnOption">
-              Sair
-            </button></a
-          >
-        </div>
+          <button onclick="showModalContractName()" class="btnOption">
+            <i class="fa-solid fa-pencil fa-sm" style="color: #1e3050"></i>
+            Renomear
+          </button>
+          <button onclick="confirmDeleteContract()" class="btnOption">
+            <i class="fa-solid fa-trash fa-sm" style="color: #1e3050"></i> Deletar
+          </button>
+      </div>
 
         <div class="EditModalContract" id="EditModalContract">
           <div class="labelinput">

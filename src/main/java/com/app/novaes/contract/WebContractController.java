@@ -74,14 +74,13 @@ public class WebContractController {
     public ResponseEntity<Contract> updateContract(
             @PathVariable Long id,
             @RequestBody ContractDto contractDto) {
-        // Verifica se o contrato existe
+    	
         Contract contract = contractService.findContractById(id);
         if (contract == null) {
             return ResponseEntity.notFound().build();
         }
-        // Atualiza o contrato
+        
         contract.setTitle(contractDto.getTitle());
-        // Salva as mudanças
         contractService.saveContract(contract);
         return ResponseEntity.ok(contract);
     }
