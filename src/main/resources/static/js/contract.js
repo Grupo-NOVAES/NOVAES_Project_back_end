@@ -8,6 +8,42 @@ for (let i = 0; i < folderItems.length; i++) {
 }
 
 
+<<<<<<< HEAD
+=======
+let selectedContractId = null;
+let modalVisible = false;
+
+document.addEventListener('click', function(event) {
+    const ModalOptions = document.getElementById('ModalOptions');
+    const target = event.target;
+
+    if (modalVisible && !ModalOptions.contains(target) && !target.closest('button')) {
+        hideModalActionsContract();
+    }
+});
+
+function showModalActionsContract(button) {
+    const ModalOptions = document.getElementById('ModalOptions');
+    selectedContractId = button.closest('tr').getAttribute('data-id');
+
+    const rect = button.getBoundingClientRect();
+    ModalOptions.style.top = `${rect.top + window.scrollY}px`; 
+    ModalOptions.style.left = `${rect.right + window.scrollX}px`; 
+
+    ModalOptions.style.display = 'block';
+    modalVisible = true;
+}
+
+function hideModalActionsContract() {
+    const ModalOptions = document.getElementById('ModalOptions');
+    ModalOptions.style.display = 'none';
+    modalVisible = false;
+}
+
+
+
+
+>>>>>>> 23c8f5e8a6431d698134f39fc3be6f55b1f622b2
 function showModalContract() {
     document.getElementById('AddModalContract').style.display = "block";
 }

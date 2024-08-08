@@ -69,6 +69,7 @@ public class WebContractController {
     }
     
     @PutMapping("/{id}")
+<<<<<<< HEAD
     public void updateContract(@PathVariable Long id,
     						   @RequestParam("title") String title,
     						   @RequestParam("time") String time,
@@ -84,6 +85,20 @@ public class WebContractController {
     		Client client = clientService.getClientById(id_client);
     		contract.setClient(client);
     	}
+=======
+    public ResponseEntity<Contract> updateContract(
+            @PathVariable Long id,
+            @RequestBody ContractDto contractDto) {
+    	
+        Contract contract = contractService.findContractById(id);
+        if (contract == null) {
+            return ResponseEntity.notFound().build();
+        }
+        
+        contract.setTitle(contractDto.getTitle());
+        contractService.saveContract(contract);
+        return ResponseEntity.ok(contract);
+>>>>>>> 23c8f5e8a6431d698134f39fc3be6f55b1f622b2
     }
     
     @DeleteMapping("/{id}")

@@ -132,8 +132,24 @@
                 <td th:text="${contract.concluded}"></td>
                 <td th:text="${contract.client.name}"></td>
                 <td style="white-space: nowrap">
+<<<<<<< HEAD
                   <button style="border: none; height: 50px; width: 50px; border-radius: 15px;" onclick="showModalaActionsContract()"><i class="fa-solid fa-ellipsis-vertical fa-xl"></i></button>                  
                 </td>
+=======
+                  <button
+                      style="
+                          border: none;
+                          height: 50px;
+                          width: 50px;
+                          border-radius: 15px;
+                          background-color: white;
+                      "
+                      onclick="showModalActionsContract(this)"
+                  >
+                      <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                  </button>
+              </td>
+>>>>>>> 23c8f5e8a6431d698134f39fc3be6f55b1f622b2
               </tr>
             </tbody>
           </table>
@@ -178,11 +194,23 @@
         </div>
 
         <div id="ModalOptions" class="ModalOptions">
+<<<<<<< HEAD
           <a><button onclick="showModalContractName()" class="btnOption"><i class="fa-solid fa-pencil fa-sm"style=" color: #1e3050;"></i> Renomear</button></a>
           <a><button onclick="alert('Deseja Excluir esse Contrato?')" class="btnOption"> <i class="fa-solid fa-trash fa-sm"style=" color: #1e3050;"></i> Deletar</button></a>
           <a><button onclick="hideModalActionsContract()" class="btnOption">Sair</button></a>
         </div>
         
+=======
+          <button onclick="showModalContractName()" class="btnOption">
+            <i class="fa-solid fa-pencil fa-sm" style="color: #1e3050"></i>
+            Renomear
+          </button>
+          <button onclick="confirmDeleteContract()" class="btnOption">
+            <i class="fa-solid fa-trash fa-sm" style="color: #1e3050"></i> Deletar
+          </button>
+      </div>
+
+>>>>>>> 23c8f5e8a6431d698134f39fc3be6f55b1f622b2
         <div class="EditModalContract" id="EditModalContract">
           <div class="labelinput">
             <label for="nameFolder">Renomear Contrato</label>
