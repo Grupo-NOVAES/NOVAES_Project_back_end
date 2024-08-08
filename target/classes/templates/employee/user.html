@@ -53,7 +53,7 @@
                             <td>
                                 <img class="profilePhotoIcon" th:if="${user.profilePhoto != null}" th:src="'data:image/png;base64,' + ${user.getProfilePhotoBase64()}" alt="Foto de Perfil do Usuário">
                                 <img class="profilePhotoIcon" th:if="${user.profilePhoto == null}" th:src="@{/icones/LogosGrupoNovaesApp.png}" alt="Foto de Perfil Padrão">
-                            </td><!-- Profile photo -->
+                            </td>
                             <td th:text="${user.name}"></td>
                             <td th:text="${user.lastname}"></td>
                             <td th:text="${user.login}"></td>

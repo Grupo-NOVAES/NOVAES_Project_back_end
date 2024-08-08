@@ -50,6 +50,7 @@ public class SecurityConfig {
                                 "/img/**",
                                 "/icones/**"
                         ).permitAll()
+                        .requestMatchers(HttpMethod.DELETE , "/directory/delete/**","/archive/delete/**","/user/delete/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .headers(headers -> headers

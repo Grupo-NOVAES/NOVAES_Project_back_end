@@ -1,5 +1,6 @@
 const folderItems = document.getElementsByClassName("folderItem");
 const fileItems = document.getElementsByClassName("fileItem");
+let currentItemId = null;
 
 for (let i = 0; i < folderItems.length; i++) {
     folderItems[i].addEventListener('dblclick', function() {
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const folderItems = document.getElementsByClassName("folderItem");
 
     for (let i = 0; i < folderItems.length; i++) {
+
         folderItems[i].addEventListener('dblclick', function() {
             const directoryId = this.getAttribute("data-id");
             window.location.href = "/directory/" + directoryId;
@@ -29,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         folderItems[i].addEventListener('contextmenu', function(event) {
             event.preventDefault(); // Previne o menu de contexto padrão do navegador
+            
             const contextMenu = document.getElementById('context-menu');
             
             // Posiciona o menu de contexto
@@ -36,9 +39,13 @@ document.addEventListener('DOMContentLoaded', function () {
             contextMenu.style.left = `${event.clientX}px`;
             contextMenu.style.display = 'block';
             
+            
             // Armazena o ID do item clicado
             contextMenu.setAttribute('data-id', this.getAttribute("data-id"));
+            document.getElementById("directoryId").value = contextMenu.getAttribute('data-id')
+            currentItemId = contextMenu.getAttribute("data-id");
         });
+        
     }
 
     // Fecha o menu de contexto quando clicar fora
@@ -111,3 +118,42 @@ function saveButtonEditFolder () {
 function showModalActionsArchive() {
     document.getElementById('ModalOptions').style.display = "block";
 }
+
+function hideContextMenu() {
+  document.getElementById('context-menu').style.display = 'none';
+}
+
+function deleteFolder() {
+    if (currentItemId === null) {
+        alert('Nenhum item selecionado para exclusão.');
+        return;
+    }
+
+    if (confirm('Você tem certeza que deseja excluir este item?')) {
+        fetch(`/directory/delete/${currentItemId}`, {
+            method: 'DELETE', // Certifique-se de que o método é 'DELETE'
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Item excluído com sucesso.');
+                location.reload(); // Recarrega a página para atualizar a lista
+            } else {
+                alert('Erro ao excluir o item.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao excluir o item:', error);
+            alert('Erro ao excluir o item.');
+        });
+    }
+
+    hideContextMenu();
+}
+
+
+function dowloadDirectory(){
+   window.location.href=`/directory/download/${currentItemId}`;
+}
+
+
+document.addEventListener('click', () => hideContextMenu());

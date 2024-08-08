@@ -1,20 +1,24 @@
 package com.app.novaes.directoryArchive;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.tika.Tika;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.novaes.client.Client;
@@ -22,7 +26,7 @@ import com.app.novaes.client.ClientService;
 import com.app.novaes.user.User;
 import com.app.novaes.user.UserService;
 
-@RestController
+@Controller
 public class WebArchiveDirectoryController {
 	
 	@Autowired
@@ -30,7 +34,8 @@ public class WebArchiveDirectoryController {
 	private final DirectoryAndArchivesService directoryAndArchivesService;
 	private final UserService userService;
 	private final ClientService clientService;
-	
+    private static final Logger logger = LoggerFactory.getLogger(WebArchiveDirectoryController.class);
+
 	public WebArchiveDirectoryController(DirectoryAndArchivesService directoryAndArchivesService,UserService userService,ClientService clientService) {
 		this.directoryAndArchivesService=directoryAndArchivesService;
 		this.userService=userService;
@@ -78,7 +83,7 @@ public class WebArchiveDirectoryController {
     	modelAndView.addObject("user", user);
     	
     	
-
+    	 modelAndView.addObject("parentDirectoryId", (long)id);
 
     		if(userService.getTypeUser()) {
     			List<DirectoryDTO> listDirectory = directoryAndArchivesService.getListSubDirectory(id);
@@ -154,16 +159,54 @@ public class WebArchiveDirectoryController {
 	            .body(resource);
 	}
 	
+	@GetMapping("/directory/download/{id}")
+    public ResponseEntity<ByteArrayResource> downloadDirectory(@PathVariable Long id) {
+        try {
+            logger.info("Buscando o diretório com ID: {}", id);
+            Directory directory = directoryAndArchivesService.getDirectoryById(id);
+
+            logger.info("Gerando arquivo zip para o diretório: {}", directory.getName());
+            byte[] zipData = directoryAndArchivesService.zipDirectory(directory);
+
+            ByteArrayResource resource = new ByteArrayResource(zipData);
+
+            logger.info("Retornando arquivo zip com tamanho: {} bytes", zipData.length);
+            return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + directory.getName() + ".zip")
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .contentLength(zipData.length)
+                .body(resource);
+        } catch (IOException e) {
+            logger.error("Erro ao gerar o arquivo zip: {}", e.getMessage());
+            return ResponseEntity.internalServerError().build();
+        } catch (Exception e) {
+            logger.error("Erro inesperado: {}", e.getMessage(), e);
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+	
 	@PostMapping("/directory")
 	public ModelAndView addDirectory(@RequestParam("folderName") String folderName, @RequestParam("parentId") Long parentId) {
 	    directoryAndArchivesService.addDirectory(folderName, parentId);
 	    return directoryListRoot();
 	}
 	
-	@PutMapping("/directory")
+	@PostMapping("/archive")
+	public ModelAndView addArchive(@RequestParam("file") MultipartFile file,@RequestParam("parentDirectoryId")Long parentDirectoryId) {
+		directoryAndArchivesService.addFile(file,parentDirectoryId);
+		return directoryListRoot();
+	}
+	
+	@PostMapping("/directory/rename")
 	public ModelAndView renameDirectory(@RequestParam("directoryId") Long directoryId,@RequestParam("newNameFolder") String newNameFolder) {
 		directoryAndArchivesService.renameFolder(directoryId , newNameFolder);
-		return null;
+		return directoryListRoot();
+	}
+	
+	@DeleteMapping("/directory/delete/{directoryId}")
+	public ModelAndView deleteDirectory(@PathVariable Long directoryId) {
+		directoryAndArchivesService.deleteDirectoryById(directoryId);
+		return directoryListRoot();
 	}
 
 

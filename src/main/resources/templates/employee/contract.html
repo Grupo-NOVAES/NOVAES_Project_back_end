@@ -124,9 +124,7 @@
               <tr
                 th:each="contract : ${listContract}"
                 th:data-id="${contract.id}"
-                th:data-title="${contract.title}"
-                th:data-time="${contract.time}"
-                th:data-client="${contract.client.id}"
+                th:data-name="${contract.title}"
               >
                 <td><i class="fa-solid fa-handshake fa-2xl"></i></td>
                 <td th:text="${contract.title}"></td>
@@ -134,6 +132,10 @@
                 <td th:text="${contract.concluded}"></td>
                 <td th:text="${contract.client.name}"></td>
                 <td style="white-space: nowrap">
+<<<<<<< HEAD
+                  <button style="border: none; height: 50px; width: 50px; border-radius: 15px;" onclick="showModalaActionsContract()"><i class="fa-solid fa-ellipsis-vertical fa-xl"></i></button>                  
+                </td>
+=======
                   <button
                       style="
                           border: none;
@@ -147,6 +149,7 @@
                       <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
                   </button>
               </td>
+>>>>>>> 23c8f5e8a6431d698134f39fc3be6f55b1f622b2
               </tr>
             </tbody>
           </table>
@@ -176,20 +179,12 @@
         <div class="AddModalContract" id="AddModalContract">
           <div class="labelinput">
             <form th:action="@{/contract}" method="post">
-              <div class="form">
-                <label for="title">Nome do Contrato</label>
-                <input type="text" name="title" id="title" class="inputmodal" />
-                <label for="time">Prazo</label>
-                <input type="date" name="time" id="time" class="inputmodaldate" />
-                <label for="clientLogin">Cliente do Contrato</label>
-                <input list="clientLoginOptions" type="text" name="client.login" id="clientLogin" class="inputmodal" />
-                <datalist id="clientLoginOptions">
-                  <option th:each="user : ${users}" th:value="${user.login}">
-                    [[${user.login}]]
-                  </option>
-                </datalist>
-              </div>
-
+              <label for="title">Nome do Contrato</label>
+              <input type="text" name="title" id="title" class="inputmodal" />
+              <label for="time">Prazo</label>
+              <input type="date" name="time" id="time" class="inputmodaldate" />
+              <label for="clientLogin">Cliente do Contrato</label>
+              <input type="text" name="client.login" id="clientLogin" class="inputmodal"/>
               <div class="actions">
                 <button type="submit" class="savebtn">Salvar</button>
                 <p onclick="hideModalContract()">Sair</p>
@@ -199,6 +194,13 @@
         </div>
 
         <div id="ModalOptions" class="ModalOptions">
+<<<<<<< HEAD
+          <a><button onclick="showModalContractName()" class="btnOption"><i class="fa-solid fa-pencil fa-sm"style=" color: #1e3050;"></i> Renomear</button></a>
+          <a><button onclick="alert('Deseja Excluir esse Contrato?')" class="btnOption"> <i class="fa-solid fa-trash fa-sm"style=" color: #1e3050;"></i> Deletar</button></a>
+          <a><button onclick="hideModalActionsContract()" class="btnOption">Sair</button></a>
+        </div>
+        
+=======
           <button onclick="showModalContractName()" class="btnOption">
             <i class="fa-solid fa-pencil fa-sm" style="color: #1e3050"></i>
             Renomear
@@ -208,19 +210,19 @@
           </button>
       </div>
 
+>>>>>>> 23c8f5e8a6431d698134f39fc3be6f55b1f622b2
         <div class="EditModalContract" id="EditModalContract">
           <div class="labelinput">
             <label for="nameFolder">Renomear Contrato</label>
-            <input type="text" class="inputRenameContract" id="name" />
+            <input type="text" class="inputRenameContract" id="name">
           </div>
-
+  
           <div class="actions">
-            <button class="savebtn" onclick="saveButtonEditContract()">
-              Salvar
-            </button>
+            <button class="savebtn" onclick="saveButtonEditFolder()">Salvar</button>
             <p onclick="hideModalNameContract()">Sair</p>
           </div>
         </div>
+
       </main>
     </div>
 
