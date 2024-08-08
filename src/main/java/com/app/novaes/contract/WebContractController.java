@@ -38,24 +38,24 @@ public class WebContractController {
 	
 	@GetMapping
 	public ModelAndView contractScreenClient() {
-		ModelAndView modelAndView = new ModelAndView();
-    	List<Contract> listContract = contractService.getAllContract();
-    	User user = userService.getUserAuthInfo();
-    	
-    	
-    	modelAndView.addObject("user", user);
-    	modelAndView.addObject("listContract", listContract);
-    	
-   
-    	if(userService.getTypeUser()) {
-    		modelAndView.setViewName("/employee/contract.html");
-    	}else {
-    		modelAndView.setViewName("/client/contract.html");
-    	}
-    	
-		
-		return modelAndView;
+	    ModelAndView modelAndView = new ModelAndView();
+	    List<Contract> listContract = contractService.getAllContract();
+	    User user = userService.getUserAuthInfo();
+	    List<User> users = userService.getAllUser(); // Adicionando a lista de usuários
+	    
+	    modelAndView.addObject("user", user);
+	    modelAndView.addObject("listContract", listContract);
+	    modelAndView.addObject("users", users); // Passando a lista de usuários para o modelo
+
+	    if(userService.getTypeUser()) {
+	        modelAndView.setViewName("/employee/contract.html");
+	    } else {
+	        modelAndView.setViewName("/client/contract.html");
+	    }
+
+	    return modelAndView;
 	}
+
 
     @PostMapping
     public ModelAndView addContract(@ModelAttribute Contract contract, RedirectAttributes redirectAttributes) {
