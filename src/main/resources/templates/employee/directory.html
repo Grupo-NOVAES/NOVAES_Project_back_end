@@ -120,30 +120,30 @@
 
 
 
-                <div class="AddFolderModalFile" id="AddFolderModalFile">
+        <div class="AddFolderModalFile" id="AddFolderModalFile">
           <div class="labelinput">
-            <form class="file-upload-form">
-              <label for="file" class="file-upload-label">
-                <div class="file-upload-design">
-                  <svg viewBox="0 0 640 512" height="1em">
-                    <path
-                      d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-217c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39V392c0 13.3 10.7 24 24 24s24-10.7 24-24V257.9l39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-80 80z"
-                    ></path>
-                  </svg>
-                  <p>Arraste e solte</p>
-                  <p>ou</p>
-                  <span class="browse-button">Buscar Arquivo</span>
-                </div>
-                <input id="file" type="file" />
-              </label>
-            </form>
-          </div>       
-         
-          <div class="actions">
-            <button class="savebtn" onclick="saveButtonFile()">Salvar</button>
-            <p onclick="hideModalFile()">Cancelar</p>
+              <form method="post" enctype="multipart/form-data" th:action="@{/archive}">
+                  <label for="file" class="file-upload-label">
+                      <div class="file-upload-design">
+                          <svg viewBox="0 0 640 512" height="1em">
+                              <path
+                                d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 138.7 80.2C409.9 102 428.3 96 448 96c53 0 96 43 96 96c0 12.2-2.3 23.8-6.4 34.6C596 238.4 640 290.1 640 352c0 70.7-57.3 128-128 128H144zm79-217c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l39-39V392c0 13.3 10.7 24 24 24s24-10.7 24-24V257.9l39 39c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-80-80c-9.4-9.4-24.6-9.4-33.9 0l-80 80z"
+                              ></path>
+                          </svg>
+                          <p>Arraste e solte</p>
+                          <p>ou</p>
+                          <span class="browse-button">Buscar Arquivo</span>
+                      </div>
+                      <input id="file" type="file" name="file" required />
+                  </label>
+                  <input type="hidden" name="parentDirectoryId" th:value="${parentDirectoryId}" />
+                  <div class="actions">
+                      <button type="submit" class="savebtn">Salvar</button>
+                      <p onclick="hideModalFile()">Cancelar</p>
+                  </div>
+              </form>
           </div>
-        </div>
+      </div>
 
         <div class="table-container">
           <table>
@@ -170,23 +170,26 @@
         </div>
 
         <div id="context-menu" class="context-menu">
-          <a><button class="btnOption"><i class="fa-solid fa-download fa-flip-horizontal fa-sm" style=" color: #1e3050;"></i> Baixar</button></a>
+          <a><button onclick="dowloadDirectory()" class="btnOption"><i class="fa-solid fa-download fa-flip-horizontal fa-sm" style=" color: #1e3050;"></i> Baixar</button></a>
           <a><button onclick="showModalFolderName()" class="btnOption"><i class="fa-solid fa-pencil fa-sm"style=" color: #1e3050;"></i> Renomear</button></a>
-          <a><button class="btnOption"> <i class="fa-solid fa-trash fa-sm"style=" color: #1e3050;"></i>Deletar</button></a>
+          <a><button onclick="deleteFolder()" class="btnOption"> <i class="fa-solid fa-trash fa-sm"style=" color: #1e3050;"></i>Deletar</button></a>
         </div>
   
   
         <div class="EditModalFolder" id="EditModalFolder">
           <div class="labelinput">
-            <label for="nameFolder">Renomear Pasta</label>
-            <input type="text" class="input" id="name">
-          </div>
-  
-          <div class="actions">
-            <button class="savebtn" onclick="saveButtonEditFolder()">Salvar</button>
-            <p onclick="hideModalEdit()">Sair</p>
+            <form method="post" th:action="@{/directory/rename}">
+              <label for="nameFolder">Renomear Pasta</label>
+              <input type="text" name="newNameFolder" id="nameFolder" class="input" placeholder="Novo Nome" required>
+              <input type="hidden" name="directoryId" id="directoryId" />
+              <div class="actions">
+                <button type="submit" class="savebtn">Salvar</button>
+                <p onclick="hideModalEdit()">Sair</p>
+              </div>
+            </form>
           </div>
         </div>
+
         
       </main>
     </div>

@@ -1,11 +1,16 @@
 package com.app.novaes.directoryArchive;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.app.novaes.client.Client;
 import com.app.novaes.client.ClientNotFoundException;
@@ -68,7 +73,6 @@ public class DirectoryAndArchivesService {
     }
 	
 	protected List<ArchiveDTO> getListArchive(Long id_directory){
-
         return archiveRepository.findArchivesByDirectoryId(id_directory);
 	}
 	
@@ -79,6 +83,10 @@ public class DirectoryAndArchivesService {
 	
 	protected List<DirectoryDTO> getListSubDirectory(Long id){
         return directoryRepository.findSubDirectoriesByParentId(id);
+	}
+	
+	protected Directory getDirectoryById(Long id) {
+		return directoryRepository.findById(id).orElseThrow(DirectoryNotFoundException :: new);
 	}
 	
 	protected List<String> getNameSubDirectoryByRoot() {
@@ -209,6 +217,31 @@ public class DirectoryAndArchivesService {
         
         return listPath;
     }
+	
+	public byte[] zipDirectory(Directory directory) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        try (ZipOutputStream zos = new ZipOutputStream(baos)) {
+            zipDirectoryRecursive(directory, "", zos);
+        }
+        return baos.toByteArray();
+    }
+
+    private void zipDirectoryRecursive(Directory directory, String parentPath, ZipOutputStream zos) throws IOException {
+        String dirPath = parentPath + directory.getName() + "/";
+
+        zos.putNextEntry(new ZipEntry(dirPath));
+        zos.closeEntry();
+
+        for (Archive archive : directory.getArchives()) {
+            zos.putNextEntry(new ZipEntry(dirPath + archive.getName()));
+            zos.write(archive.getContent());
+            zos.closeEntry();
+        }
+
+        for (Directory subDir : directory.getSubDirectories()) {
+            zipDirectoryRecursive(subDir, dirPath, zos);
+        }
+    }
 
 	protected void addDirectory(String folderName , Long parentId) {
 		Directory parentDirectory = directoryRepository.findById(parentId).orElseThrow(DirectoryNotFoundException::new);
@@ -217,8 +250,35 @@ public class DirectoryAndArchivesService {
 		directory.setParentDirectory(parentDirectory);
 		directoryRepository.save(directory);
 	}
+	
+	public void RefresePageDirectory() {
+		
+	}
 
 	public void renameFolder(Long directoryId, String newNameFolder) {
 		directoryRepository.updateDirectoryName(directoryId , newNameFolder);
+	}
+
+	public void deleteDirectoryById(Long directoryId) {
+		directoryRepository.deleteById(directoryId);
+		
+	}
+
+	public void addFile(MultipartFile file, Long parentDirectoryId) {
+		try {
+            Archive archive = new Archive();
+            archive.setName(file.getOriginalFilename());
+            archive.setType(file.getContentType());
+            archive.setContent(file.getBytes());
+
+            Directory directory = directoryRepository.findById(parentDirectoryId)
+                    .orElseThrow(DirectoryNotFoundException::new);
+            archive.setDirectory(directory);
+
+            archiveRepository.save(archive);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
 	}
 }
