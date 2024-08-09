@@ -41,11 +41,11 @@ public class WebContractController {
 	    ModelAndView modelAndView = new ModelAndView();
 	    List<Contract> listContract = contractService.getAllContract();
 	    User user = userService.getUserAuthInfo();
-	    List<User> users = userService.getAllUser(); // Adicionando a lista de usuários
+	    List<User> users = userService.getAllUser(); 
 	    
 	    modelAndView.addObject("user", user);
 	    modelAndView.addObject("listContract", listContract);
-	    modelAndView.addObject("users", users); // Passando a lista de usuários para o modelo
+	    modelAndView.addObject("users", users); 
 
 	    if(userService.getTypeUser()) {
 	        modelAndView.setViewName("/employee/contract.html");

@@ -260,6 +260,13 @@ main {
     background-color: #F9F9F9;
     color: #1e3050;
   }
+
+  .AddModalStage .form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: 45px;
+  }
   
   .AddModalStage label, .AddModalStage input, .AddModalStage button, .AddModalStage p {
     display: block;
@@ -281,7 +288,7 @@ main {
   
   .AddModalStage .labelinput {
     position: relative;
-    padding-left: 45px;
+
   }
 
   .AddModalStage .inputlabel {
