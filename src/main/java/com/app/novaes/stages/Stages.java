@@ -3,6 +3,8 @@ package com.app.novaes.stages;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.app.novaes.contract.Contract;
 
 import jakarta.persistence.Entity;
@@ -28,6 +30,7 @@ public class Stages {
     private String description;
 
     @Temporal(TemporalType.TIMESTAMP)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateHour;
     
     private boolean status;

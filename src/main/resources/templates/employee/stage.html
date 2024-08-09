@@ -66,24 +66,31 @@
           <p th:href="@{/stages/{id}(id=${stages.contract_id})}"></p>
         </div>>
         -->
-
-
-        <div class="AddModalStage" id="AddModalStage">
-          <div class="labelinput">
-            <form th:action="@{/stage}" method="post"></form>
-            <label for="title">Titulo da Etapa</label>
-            <input type="text" name="title" id="title" class="inputlabel">
-            <label for="description">Descrição da Etapa</label>
-            <input type="text" name="description" id="description" class="inputlabel">
-            <label for="datehour">Data limite da Etapa </label>
-            <input type="date" name="datehour" id="datehour" class="inputlabeldate">
-          </div>
-          <div class="actions">
-            <button type="submit" onclick="saveButton()" class="savebtn">Salvar</button>
-            <p onclick="hideButton()">Sair</p>
-          </div>
-        </div>
       </div>
+
+
+		<div class="AddModalStage" id="AddModalStage">
+		  <div class="labelinput">
+
+
+
+				<form th:action="@{/stages}" method="post">
+          <div class="form">
+				    <label for="title">Titulo da Etapa</label>
+				    <input type="text" name="title" id="title" class="inputlabel">
+				    <label for="description">Descrição da Etapa</label>
+				    <input type="text" name="description" id="description" class="inputlabel">
+				    <label for="datehour">Data limite da Etapa </label>
+				    <input type="date" name="dateHour" id="datehour" class="inputlabeldate">
+				    <input type="hidden" name="contract.id" th:value="${contract.id}" />
+          </div>
+				    <div class="actions">
+				        <button type="submit" class="savebtn">Salvar</button>
+				        <p onclick="hideButton()">Sair</p>
+				    </div>
+				</form>
+		  </div>
+    </div>
 
 
     <div class="table-container">
@@ -105,7 +112,7 @@
       </table>
     </div>
 
-
+    </div>
   </main>
 
 </div>
