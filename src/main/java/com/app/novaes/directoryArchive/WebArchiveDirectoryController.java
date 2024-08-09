@@ -188,25 +188,25 @@ public class WebArchiveDirectoryController {
 	@PostMapping("/directory")
 	public ModelAndView addDirectory(@RequestParam("folderName") String folderName, @RequestParam("parentId") Long parentId) {
 	    directoryAndArchivesService.addDirectory(folderName, parentId);
-	    return directoryListRoot();
+	    return directoryListRoot(parentId);
 	}
 	
 	@PostMapping("/archive")
 	public ModelAndView addArchive(@RequestParam("file") MultipartFile file,@RequestParam("parentDirectoryId")Long parentDirectoryId) {
 		directoryAndArchivesService.addFile(file,parentDirectoryId);
-		return directoryListRoot();
+		return directoryListRoot(parentDirectoryId);
 	}
 	
 	@PostMapping("/directory/rename")
 	public ModelAndView renameDirectory(@RequestParam("directoryId") Long directoryId,@RequestParam("newNameFolder") String newNameFolder) {
 		directoryAndArchivesService.renameFolder(directoryId , newNameFolder);
-		return directoryListRoot();
+		return directoryListRoot(directoryId);
 	}
 	
 	@DeleteMapping("/directory/delete/{directoryId}")
 	public ModelAndView deleteDirectory(@PathVariable Long directoryId) {
 		directoryAndArchivesService.deleteDirectoryById(directoryId);
-		return directoryListRoot();
+		return directoryListRoot(directoryId);
 	}
 
 

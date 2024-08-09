@@ -69,24 +69,8 @@ public class WebContractController {
         return contractScreenClient();
     }
     
+   
     @PutMapping("/{id}")
-    public void updateContract(@PathVariable Long id,
-    						   @RequestParam("title") String title,
-    						   @RequestParam("time") String time,
-    						   @RequestParam("id_client") Long id_client) {
-    	
-    	Contract contract = contractService.findContractById(id);
-    	
-    	if(title != null) {
-    		contract.setTitle(title);
-    	}else if(time != null) {
-    		contract.setTime(time);
-    	}else if(id_client != null) {
-    		Client client = clientService.getClientById(id_client);
-    		contract.setClient(client);
-    	}
-	}
-
     public ResponseEntity<Contract> updateContract(
             @PathVariable Long id,
             @RequestBody ContractDto contractDto) {

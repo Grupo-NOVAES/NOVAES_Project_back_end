@@ -148,6 +148,7 @@ function deleteFolder() {
     }
 
     hideContextMenu();
+    location.reload();
 }
 
 
