@@ -7,3 +7,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+document.getElementById('searchInput').addEventListener('input', function() {
+    const filter = this.value.toLowerCase();
+    const rows = document.querySelectorAll('#userTableBody tr');
+
+    rows.forEach(row => {
+        const nameCell = row.querySelector('td:nth-child(2)');
+        if (nameCell) {
+            const nameText = nameCell.textContent.toLowerCase();
+            if (nameText.includes(filter)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        }
+    });
+});

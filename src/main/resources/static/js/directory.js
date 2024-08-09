@@ -158,3 +158,17 @@ function dowloadDirectory(){
 
 
 document.addEventListener('click', () => hideContextMenu());
+
+
+document.getElementById('searchInput').addEventListener('input', function() {
+    let filter = this.value.toLowerCase();
+    let rows = document.querySelectorAll('#directoryTable tbody tr');
+    rows.forEach(row => {
+        let text = row.textContent.toLowerCase();
+        if (text.includes(filter)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
