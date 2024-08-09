@@ -46,6 +46,16 @@ public class UserService {
 		return userRepository.findByRole(role);
 	}
 	
+	public boolean verifyIfAlreadyLoginExist(String login){
+		List<String> listLogins = userRepository.getAllLogins();
+		for(String loginFound : listLogins) {
+			if(login == loginFound) {
+				throw new ThisLoginAlreadyExistException();
+			}
+		}
+		return false;
+	}
+	
 	public String getProfilePhoto(User user){
 		if(user.getProfilePhoto() != null) {
 			return PhotoByte2Base64(user.getProfilePhoto());
@@ -56,6 +66,22 @@ public class UserService {
 	
 	private String PhotoByte2Base64 (byte[] profilePhoto) {
 		return Base64.encodeBase64String(profilePhoto);
+	}
+
+	public void addUser(User user) {
+		userRepository.save(user);
+	}
+	
+	public Role convertString2Role(String role) {
+		if (role == null || role.isEmpty()) {
+	        throw new IllegalArgumentException("Role string cannot be null or empty");
+	    }
+
+	    try {
+	        return Role.valueOf(role.toUpperCase());
+	    } catch (IllegalArgumentException e) {
+	        throw new IllegalArgumentException("Invalid role: " + role, e);
+	    }
 	}
  
 }

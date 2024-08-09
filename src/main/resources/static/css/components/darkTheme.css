@@ -62,3 +62,12 @@
   .dark-theme .buttonBackDirectory{
     color: white;
   }
+
+  .dark-theme #addBtn{
+    width: 48%;
+    height: 50px;
+    border: none;
+    background-color: #212121;
+    border-radius: 5px;
+    color: #ffffff;
+  }

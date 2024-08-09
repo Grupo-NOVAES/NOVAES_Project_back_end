@@ -2,13 +2,15 @@ package com.app.novaes.user;
 
 import java.util.List;
 
-import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,13 +26,16 @@ public class WebUserController {
 	
 	private ClientService clientService;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	public WebUserController(UserService userService, ClientService clientService) {
 		this.clientService=clientService;
 		this.userService=userService;
 	}
 	
 	@GetMapping
-	public ModelAndView managersListScreenClient() {
+	public ModelAndView ListUsers() {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		
@@ -87,21 +92,62 @@ public class WebUserController {
         
         
     	modelAndView.addObject("user", user);
-        modelAndView.addObject("user", userData);
+        modelAndView.addObject("userData", userData);
     	modelAndView.addObject("imageProfile", userService.getProfilePhoto(userData));
-
-        if(userService.getTypeUser()) {
-        	
-        }else {
-        	
-        }
-        
-       return modelAndView;
+    	
+    	System.out.println(user.getId().toString());
+    	System.out.println(userData.getId().toString());
+    	if(userData.equals(user)) {
+    		return profileScreen();
+    	}else {
+    		modelAndView.setViewName("/ProfileVisit.html");
+    		return modelAndView;
+    	}
     }
 	
-	@PostMapping
-	public void addUser() {
+	@GetMapping("/addUser")
+	public ModelAndView addUser() {
+		ModelAndView modelAndView = new ModelAndView();
 		
+		User user = userService.getUserAuthInfo();
+		
+		if(userService.getTypeUser()) {
+			modelAndView.addObject("user",user);
+			
+			modelAndView.setViewName("/employee/addUser.html");
+			
+			return modelAndView;
+		}else {
+			modelAndView.setViewName("ErrorPage.html");
+			return modelAndView;
+		}
+	}
+	
+	@PostMapping("/addUser")
+	public ModelAndView addUser(@RequestParam("name")String name,
+								@RequestParam("lastname")String lastname,
+								@RequestParam("login")String login,
+								@RequestParam("password")String password,
+								@RequestParam("confirmPassword")String confirmPassword,
+								@RequestParam("phoneNumber")String phoneNumber,
+								@RequestParam("role")String role) {
+		
+		if(!(password.equals(confirmPassword))) {
+			throw new PasswordNotEqualsException();
+		}
+		User user = new User();
+		user.setName(name);
+		user.setLastname(lastname);
+		user.setLogin(login);
+		user.setPhoneNumber(phoneNumber);
+		user.setRole(userService.convertString2Role(role));
+		user.setPassword(passwordEncoder.encode(password));
+		
+		if(!userService.verifyIfAlreadyLoginExist(login)) {
+			userService.addUser(user);
+		}
+		
+		return ListUsers();
 	}
 	
 	@PutMapping

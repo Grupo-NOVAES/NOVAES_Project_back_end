@@ -9,7 +9,7 @@ function logout() {
 
 function goProfile() {
 	if(!goToLogout){
-        window.location.href="/profile";
+        window.location.href="/user/profile";
         
     }
     goToLogout=false;

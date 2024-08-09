@@ -48,8 +48,9 @@
                 <table>
                     <tbody>
                         <tr th:each="user : ${listContacts}"
-                            data-id="${user.id}"
-                            data-name="${user.name}">
+                            th:data-id="${user.id}"
+                            th:data-name="${user.name}"
+                            class="userItem">
                             <td>
                                 <img class="profilePhotoIcon" th:if="${user.profilePhoto != null}" th:src="'data:image/png;base64,' + ${user.getProfilePhotoBase64()}" alt="Foto de Perfil do Usuário">
                                 <img class="profilePhotoIcon" th:if="${user.profilePhoto == null}" th:src="@{/icones/LogosGrupoNovaesApp.png}" alt="Foto de Perfil Padrão">
@@ -68,5 +69,6 @@
 
     <script th:src="@{/js/darkTheme.js}"></script>
     <script th:src="@{/js/logout.js}"></script>
+    <script th:src="@{/js/user.js}"></script>
 </body>
 </html>

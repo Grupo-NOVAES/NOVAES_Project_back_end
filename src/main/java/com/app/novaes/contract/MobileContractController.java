@@ -32,12 +32,6 @@ public class MobileContractController {
     
     @Autowired
     private ClientRepository clientRepository;
-    
-    @Autowired
-    private UserRepository userRepository;
-    
-    @Autowired
-    private DirectoryRepository directoryRepository;
 
     @GetMapping
     public List<Contract> getAllContratos() {

@@ -110,6 +110,7 @@ function getCookie(name) {
 function loadTheme() {
     const theme = getCookie("theme");
     if (theme === "dark") {
+        document.getElementById("theme-checkbox").checked = true;
         body.classList.add("dark-theme");
         mainElement.classList.add("dark-theme");
         headerElement.classList.add("dark-theme-header");
