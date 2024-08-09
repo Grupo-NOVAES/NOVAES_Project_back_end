@@ -71,9 +71,6 @@
 
 		<div class="AddModalStage" id="AddModalStage">
 		  <div class="labelinput">
-
-
-
 				<form th:action="@{/stages}" method="post">
           <div class="form">
 				    <label for="title">Titulo da Etapa</label>
@@ -105,12 +102,56 @@
             <td th:text="${stages.dateHour}"></td>
             <td th:text="${stages.status}"></td>
             <td style="white-space: nowrap">
+              <button
+              style="
+                  border: none;
+                  height: 50px;
+                  width: 50px;
+                  border-radius: 15px;
+                  background-color: white;
+              "
+              onclick="showModalActionsContract(this)"
+          >
               <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+          </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+
+
+    <div id="ModalOptions" class="ModalOptions">
+      <button onclick="showModalContractName()" class="btnOption">
+        <i class="fa-solid fa-pencil fa-sm" style="color: #1e3050"></i>
+        Editar
+      </button>
+      <button onclick="confirmDeleteContract()" class="btnOption">
+        <i class="fa-solid fa-trash fa-sm" style="color: #1e3050"></i> Deletar
+      </button>
+      <button class="btnOption">
+        <i class="fa-regular fa-circle-check" style="color: #1e3050;"></i> Concluir
+      </button>
+  </div>
+
+  <div class="EditModalContract" id="EditModalContract">
+    <p class="ModalTitle">Editar Etapa</p>
+    <div class="labelinput">
+      <label for="titleStage">Titulo</label>
+      <input type="text" class="inputlabel" id="name"/>
+      <label for="descriptionStage">Descrição</label>
+      <input type="text" name="inputRedescriptStage" id="description" class="inputlabel">
+      <label for="date">Data</label>
+      <input type="date" name="datehour" id="datehour" class="inputlabeldate">
+    </div>
+
+    <div class="actions">
+      <button class="savebtn" onclick="saveButtonEditContract()">
+        Salvar
+      </button>
+      <p onclick="hideModalNameContract()">Sair</p>
+    </div>
+  </div>
 
     </div>
   </main>
