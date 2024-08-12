@@ -108,9 +108,9 @@
                   height: 50px;
                   width: 50px;
                   border-radius: 15px;
-                  background-color: white;
+                  background-color: none;
               "
-              onclick="showModalActionsContract(this)"
+              onclick="showModalActionsStage(this)"
           >
               <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
           </button>
@@ -122,14 +122,14 @@
 
 
     <div id="ModalOptions" class="ModalOptions">
-      <button onclick="showModalContractName()" class="btnOption">
+      <button onclick="showModalEditStage()" class="btnOption">
         <i class="fa-solid fa-pencil fa-sm" style="color: #1e3050"></i>
         Editar
       </button>
-      <button onclick="confirmDeleteContract()" class="btnOption">
+      <button onclick="confirmDeleteStage()" class="btnOption">
         <i class="fa-solid fa-trash fa-sm" style="color: #1e3050"></i> Deletar
       </button>
-      <button class="btnOption">
+      <button class="btnOption" onclick="confirmConcludeStage()">
         <i class="fa-regular fa-circle-check" style="color: #1e3050;"></i> Concluir
       </button>
   </div>
@@ -149,7 +149,7 @@
       <button class="savebtn" onclick="saveButtonEditContract()">
         Salvar
       </button>
-      <p onclick="hideModalNameContract()">Sair</p>
+      <p onclick="hideModalEditStage()">Sair</p>
     </div>
   </div>
 

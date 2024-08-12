@@ -177,7 +177,6 @@ tr {
   left: 50%;
   width: 350px;
   transform: translate(-50%, -50%);
-  background-color: white;
   padding: 20px;
   box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
@@ -260,7 +259,7 @@ tr {
   display: none;
   flex-direction: column;
   position: absolute;
-  background-color: rgb(255, 255, 255);
+  background-color: #F9F9F9;
   border: 1px solid #ddd;
   border-radius: 4px;
   box-shadow: 0 4px 0px rgba(0,0,0,0.2);
@@ -340,7 +339,7 @@ tr {
 .inputRenameContract {
   height: 30px;
   width: 200px;
-  padding: 10px 0px 10px 40px;
+  padding: 10px 0px 10px 20px;
   border-radius: 5px;
   border: solid 1px #b5b5b5;
   transition: all .2s ease-in-out;

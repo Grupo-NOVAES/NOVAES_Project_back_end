@@ -56,7 +56,7 @@ main {
 .input {
   height: 30px;
   width: 175px;
-  padding: 10px 0px 10px 40px;
+  padding: 10px 0px 10px 30px;
   border-radius: 5px;
   border: solid 1px #b5b5b5;
   transition: all .2s ease-in-out;
@@ -73,7 +73,7 @@ main {
 
 .input:focus {
   opacity: 1;
-  width: 250px;
+  width: 225px;
 }
 
 .btnCreate {
@@ -548,7 +548,7 @@ tr {
   justify-content: space-around;
 }
 
-.EditModalFolder .labelinput {
+.EditModalFolder .label {
   position: relative;
   padding-left: 45px;
 }

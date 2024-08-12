@@ -310,6 +310,111 @@ tr {
   color: #cecece;
 }
 
+
+
+.ModalOptions {
+  width: 120px;
+  height: auto;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  background-color: #F9F9F9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 0px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.ModalOptions .btnOption {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #ffffff;
+  color: #1e3050;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.ModalOptions .btnOption:last-child {
+  border-bottom: none;
+}
+
+.ModalOptions .btnOption:hover {
+  background-color: #c4c4c4;
+}
+
+
+.EditModalUser {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  z-index: 1;
+  background-color: #F9F9F9;
+  color: #1e3050;
+}
+
+.EditModalUser label, .EditModalUser input, .EditModalUser button, .EditModalUser p {
+  display: block;
+  margin: 10px 0;
+}
+
+.EditModalUser button, .EditModalUser p {
+  cursor: pointer;
+}
+
+.EditModalUser .actions {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.EditModalUser .labelinput {
+  position: relative;
+  padding-left: 45px;
+}
+
+.EditModalUser .savebtn {
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #1e3050;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.inputlabel {
+  height: 30px;
+  width: 200px;
+  padding: 10px 0px 10px 20px;
+  border-radius: 5px;
+  border: solid 1px #b5b5b5;
+  transition: all .2s ease-in-out;
+  outline: none;
+  opacity: 0.8;
+}
+.inputlabel:focus {
+  opacity: 1;
+  width: 220px;
+}
+
+.EditModalUser .ModalTitle {
+  font-size: large;
+  text-align: center;
+}
+
 @media only screen and (max-width: 717px) {
   #openMenu,
   #closeMenu {
