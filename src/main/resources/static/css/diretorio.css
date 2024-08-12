@@ -606,7 +606,7 @@ tr {
 
 
 /*modal file*/
-.EditModalFolder {
+.EditModalFile {
   display: none;
   position: fixed;
   top: 50%;

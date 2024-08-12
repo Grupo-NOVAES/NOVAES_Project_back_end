@@ -1,6 +1,7 @@
 const folderItems = document.getElementsByClassName("folderItem");
 const fileItems = document.getElementsByClassName("fileItem");
-let currentItemId = null;
+let currentDirectoryId = null;
+let currentArchiveId = null;
 
 for (let i = 0; i < folderItems.length; i++) {
     folderItems[i].addEventListener('dblclick', function() {
@@ -42,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
         //       //Armazena o ID do item clicado
         //      contextMenu.setAttribute('data-id', this.getAttribute("data-id"));
         //      document.getElementById("directoryId").value = contextMenu.getAttribute('data-id')
-        //      currentItemId = contextMenu.getAttribute("data-id");
+        //      currentDirectoryId = contextMenu.getAttribute("data-id");
         //  });
         
     }
@@ -116,13 +117,13 @@ function saveButtonEditFolder () {
 
 
 function deleteFolder() {
-    if (currentItemId === null) {
+    if (currentDirectoryId === null) {
         alert('Nenhum item selecionado para exclusão.');
         return;
     }
 
     if (confirm('Você tem certeza que deseja excluir este item?')) {
-        fetch(`/directory/delete/${currentItemId}`, {
+        fetch(`/directory/delete/${currentDirectoryId}`, {
             method: 'DELETE', // Certifique-se de que o método é 'DELETE'
         })
         .then(response => {
@@ -131,7 +132,7 @@ function deleteFolder() {
                 alert('Item excluído com sucesso.');
                 location.reload(); // Recarrega a página para atualizar a lista
             } else {
-                alert('Erro ao excluir o item. '+ currentItemId);
+                alert('Erro ao excluir o item. '+ currentDirectoryId);
             }
         })
         .catch(error => {
@@ -144,7 +145,7 @@ function deleteFolder() {
 
 
 function dowloadDirectory(){
-   window.location.href=`/directory/download/${currentItemId}`;
+   window.location.href=`/directory/download/${currentDirectoryId}`;
 }
 
 document.getElementById('searchInput').addEventListener('input', function() {
@@ -194,7 +195,7 @@ document.getElementById('searchInput').addEventListener('input', function() {
 
      contextmenu.style.display = 'block';
      modalVisible = true;     
-     currentItemId = selectedUserId
+     currentDirectoryId = selectedUserId
      document.getElementById("directoryId").value = selectedUserId;
 
  }
@@ -224,7 +225,7 @@ document.getElementById('searchInput').addEventListener('input', function() {
  //Aparece o modal dos 3 pontos
  function showModalActionsFiles(button) {
      const contextmenu = document.getElementById('ModalOptionsFile');
-     selectedFileId = button.closest('tr').getAttribute('data-id');
+     selectedFileId = button.closest('tr').getAttribute('data-file-id');
 
      //aonde vai aparecer
      const rect = button.getBoundingClientRect();
@@ -233,8 +234,9 @@ document.getElementById('searchInput').addEventListener('input', function() {
 
      contextmenu.style.display = 'block';
      File = true;     
-     currentItemId = selectedFileId
-     document.getElementById("directoryId").value = selectedFileId;
+     currentArchiveId = selectedFileId
+     console.log(selectedFileId)
+     document.getElementById("archiveId").value = selectedFileId;
 
  }
 
@@ -249,7 +251,7 @@ document.getElementById('searchInput').addEventListener('input', function() {
 
 
  function showModalFileName() {
-    document.getElementById('EditModalFolder').style.display = "block";
+    document.getElementById('EditModalFile').style.display = "block";
 }
 
 function hideModalEditFile() {
@@ -261,18 +263,14 @@ function saveButtonEditFile () {
     hideModalEditFile();
 }
 
-
-
-
-
 function deleteFile() {
-    if (currentItemId === null) {
+    if (currentArchiveId === null) {
         alert('Nenhum item selecionado para exclusão.');
         return;
     }
 
     if (confirm('Você tem certeza que deseja excluir este item?')) {
-        fetch(`/directory/delete/${currentItemId}`, {
+        fetch(`/archive/delete/${currentArchiveId}`, {
             method: 'DELETE', // Certifique-se de que o método é 'DELETE'
         })
         .then(response => {
@@ -281,7 +279,7 @@ function deleteFile() {
                 alert('Item excluído com sucesso.');
                 location.reload(); // Recarrega a página para atualizar a lista
             } else {
-                alert('Erro ao excluir o item. '+ currentItemId);
+                alert('Erro ao excluir o item. '+ currentArchiveId);
             }
         })
         .catch(error => {
@@ -290,4 +288,5 @@ function deleteFile() {
         });
     }
     hideModalActionsFiles()
+    location.reload();
 }

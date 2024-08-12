@@ -29,6 +29,8 @@ public interface DirectoryRepository extends JpaRepository<Directory, Long>{
     @Transactional
     @Query("UPDATE Directory d SET d.name = :name WHERE d.id = :id")
     void updateDirectoryName(Long id, String name);
+
+
     
 
 	

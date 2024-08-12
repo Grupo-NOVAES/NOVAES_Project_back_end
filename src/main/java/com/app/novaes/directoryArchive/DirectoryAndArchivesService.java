@@ -284,4 +284,19 @@ public class DirectoryAndArchivesService {
         }
 		
 	}
+
+	public void renameArchive(Long archiveId, String newNameArchive) {
+		archiveRepository.updateArchiveName(archiveId, newNameArchive);
+		
+	}
+
+	public void deleteArchiveById(Long archiveId) {
+		archiveRepository.deleteById(archiveId);
+	}
+
+	public ArchiveDTO findArchiveById(Long archiveId) {
+		return archiveRepository.findArchiveDTOById(archiveId);
+	}
+
+
 }

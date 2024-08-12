@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -186,30 +187,47 @@ public class WebArchiveDirectoryController {
     }
 	
 	@PostMapping("/directory")
-	public ModelAndView addDirectory(@RequestParam("folderName") String folderName, @RequestParam("parentId") Long parentId) {
+	public String  addDirectory(@RequestParam("folderName") String folderName, @RequestParam("parentId") Long parentId) {
 	    directoryAndArchivesService.addDirectory(folderName, parentId);
-	    return directoryListRoot(parentId);
+	    return "redirect:/directory/"+parentId;
 	}
 	
 	@PostMapping("/archive")
-	public ModelAndView addArchive(@RequestParam("file") MultipartFile file,@RequestParam("parentDirectoryId")Long parentDirectoryId) {
+	public String addArchive(@RequestParam("file") MultipartFile file,@RequestParam("parentDirectoryId")Long parentDirectoryId) {
 		directoryAndArchivesService.addFile(file,parentDirectoryId);
-		return directoryListRoot(parentDirectoryId);
+		return "redirect:/directory/"+parentDirectoryId;
 	}
 	
 	@PostMapping("/directory/rename")
-	public ModelAndView renameDirectory(@RequestParam("directoryId") Long directoryId,
+	public String renameDirectory(@RequestParam("directoryId") Long directoryId,
 										@RequestParam("newNameFolder") String newNameFolder) {
-		DirectoryDTO directory = directoryAndArchivesService.getDirectoryDtoById(directoryId);
+		DirectoryDTO dto = directoryAndArchivesService.getDirectoryDtoById(directoryId);
 		directoryAndArchivesService.renameFolder(directoryId , newNameFolder);
-		return directoryListRoot(directory.getParentDirectoryId());
+		return "redirect:/directory/"+dto.getParentDirectoryId();
 	}
 	
+	@PostMapping("/archive/rename")
+	public String renameArchive(@RequestParam("archiveId") Long archiveId,
+							  @RequestParam("newNameArchive") String newNameArchive) {
+		
+		ArchiveDTO dto = directoryAndArchivesService.findArchiveById(archiveId);
+		directoryAndArchivesService.renameArchive(archiveId , newNameArchive);
+		return "redirect:/directory/"+dto.getParentDirectoryId();
+}
+	
 	@DeleteMapping("/directory/delete/{directoryId}")
-	public ModelAndView deleteDirectory(@PathVariable Long directoryId) {
-		DirectoryDTO directory = directoryAndArchivesService.getDirectoryDtoById(directoryId);
+	public String deleteDirectory(@PathVariable Long directoryId) {
+		DirectoryDTO dto = directoryAndArchivesService.getDirectoryDtoById(directoryId);
 		directoryAndArchivesService.deleteDirectoryById(directoryId);
-		return directoryListRoot(directory.getParentDirectoryId());
+		return "redirect:/directory/"+dto.getParentDirectoryId();
+	}
+	
+	@DeleteMapping("/archive/delete/{archiveId}")
+	public String deleteArchive(@PathVariable Long archiveId) {
+		ArchiveDTO dto = directoryAndArchivesService.findArchiveById(archiveId);
+		directoryAndArchivesService.deleteArchiveById(archiveId);
+		return "redirect:/directory/"+dto.getParentDirectoryId();
+		
 	}
 
 
