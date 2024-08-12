@@ -53,4 +53,9 @@ public class ClientService {
 		clientRepository.save(client);
 		
 	}
+
+	public void addUser(Client client) {
+		clientRepository.save(client);
+		
+	}
 }

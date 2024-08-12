@@ -33,4 +33,16 @@ public class EmployeeService {
 		
 		employeeRepository.save(employee);
 	}
+
+	public Employee getClientByLogin(String login) {
+		return employeeRepository.findByLogin(login);
+	}
+
+	public void addUser(Employee employee) {
+		employeeRepository.save(employee);
+	}
+
+	public Employee getEmployeeById(Long id) {
+		return employeeRepository.findById(id).orElseThrow(EmployeeNotFoundException::new);
+	}
 }

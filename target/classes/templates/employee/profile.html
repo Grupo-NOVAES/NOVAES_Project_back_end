@@ -42,12 +42,12 @@
 
             <section id="left">
                 <h1>Meu Perfil</h1>
-                <form id="forms">
+                <form id="forms" method="post" th:action="@{/user/editProfile}">
                     <div class="names">
-                        <input class="inputs-name" placeholder="Nome" th:value="${user.name}">
-                        <input class="inputs-name" placeholder="Sobrenome" th:value="${user.lastname}">
+                        <input class="inputs-name" placeholder="Nome" th:value="${user.name}" name="name">
+                        <input class="inputs-name" placeholder="Sobrenome" th:value="${user.lastname}" name="lastname">
                     </div>
-                    <input class="inputs" placeholder="Email" th:value="${user.login}">
+                    <input class="inputs" placeholder="Email" th:value="${user.login}" name="login">
 
                     <select name="role" class="inputs" id="role" onchange="toggleFields()">
                         <option value="ADMIN" th:selected="${user.role == 'ADMIN'}">administrador</option>

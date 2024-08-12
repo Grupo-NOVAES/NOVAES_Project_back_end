@@ -18,6 +18,7 @@ import com.app.novaes.client.Client;
 import com.app.novaes.client.ClientDTO;
 import com.app.novaes.client.ClientService;
 import com.app.novaes.directoryArchive.DirectoryAndArchivesService;
+import com.app.novaes.employee.Employee;
 import com.app.novaes.employee.EmployeeService;
 
 @RestController
@@ -166,13 +167,95 @@ public class WebUserController {
 		return ListUsers();
 	}
 	
-	@PutMapping
-	public void updateUser() {
+	@PostMapping("/editProfile")
+	public ModelAndView editProfile(@RequestParam(value ="name")String name,
+							@RequestParam(value ="lastname")String lastname,
+							@RequestParam(value ="login", required = true)String login,
+							@RequestParam(value ="role")Role role) {
 		
+		System.out.println(name);
+		System.out.println(lastname);
+		System.out.println(login);
+		System.out.println(role.toString());
+		if(role == Role.USER) {
+			Client client = clientService.getClientById(userService.getUserAuthInfo().getId());
+			if(name != null) {
+				client.setName(name);
+			}if(lastname != null) {
+				client.setLastname(lastname);
+			}if(login != null) {
+				client.setLogin(login);
+			}if(role != null) {
+				client.setRole(role);
+			}
+			clientService.addUser(client);
+		}else {
+			Employee employee = employeeService.getEmployeeById(userService.getUserAuthInfo().getId());
+			if(name != null) {
+				employee.setName(name);
+			}if(lastname != null) {
+				employee.setLastname(lastname);
+			}if(login != null) {
+				employee.setLogin(login);
+			}if(role != null) {
+				employee.setRole(role);
+			}
+			employeeService.addUser(employee);
+		}
+		
+		return profileScreen();
 	}
 	
-	@DeleteMapping
-	public void deleteUser() {
-		
+	@PutMapping("/editUser")
+	public void editProfile(@RequestParam(value ="userId") Long id,
+							@RequestParam(value = "name") String name,
+							@RequestParam(value = "lastname") String lastname,
+							@RequestParam(value = "login") String login, 
+							@RequestParam(value = "role") Role role,
+							@RequestParam(value ="phoneNumber") String phoneNumber) {
+		if (role == Role.USER) {
+			Client client = clientService.getClientById(id);
+			if (name != null) {
+				client.setName(name);
+			}
+			if (lastname != null) {
+				client.setLastname(lastname);
+			}
+			if (login != null) {
+				client.setLogin(login);
+			}
+			if (role != null) {
+				client.setRole(role);
+			}
+			if(phoneNumber != null) {
+				client.setPhoneNumber(phoneNumber);
+			}
+			clientService.addUser(client);
+		} else {
+			Employee employee = employeeService.getEmployeeById(id);
+			if (name != null) {
+				employee.setName(name);
+			}
+			if (lastname != null) {
+				employee.setLastname(lastname);
+			}
+			if (login != null) {
+				employee.setLogin(login);
+			}
+			if (role != null) {
+				employee.setRole(role);
+			}
+			if(phoneNumber != null) {
+				employee.setPhoneNumber(phoneNumber);
+			}
+			employeeService.addUser(employee);
+		}
+
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public ModelAndView deleteUser(@PathVariable Long id) {
+		userService.deleteUser(id);
+		return ListUsers();
 	}
 }

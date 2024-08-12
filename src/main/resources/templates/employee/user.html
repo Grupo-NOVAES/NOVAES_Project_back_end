@@ -135,6 +135,14 @@
               <input type="text" name="email" id="email" itemid="email" class="inputlabel">
               <label for="number">Telefone</label>
               <input type="number" name="number" id="number" class="inputlabel">
+              <label for="role">Hierarquia</label>
+
+              <select name="role" class="inputSelection" id="role">
+                <option value="ADMIN" th:selected="${user.role == 'ADMIN'}">administrador</option>
+                <option value="EMPLOYEE" th:selected="${user.role == 'EMPLOYEE'}">funcionario</option>
+                <option value="USER" th:selected="${user.role == 'USER'}">cliente</option>
+            </select>
+
             </div>
         
             <div class="actions">

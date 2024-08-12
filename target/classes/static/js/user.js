@@ -48,6 +48,7 @@ function showModalActionsUser(button) {
 
     ModalOptions.style.display = 'block';
     modalVisible = true;
+
 }
 
 function hideModalActionsUser() {
@@ -88,10 +89,48 @@ function confirmDeleteContract() {
 
 
 
-function updateUser(id){
-    console.log('User Editado')
+function updateUser() {
+    const userId = selectedUserId;
+    const name = document.getElementById('name').value;
+    const lastname = document.getElementById('lastName').value;
+    const login = document.getElementById('email').value;
+    const phoneNumber = document.getElementById('number').value;
+    const role = document.getElementById('role').value;
+
+    const formData = new URLSearchParams();
+    formData.append('userId', userId);
+    formData.append('name', name);
+    formData.append('lastname', lastname);
+    formData.append('login', login);
+    formData.append('phoneNumber', phoneNumber);
+    formData.append('role', role);
+
+    fetch('/user/editUser', {
+        method: 'PUT',
+        body: formData,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    })
+    .then(response => response.text())
+    .then(data => {
+        console.log('Usuário atualizado:', data);
+        hideModalEditUser();
+        location.reload();
+    })
+    .catch(error => {
+        console.error('Erro ao atualizar usuário:', error);
+    });
+
+    
 }
 
-function deleteUser(id){
+
+async function deleteUser(){
+    console.log(selectedUserId)
+    let response = await fetch(`/user/delete/${selectedUserId}`,{
+        method:'DELETE'
+    });
+    location.reload();
     console.log('User Deletado')
 }

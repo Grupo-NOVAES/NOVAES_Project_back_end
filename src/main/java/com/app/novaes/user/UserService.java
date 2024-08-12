@@ -8,10 +8,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import com.app.novaes.client.ClientRepository;
+
 @Service
 public class UserService {
 	
 	private final UserRepository userRepository;
+
 	
 	public UserService(UserRepository userRepository) {
 		this.userRepository=userRepository;
@@ -31,7 +34,9 @@ public class UserService {
 	public User getUserAuthInfo() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		User user = (User) authentication.getPrincipal();
-		return user;
+		
+		
+		return userRepository.findById(user.getId()).orElseThrow(UserNotFoundException::new);
 	}
 	
 	public User getUserById(Long id) {
@@ -82,6 +87,10 @@ public class UserService {
 	    } catch (IllegalArgumentException e) {
 	        throw new IllegalArgumentException("Invalid role: " + role, e);
 	    }
+	}
+
+	public void deleteUser(Long userId) {
+		userRepository.deleteById(userId);
 	}
  
 }

@@ -350,6 +350,7 @@ tr {
   top: 50%;
   left: 50%;
   width: 350px;
+  height: 550px;
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 20px;
@@ -404,6 +405,21 @@ tr {
   transition: all .2s ease-in-out;
   outline: none;
   opacity: 0.8;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.inputSelection{
+  height: 30px;
+  width: 200px;
+  border-radius: 5px;
+  border: solid 1px #b5b5b5;
+  transition: all .2s ease-in-out;
+  outline: none;
+  opacity: 0.8;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
 }
 .inputlabel:focus {
   opacity: 1;

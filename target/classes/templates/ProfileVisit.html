@@ -39,11 +39,11 @@
                 <h1>Meu Perfil</h1>
                 <form id="forms">
                     <div class="names">
-                        <input class="inputs-name" placeholder="Nome" th:value="${userData.username}">
-                        <input class="inputs-name" placeholder="Sobrenome" th:value="${userData.lastname}">
+                        <input class="inputs-name" placeholder="Nome" th:value="${userData.username}"  disabled>
+                        <input class="inputs-name" placeholder="Sobrenome" th:value="${userData.lastname}"  disabled>
                     </div>
-                    <input class="inputs" placeholder="Email" th:value="${userData.login}">
-                    <input class="inputs" placeholder="Cargo" th:value="${userData.role}">
+                    <input class="inputs" placeholder="Email" th:value="${userData.login}"  disabled>
+                    <input class="inputs" placeholder="Cargo" th:value="${userData.role}"  disabled>
                 </form>
             </section>
         </section>
