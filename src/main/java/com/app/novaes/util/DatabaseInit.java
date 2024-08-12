@@ -41,9 +41,7 @@ public class DatabaseInit implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		insertUserAdmin();
-		inserRootDirectory();
-		inserUsersToDirectoryes();
-		
+		inserRootDirectory();		
 	}
 	
 	public void insertUserAdmin() {
@@ -134,34 +132,6 @@ public class DatabaseInit implements CommandLineRunner{
 		}
 	}
 	
-	public void inserUsersToDirectoryes() {
-		if(directoryRepository.findByName("root").getListUserPermited().isEmpty()) {
-			Directory directory = directoryRepository.findByName("root");
-			List<User> listUsers = userRepository.findByRole(Role.ADMIN);
-			for(User user : listUsers) {
-				directory.addUserToListUserPermited(user);
-			}
-			directoryRepository.save(directory);
-		}
-		Directory proutosEntregues = directoryRepository.findById((long)1).orElseThrow();
-		if(directoryRepository.findById((long)2).orElseThrow(() -> new RuntimeException("Directory not exist")).getListUserPermited().isEmpty()) {
-			
-			Directory directory = directoryRepository.findById((long)2).orElseThrow(() -> new RuntimeException("Directory not exist"));
-			List<User> listUsers = userRepository.findByRole(Role.ADMIN);
-			for(User user : listUsers) {
-				directory.addUserToListUserPermited(user);
-			}
-			directoryRepository.save(directory);
-		}
-		
-		if(directoryRepository.findById((long)3).orElseThrow(() -> new RuntimeException("Directory not exist")).getListUserPermited().isEmpty()) {
-			Directory directory = directoryRepository.findById((long)3).orElseThrow(() -> new RuntimeException("Directory not exist"));
-			List<User> listUsers = userRepository.findByRole(Role.ADMIN);
-			for(User user : listUsers) {
-				directory.addUserToListUserPermited(user);
-			}
-			directoryRepository.save(directory);
-		}
-	}
+	
 
 }

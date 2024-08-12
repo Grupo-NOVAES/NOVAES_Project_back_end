@@ -11,7 +11,6 @@ for (let i = 0; i < folderItems.length; i++) {
 
 for(let i=0;i < fileItems.length; i++){
     fileItems[i].addEventListener('dblclick',function() {
-        console.log("teste...");
         const fileId = this.getAttribute("data-file-id");
         window.location.href = "/archive/download/"+fileId;
     })
@@ -127,11 +126,12 @@ function deleteFolder() {
             method: 'DELETE', // Certifique-se de que o método é 'DELETE'
         })
         .then(response => {
+            console.log(JSON.stringify(response))
             if (response.ok) {
                 alert('Item excluído com sucesso.');
                 location.reload(); // Recarrega a página para atualizar a lista
             } else {
-                alert('Erro ao excluir o item.');
+                alert('Erro ao excluir o item. '+ currentItemId);
             }
         })
         .catch(error => {
@@ -139,19 +139,13 @@ function deleteFolder() {
             alert('Erro ao excluir o item.');
         });
     }
-
-    hideContextMenu();
-    location.reload();
+    hideModalActionsFile()
 }
 
 
 function dowloadDirectory(){
    window.location.href=`/directory/download/${currentItemId}`;
 }
-
-
-document.addEventListener('click', () => hideContextMenu());
-
 
 document.getElementById('searchInput').addEventListener('input', function() {
     let filter = this.value.toLowerCase();
@@ -199,7 +193,10 @@ document.getElementById('searchInput').addEventListener('input', function() {
      contextmenu.style.left = `${rect.left + window.scrollX}px`; 
 
      contextmenu.style.display = 'block';
-     modalVisible = true;
+     modalVisible = true;     
+     currentItemId = selectedUserId
+     document.getElementById("directoryId").value = selectedUserId;
+
  }
 
  //Esconde o modal de opções de 3 pontos

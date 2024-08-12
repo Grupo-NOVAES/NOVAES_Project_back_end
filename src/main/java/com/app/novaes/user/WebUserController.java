@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.novaes.client.Client;
@@ -251,6 +252,12 @@ public class WebUserController {
 			employeeService.addUser(employee);
 		}
 
+	}
+	
+	@PutMapping
+	public void updateProfilePhoto(@RequestParam(value ="userId") Long userId,
+								   @RequestParam(value ="imageProfile")MultipartFile image) {
+		
 	}
 	
 	@DeleteMapping("/delete/{id}")

@@ -198,15 +198,18 @@ public class WebArchiveDirectoryController {
 	}
 	
 	@PostMapping("/directory/rename")
-	public ModelAndView renameDirectory(@RequestParam("directoryId") Long directoryId,@RequestParam("newNameFolder") String newNameFolder) {
+	public ModelAndView renameDirectory(@RequestParam("directoryId") Long directoryId,
+										@RequestParam("newNameFolder") String newNameFolder) {
+		DirectoryDTO directory = directoryAndArchivesService.getDirectoryDtoById(directoryId);
 		directoryAndArchivesService.renameFolder(directoryId , newNameFolder);
-		return directoryListRoot(directoryId);
+		return directoryListRoot(directory.getParentDirectoryId());
 	}
 	
 	@DeleteMapping("/directory/delete/{directoryId}")
 	public ModelAndView deleteDirectory(@PathVariable Long directoryId) {
+		DirectoryDTO directory = directoryAndArchivesService.getDirectoryDtoById(directoryId);
 		directoryAndArchivesService.deleteDirectoryById(directoryId);
-		return directoryListRoot(directoryId);
+		return directoryListRoot(directory.getParentDirectoryId());
 	}
 
 

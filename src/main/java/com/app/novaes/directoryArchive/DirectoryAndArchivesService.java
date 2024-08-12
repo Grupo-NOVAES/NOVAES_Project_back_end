@@ -88,6 +88,10 @@ public class DirectoryAndArchivesService {
 		return directoryRepository.findById(id).orElseThrow(DirectoryNotFoundException :: new);
 	}
 	
+	public DirectoryDTO getDirectoryDtoById(Long id) {
+		return directoryRepository.findDirectoryDTOById(id);
+	}
+	
 	public List<String> getNameSubDirectoryByRoot() {
     	List<String> nameSubDirectoryByRoot = new ArrayList<>();
     	Directory root = directoryRepository.findById((long)1)
