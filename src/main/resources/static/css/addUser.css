@@ -9,19 +9,17 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex: 1 1 100vw;
-  overflow: hidden;
-
+    overflow: hidden;
 }
 .container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-    flex: 20 10 500px;
+  flex: 20 10 500px;
 }
 main {
   display: flex;
   flex-direction: column;
-  height: 90vh;
   flex: 1;
   align-items: center;
   justify-content: center;
@@ -29,6 +27,7 @@ main {
 #form_user{
     display: flex;
     flex-direction: column;
+    height: 75vh;
     width: 45%;
     justify-content: center;
     align-items: center;
