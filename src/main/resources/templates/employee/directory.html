@@ -209,7 +209,7 @@
                       border-radius: 15px;
                       background-color: none;
                     "
-                    onclick="showModalActionsFile(this)"
+                    onclick="showModalActionsFiles(this)"
                   >
                     <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
                   </button>
@@ -221,7 +221,7 @@
 
         <div id="ModalOptions" class="ModalOptions">
           <a
-            ><button onclick="dowloadDirectory()" class="btnOption">
+            ><button onclick="dowloadFile()" class="btnOption">
               <i
                 class="fa-solid fa-download fa-flip-horizontal fa-sm"
                 style="color: #1e3050"
@@ -230,15 +230,39 @@
             </button></a
           >
           <a
-            ><button onclick="showModalFolderName()" class="btnOption">
+            ><button onclick="showModalFileName()" class="btnOption">
               <i class="fa-solid fa-pencil fa-sm" style="color: #1e3050"></i>
               Renomear
             </button></a
           >
           <a
-            ><button onclick="deleteFolder()" class="btnOption">
+            ><button onclick="deleteFile()" class="btnOption">
               <i class="fa-solid fa-trash fa-sm" style="color: #1e3050"></i
               >Deletar
+            </button></a
+          >
+        </div>
+
+        <div id="ModalOptionsFile" class="ModalOptionsFile">
+          <a
+            ><button onclick="dowloadFile()" class="btnOption">
+              <i
+                class="fa-solid fa-download fa-flip-horizontal fa-sm"
+                style="color: #1e3050"
+              ></i>
+              Baixar Arquivo
+            </button></a
+          >
+          <a
+            ><button onclick="showModalFileName()" class="btnOption">
+              <i class="fa-solid fa-pencil fa-sm" style="color: #1e3050"></i>
+              Renomear Arquivo
+            </button></a
+          >
+          <a
+            ><button onclick="deleteFile()" class="btnOption">
+              <i class="fa-solid fa-trash fa-sm" style="color: #1e3050"></i
+              >Deletar Arquivo
             </button></a
           >
         </div>

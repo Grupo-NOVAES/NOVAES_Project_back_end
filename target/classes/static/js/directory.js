@@ -178,7 +178,7 @@ document.getElementById('searchInput').addEventListener('input', function() {
      const target = event.target;
 
      if (modalVisible && !contextmenu.contains(target) && !target.closest('button')) {
-         hideModalActionsFile();
+         hideModalActionsFiles();
      }
  });
 
@@ -205,3 +205,89 @@ document.getElementById('searchInput').addEventListener('input', function() {
      contextmenu.style.display = 'none';
      modalVisible = false;
  }
+
+
+
+
+ let selectedFileId = null;
+ let File = false;
+
+ document.addEventListener('click', function(event) {
+     const contextmenu = document.getElementById('ModalOptionsFile');
+     const target = event.target;
+
+     if (File && !contextmenu.contains(target) && !target.closest('button')) {
+         hideModalActionsFiles();
+     }
+ });
+
+ //Aparece o modal dos 3 pontos
+ function showModalActionsFiles(button) {
+     const contextmenu = document.getElementById('ModalOptionsFile');
+     selectedFileId = button.closest('tr').getAttribute('data-id');
+
+     //aonde vai aparecer
+     const rect = button.getBoundingClientRect();
+     contextmenu.style.top = `${rect.top + window.scrollY}px`; 
+     contextmenu.style.left = `${rect.left + window.scrollX}px`; 
+
+     contextmenu.style.display = 'block';
+     File = true;     
+     currentItemId = selectedFileId
+     document.getElementById("directoryId").value = selectedFileId;
+
+ }
+
+ //Esconde o modal de opções de 3 pontos
+ function hideModalActionsFiles() {
+     const contextmenu = document.getElementById('ModalOptionsFile');
+     contextmenu.style.display = 'none';
+     File = false;
+ }
+
+
+
+
+ function showModalFileName() {
+    document.getElementById('EditModalFolder').style.display = "block";
+}
+
+function hideModalEditFile() {
+    document.getElementById('EditModalFolder').style.display = "none";
+}
+
+function saveButtonEditFile () {
+    console.log('Salvar Edição Pasta!')
+    hideModalEditFile();
+}
+
+
+
+
+
+function deleteFile() {
+    if (currentItemId === null) {
+        alert('Nenhum item selecionado para exclusão.');
+        return;
+    }
+
+    if (confirm('Você tem certeza que deseja excluir este item?')) {
+        fetch(`/directory/delete/${currentItemId}`, {
+            method: 'DELETE', // Certifique-se de que o método é 'DELETE'
+        })
+        .then(response => {
+            console.log(JSON.stringify(response))
+            if (response.ok) {
+                alert('Item excluído com sucesso.');
+                location.reload(); // Recarrega a página para atualizar a lista
+            } else {
+                alert('Erro ao excluir o item. '+ currentItemId);
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao excluir o item:', error);
+            alert('Erro ao excluir o item.');
+        });
+    }
+    hideModalActionsFiles()
+}
