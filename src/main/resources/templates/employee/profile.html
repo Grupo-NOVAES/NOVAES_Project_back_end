@@ -28,16 +28,17 @@
     <main>
         <section id="principal">
             <section id="right">
-			    <img id="imageProfile" th:if="${imageProfile != null}" th:src="'data:image/png;base64,' + ${imageProfile}" alt="Foto de Perfil do Usuário" />
-			
-			    <img id="imageProfile-none" th:unless="${imageProfile != null}" th:src="@{/icones/LogosGrupoNovaesApp.png}" alt="Ícone de Usuário Padrão" />
-			
-			    
-                <button class="CartBtn">
+                <img id="imageProfile" th:if="${imageProfile != null}" th:src="'data:image/png;base64,' + ${imageProfile}" alt="Foto de Perfil do Usuário" />
+                <img id="imageProfile-none" th:unless="${imageProfile != null}" th:src="@{/icones/LogosGrupoNovaesApp.png}" alt="Ícone de Usuário Padrão" />
+                
+                <button id="uploadButton" class="CartBtn">
                     <p class="textBtnAccContract">Trocar foto de Perfil</p>
                 </button>
-                
-			</section>
+                <input type="file" id="fileInput" style="display: none;" />
+                <input type="hidden" id="userId" th:value="${user.id}" />
+            </section>
+            
+            
 
 
             <section id="left">

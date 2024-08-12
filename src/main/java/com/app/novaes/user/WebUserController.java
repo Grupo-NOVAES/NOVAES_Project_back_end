@@ -1,8 +1,10 @@
 package com.app.novaes.user;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -254,11 +256,15 @@ public class WebUserController {
 
 	}
 	
-	@PutMapping
-	public void updateProfilePhoto(@RequestParam(value ="userId") Long userId,
-								   @RequestParam(value ="imageProfile")MultipartFile image) {
-		
+	@PutMapping("/updateProfilePhoto")
+	public void updateProfilePhoto(@RequestParam("userId") Long userId,
+	                               @RequestParam("imageProfile") MultipartFile image) throws IOException {
+	    User user = userService.getUserById(userId);
+	    user.setProfilePhoto(image.getBytes());
+	    userService.addUser(user);
 	}
+
+
 	
 	@DeleteMapping("/delete/{id}")
 	public ModelAndView deleteUser(@PathVariable Long id) {
