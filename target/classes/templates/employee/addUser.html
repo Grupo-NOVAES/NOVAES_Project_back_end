@@ -34,10 +34,29 @@
                 <input type="text" name="lastname" id="lastname" class="input_name" placeholder="Sobrenome">
             </div>
             <input type="text" name="login" id="login" class="input" placeholder="Email">
-            <input type="text" name="password" id="password" class="input" placeholder="Senha">
-            <input type="text" name="confirmPassword" id="confirmPassword" class="input" placeholder="Confirmar Senha">
+            <input type="password" name="password" id="password" class="input" placeholder="Senha">
+            <input type="password" name="confirmPassword" id="confirmPassword" class="input" placeholder="Confirmar Senha">
             <input type="text" name="phoneNumber" id="phoneNumber" class="input" placeholder="Numero de telefone">
-            <input type="text" name="role" id="role" class="input" placeholder="Hierarquia">
+
+            <select name="role" class="input" id="role" onchange="toggleFields()">
+                <option value="ADMIN" selected>administrador</option>
+                <option value="EMPLOYEE">funcionario</option>
+                <option value="USER">cliente</option>
+            </select>
+
+            <div class="ifEmployee" id="ifEmployee">
+                <input type="text" name="office" id="office" class="input" placeholder="Cargo na Empresa">
+            </div>
+
+            <div class="ifClient" id="ifClient">
+                <input type="text" name="enterpriseName" id="enterpriseName" class="input" placeholder="Nome da Empresa">
+                <select name="references_directory" class="input" id="references_directory">
+                  <option th:each="directory : ${listDirectorys}" th:value="${directory.id_Directory}" th:text="${directory.name}"></option>
+                  
+              </select>
+              
+            </div>
+
 
             <button type="submit" id="addBtn">Criar novo Usuario</button>
         </form>
@@ -47,5 +66,6 @@
 
     <script th:src="@{/js/darkTheme.js}"></script>
     <script th:src="@{/js/logout.js}"></script>
+    <script th:src="@{/js/addUser.js}"></script>
   </body>
 </html>

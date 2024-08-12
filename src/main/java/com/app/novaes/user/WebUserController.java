@@ -17,6 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.app.novaes.client.Client;
 import com.app.novaes.client.ClientDTO;
 import com.app.novaes.client.ClientService;
+import com.app.novaes.directoryArchive.DirectoryAndArchivesService;
+import com.app.novaes.employee.EmployeeService;
 
 @RestController
 @RequestMapping("/user")
@@ -26,12 +28,18 @@ public class WebUserController {
 	
 	private ClientService clientService;
 	
+	private EmployeeService employeeService;
+	
+	private DirectoryAndArchivesService directoryAndArchivesService;
+	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	public WebUserController(UserService userService, ClientService clientService) {
+	public WebUserController(UserService userService, ClientService clientService,DirectoryAndArchivesService directoryAndArchivesService,EmployeeService employeeService) {
 		this.clientService=clientService;
 		this.userService=userService;
+		this.directoryAndArchivesService=directoryAndArchivesService;
+		this.employeeService=employeeService;
 	}
 	
 	@GetMapping
@@ -110,6 +118,7 @@ public class WebUserController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		User user = userService.getUserAuthInfo();
+		modelAndView.addObject("listDirectorys", directoryAndArchivesService.getListDirectory());
 		
 		if(userService.getTypeUser()) {
 			modelAndView.addObject("user",user);
@@ -124,13 +133,16 @@ public class WebUserController {
 	}
 	
 	@PostMapping("/addUser")
-	public ModelAndView addUser(@RequestParam("name")String name,
-								@RequestParam("lastname")String lastname,
-								@RequestParam("login")String login,
-								@RequestParam("password")String password,
-								@RequestParam("confirmPassword")String confirmPassword,
-								@RequestParam("phoneNumber")String phoneNumber,
-								@RequestParam("role")String role) {
+	public ModelAndView addUser(@RequestParam(value ="name")String name,
+								@RequestParam(value ="lastname")String lastname,
+								@RequestParam(value ="login")String login,
+								@RequestParam(value ="password")String password,
+								@RequestParam(value ="confirmPassword")String confirmPassword,
+								@RequestParam(value ="phoneNumber")String phoneNumber,
+								@RequestParam(value ="role")String role,
+								@RequestParam(value ="office",required = false) String office,
+								@RequestParam(value = "enterpriseName",required = false) String enterpriseName,
+								@RequestParam(value = "referencesDirectory", required = false) Long references_directory) {
 		
 		if(!(password.equals(confirmPassword))) {
 			throw new PasswordNotEqualsException();
@@ -144,7 +156,11 @@ public class WebUserController {
 		user.setPassword(passwordEncoder.encode(password));
 		
 		if(!userService.verifyIfAlreadyLoginExist(login)) {
-			userService.addUser(user);
+			if(user.getRole() == Role.USER) {
+				clientService.addUser(user,enterpriseName,references_directory);
+			}else {
+				employeeService.addUser(user,office);
+			}
 		}
 		
 		return ListUsers();

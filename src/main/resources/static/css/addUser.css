@@ -71,3 +71,7 @@ main {
     font-size: 16pt;
     text-decoration: solid;
 }
+.ifEmployee, .ifClient {
+  width: 100%;
+  display: none;
+}

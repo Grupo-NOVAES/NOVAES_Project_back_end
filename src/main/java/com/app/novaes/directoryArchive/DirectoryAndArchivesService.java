@@ -29,7 +29,7 @@ public class DirectoryAndArchivesService {
 	private ClientRepository clientRepository;
 	
 	
-	protected static DirectoryDTO convertToDTORecursive(Directory directory) {
+	public static DirectoryDTO convertToDTORecursive(Directory directory) {
         DirectoryDTO dto = new DirectoryDTO();
         dto.setId_Directory(directory.getId());
         dto.setName(directory.getName());
@@ -54,7 +54,7 @@ public class DirectoryAndArchivesService {
         return dto;
     }
 	
-	protected static List<ArchiveDTO> convertToDTOArchives(List<Archive> archives) {
+	public static List<ArchiveDTO> convertToDTOArchives(List<Archive> archives) {
         List<ArchiveDTO> archiveDTOs = new ArrayList<>();
         for (Archive archive : archives) {
             archiveDTOs.add(convertToDTO(archive));
@@ -63,7 +63,7 @@ public class DirectoryAndArchivesService {
     }
 	
 	
-	protected static ArchiveDTO convertToDTO(Archive archive) {
+	public static ArchiveDTO convertToDTO(Archive archive) {
         ArchiveDTO dto = new ArchiveDTO();
         dto.setId(archive.getId());
         dto.setName(archive.getName());
@@ -72,24 +72,23 @@ public class DirectoryAndArchivesService {
         return dto;
     }
 	
-	protected List<ArchiveDTO> getListArchive(Long id_directory){
+	public List<ArchiveDTO> getListArchive(Long id_directory){
         return archiveRepository.findArchivesByDirectoryId(id_directory);
 	}
 	
-	
-	protected List<DirectoryDTO> getListDirectory() {
+	public List<DirectoryDTO> getListDirectory() {
         return directoryRepository.findSubDirectoriesOfRoot();
 	}
 	
-	protected List<DirectoryDTO> getListSubDirectory(Long id){
+	public List<DirectoryDTO> getListSubDirectory(Long id){
         return directoryRepository.findSubDirectoriesByParentId(id);
 	}
 	
-	protected Directory getDirectoryById(Long id) {
+	public Directory getDirectoryById(Long id) {
 		return directoryRepository.findById(id).orElseThrow(DirectoryNotFoundException :: new);
 	}
 	
-	protected List<String> getNameSubDirectoryByRoot() {
+	public List<String> getNameSubDirectoryByRoot() {
     	List<String> nameSubDirectoryByRoot = new ArrayList<>();
     	Directory root = directoryRepository.findById((long)1)
     				.orElseThrow(DirectoryNotFoundException :: new);
@@ -100,7 +99,7 @@ public class DirectoryAndArchivesService {
     	return nameSubDirectoryByRoot;
     }
 	
-	protected List<DirectoryDTO> getAccessibleDirectories(long clientId) {
+	public List<DirectoryDTO> getAccessibleDirectories(long clientId) {
     	Client client = clientRepository.findById(clientId)
     			.orElseThrow(ClientNotFoundException :: new);
     	
@@ -117,7 +116,7 @@ public class DirectoryAndArchivesService {
     	return listDirectoryDTO;
     }
 	
-	protected List<DirectoryDTO> getSubDirectoryByParentDirectory(long directoryId){
+	public List<DirectoryDTO> getSubDirectoryByParentDirectory(long directoryId){
     	Directory directoryFound = directoryRepository.findById(directoryId)
     			.orElseThrow(DirectoryNotFoundException :: new);
     	
@@ -130,7 +129,7 @@ public class DirectoryAndArchivesService {
     	return listDirectoryDTO;
     }
     
-	protected List<Long> getAllSubDirectoryIds(Long directoryId) {
+	public List<Long> getAllSubDirectoryIds(Long directoryId) {
         List<Long> subDirectoryIds = new ArrayList<>();
         Directory directory = directoryRepository.findById(directoryId)
                 .orElseThrow(DirectoryNotFoundException::new);
@@ -139,14 +138,14 @@ public class DirectoryAndArchivesService {
         return subDirectoryIds;
     }
     
-	protected void collectSubDirectoryIds(Directory directory, List<Long> subDirectoryIds) {
+	public void collectSubDirectoryIds(Directory directory, List<Long> subDirectoryIds) {
         for (Directory subDirectory : directory.getSubDirectories()) {
             subDirectoryIds.add(subDirectory.getId());
             collectSubDirectoryIds(subDirectory, subDirectoryIds); 
         }
     }
     
-	protected String getFileExtensionFromMimeType(String mimeType) {
+	public String getFileExtensionFromMimeType(String mimeType) {
 		System.out.println("Tipo do Arquivo: "+mimeType);
         switch (mimeType) {
             case "application/pdf":
@@ -210,7 +209,7 @@ public class DirectoryAndArchivesService {
         return path;
     }
     
-	protected List<DirectoryDTO> getPathDirectoryById(Long id) {
+	public List<DirectoryDTO> getPathDirectoryById(Long id) {
         Directory directory = directoryRepository.findById(id)
                 .orElseThrow(DirectoryNotFoundException::new);
         List<DirectoryDTO> listPath = buildPath(directory);
@@ -243,7 +242,7 @@ public class DirectoryAndArchivesService {
         }
     }
 
-	protected void addDirectory(String folderName , Long parentId) {
+	public void addDirectory(String folderName , Long parentId) {
 		Directory parentDirectory = directoryRepository.findById(parentId).orElseThrow(DirectoryNotFoundException::new);
 		Directory directory = new Directory();
 		directory.setName(folderName);

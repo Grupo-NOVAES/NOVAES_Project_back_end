@@ -4,6 +4,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.app.novaes.user.User;
+
 @Service
 public class ClientService {
 	
@@ -35,5 +37,20 @@ public class ClientService {
 		clientDTO.setEnterpriseName(client.getEntrerprise_name());
 		
 		return clientDTO;
+	}
+
+	public void addUser(User user, String enterpriseName, Long references_directory) {
+		Client client = new Client();
+		client.setName(user.getName());
+		client.setLastname(user.getLastname());
+		client.setLogin(user.getLogin());
+		client.setPassword(user.getPassword());
+		client.setPhoneNumber(user.getPhoneNumber());
+		client.setRole(user.getRole());
+		client.setEntrerprise_name(enterpriseName);
+		client.setReferences_directory(references_directory);
+		
+		clientRepository.save(client);
+		
 	}
 }

@@ -44,11 +44,17 @@
                 <h1>Meu Perfil</h1>
                 <form id="forms">
                     <div class="names">
-                        <input class="inputs-name" placeholder="Nome" th:value="${user.username}">
+                        <input class="inputs-name" placeholder="Nome" th:value="${user.name}">
                         <input class="inputs-name" placeholder="Sobrenome" th:value="${user.lastname}">
                     </div>
                     <input class="inputs" placeholder="Email" th:value="${user.login}">
-                    <input class="inputs" placeholder="Cargo" th:value="${user.role}">
+
+                    <select name="role" class="inputs" id="role" onchange="toggleFields()">
+                        <option value="ADMIN" th:selected="${user.role == 'ADMIN'}">administrador</option>
+                        <option value="EMPLOYEE" th:selected="${user.role == 'EMPLOYEE'}">funcionario</option>
+                        <option value="USER" th:selected="${user.role == 'USER'}">cliente</option>
+                    </select>
+                    
 
                     <button class="CartBtnEdit">
                         <p class="textBtnAccContract">Alterar Informações de Perfil</p>
