@@ -185,7 +185,7 @@
                         border-radius: 15px;
                         background-color: none;
                     "
-                    onclick="showModalActionsFolder(this)"
+                    onclick="showModalActionsFile(this)"
                 >
                     <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
                 </button>
@@ -209,7 +209,7 @@
                       border-radius: 15px;
                       background-color: none;
                     "
-                    onclick="showModalActionsStage(this)"
+                    onclick="showModalActionsFile(this)"
                   >
                     <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
                   </button>
@@ -219,7 +219,7 @@
           </table>
         </div>
 
-        <div id="context-menu" class="context-menu">
+        <div id="ModalOptions" class="ModalOptions">
           <a
             ><button onclick="dowloadDirectory()" class="btnOption">
               <i
@@ -247,7 +247,7 @@
           <div class="labelinput">
             <form method="post" th:action="@{/directory/rename}">
               <div class="label">
-                <label for="nameFolder">Renomear Pasta</label>
+                <label for="nameFolder">Renomear</label>
                 <input
                   type="text"
                   name="newNameFolder"

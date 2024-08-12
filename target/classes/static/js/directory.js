@@ -29,32 +29,32 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = "/directory/" + directoryId;
         });
 
-        folderItems[i].addEventListener('contextmenu', function(event) {
-            event.preventDefault(); // Previne o menu de contexto padrão do navegador
+        //  folderItems[i].addEventListener('contextmenu', function(event) {
+        //      event.preventDefault();  //Previne o menu de contexto padrão do navegador
             
-            const contextMenu = document.getElementById('context-menu');
+        //      const contextMenu = document.getElementById('context-menu');
             
-            // Posiciona o menu de contexto
-            contextMenu.style.top = `${event.clientY}px`;
-            contextMenu.style.left = `${event.clientX}px`;
-            contextMenu.style.display = 'block';
+        //       //Posiciona o menu de contexto
+        //      contextMenu.style.top = `${event.clientY}px`;
+        //      contextMenu.style.left = `${event.clientX}px`;
+        //      contextMenu.style.display = 'block';
             
             
-            // Armazena o ID do item clicado
-            contextMenu.setAttribute('data-id', this.getAttribute("data-id"));
-            document.getElementById("directoryId").value = contextMenu.getAttribute('data-id')
-            currentItemId = contextMenu.getAttribute("data-id");
-        });
+        //       //Armazena o ID do item clicado
+        //      contextMenu.setAttribute('data-id', this.getAttribute("data-id"));
+        //      document.getElementById("directoryId").value = contextMenu.getAttribute('data-id')
+        //      currentItemId = contextMenu.getAttribute("data-id");
+        //  });
         
     }
 
-    // Fecha o menu de contexto quando clicar fora
-    document.addEventListener('click', function(event) {
-        const contextMenu = document.getElementById('context-menu');
-        if (!contextMenu.contains(event.target)) {
-            contextMenu.style.display = 'none';
-        }
-    });
+      //Fecha o menu de contexto quando clicar fora
+    //  document.addEventListener('click', function(event) {
+    //      const contextMenu = document.getElementById('context-menu');
+    //      if (!contextMenu.contains(event.target)) {
+    //          contextMenu.style.display = 'none';
+    //      }
+    //  });
 
     // Alterna o tema
     const toggleThemeButton = document.getElementById("theme-checkbox");
@@ -115,13 +115,6 @@ function saveButtonEditFolder () {
     hideModalEdit();
 }
 
-function showModalActionsArchive() {
-    document.getElementById('ModalOptions').style.display = "block";
-}
-
-function hideContextMenu() {
-  document.getElementById('context-menu').style.display = 'none';
-}
 
 function deleteFolder() {
     if (currentItemId === null) {
@@ -172,3 +165,46 @@ document.getElementById('searchInput').addEventListener('input', function() {
         }
     });
 });
+
+
+
+
+
+
+
+
+
+// Refatoração
+
+ let selectedUserId = null;
+ let modalVisible = false;
+
+ document.addEventListener('click', function(event) {
+     const contextmenu = document.getElementById('ModalOptions');
+     const target = event.target;
+
+     if (modalVisible && !contextmenu.contains(target) && !target.closest('button')) {
+         hideModalActionsFile();
+     }
+ });
+
+ //Aparece o modal dos 3 pontos
+ function showModalActionsFile(button) {
+     const contextmenu = document.getElementById('ModalOptions');
+     selectedUserId = button.closest('tr').getAttribute('data-id');
+
+     //aonde vai aparecer
+     const rect = button.getBoundingClientRect();
+     contextmenu.style.top = `${rect.top + window.scrollY}px`; 
+     contextmenu.style.left = `${rect.left + window.scrollX}px`; 
+
+     contextmenu.style.display = 'block';
+     modalVisible = true;
+ }
+
+ //Esconde o modal de opções de 3 pontos
+ function hideModalActionsFile() {
+     const contextmenu = document.getElementById('ModalOptions');
+     contextmenu.style.display = 'none';
+     modalVisible = false;
+ }

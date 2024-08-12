@@ -60,13 +60,13 @@ function saveButtonEditContract() {
     const newTitle = document.getElementById('name').value;
     updateStage(newTitle);
     hideModalEditStage();
-    hideModalActionsContract();
+    hideModalActionsStage();
 }
 
 function confirmDeleteStage() {
     if (confirm('Deseja excluir este contrato?')) {
         deleteStage();
-        hideModalActionsContract();
+        hideModalActionsStage();
     }
 }
 
@@ -74,7 +74,7 @@ function confirmDeleteStage() {
 function confirmConcludeStage(){
     if(confirm('Deseja Concluir esta Etapa?')){
         concludeStage();
-        hideModalActionsContract();
+        hideModalActionsStage();
     }
 }
 

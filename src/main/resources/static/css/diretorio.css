@@ -294,37 +294,37 @@ tr {
   color: #cecece;
 }
 
-/* Menu de Contexto */
-.context-menu {
+
+
+.ModalOptions {
   width: 120px;
-  height: 150px;
+  height: auto;
   display: none;
   flex-direction: column;
   position: absolute;
-  background-color: rgb(255, 255, 255);
+  background-color: #F9F9F9;
   border: 1px solid #ddd;
   border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 0px rgba(0,0,0,0.2);
   z-index: 1000;
-}
-.context-menu > a{
-  width: 100%;
 }
 
-.context-menu-file {
-  width: 120px;
-  height: 150px;
-  display: none;
-  flex-direction: column;
-  position: absolute;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  z-index: 1000;
-}
-.context-menu-file > a{
+.ModalOptions .btnOption {
   width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #ffffff;
+  color: #1e3050;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.ModalOptions .btnOption:last-child {
+  border-bottom: none;
+}
+
+.ModalOptions .btnOption:hover {
+  background-color: #c4c4c4;
 }
 
 
