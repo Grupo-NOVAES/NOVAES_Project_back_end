@@ -390,6 +390,8 @@ tr {
 }
 
 
+
+
 /*MODAIS*/
 .AddFolderModal {
   display: none;
@@ -405,6 +407,13 @@ tr {
   z-index: 1;
   background-color: #F9F9F9;
   color: #1e3050;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin-left: 40px;
 }
 
 .AddFolderModal label, .AddFolderModal input, .AddFolderModal button, .AddFolderModal p {
@@ -427,7 +436,6 @@ tr {
 
 .AddFolderModal .labelinput {
   position: relative;
-  padding-left: 35px;
 }
 
 .AddFolderModal .savebtn {
