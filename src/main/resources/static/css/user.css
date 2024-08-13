@@ -73,8 +73,8 @@ main {
 }
 
 .input:focus {
-  opacity: 1;
   width: 250px;
+  border: solid 2px #b5b5b5;
 }
 
 .btnAddUser {
@@ -170,7 +170,7 @@ table {
   max-height: 60%; 
   overflow: scroll;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
 }
 
@@ -186,6 +186,9 @@ tr {
   width: 80px;
   box-shadow: 0px 1px rgba(0, 0, 0, 0.1);
   text-align: middle;
+}
+tr:hover {
+  background-color: #a2a2a2;
 }
 
 .table-container::-webkit-scrollbar {
@@ -321,7 +324,7 @@ tr {
   background-color: #F9F9F9;
   border: 1px solid #ddd;
   border-radius: 4px;
-  box-shadow: 0 4px 0px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 0px 2px rgba(0,0,0,0.2);
   z-index: 1000;
 }
 
@@ -341,6 +344,7 @@ tr {
 
 .ModalOptions .btnOption:hover {
   background-color: #c4c4c4;
+  border-radius: 5px;
 }
 
 

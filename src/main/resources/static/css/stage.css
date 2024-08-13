@@ -50,6 +50,9 @@ main {
     outline: none;
     opacity: 0.8;
   }
+  input:focus {
+    border: solid 2px #b5b5b5
+  }
   
   .container-input svg {
     position: absolute;
@@ -144,7 +147,7 @@ main {
     min-height: 300px;
     overflow: scroll;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
   }
   
@@ -159,6 +162,9 @@ main {
     width: 80px;
     box-shadow: 0px 1px rgba(0, 0, 0, 0.1);
     text-align: center;
+  }
+  tr:hover {
+    background-color: #a2a2a2;
   }
   
   .table-container::-webkit-scrollbar {
@@ -327,7 +333,7 @@ main {
   }
 
   .ModalOptions {
-    width: 120px;
+    width: 150px;
     height: auto;
     display: none;
     flex-direction: column;
@@ -335,7 +341,7 @@ main {
     background-color: rgb(255, 255, 255);
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-shadow: 0 4px 0px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 0px 2px rgba(0,0,0,0.2);
     z-index: 1000;
   }
   
@@ -355,6 +361,7 @@ main {
   
   .ModalOptions .btnOption:hover {
     background-color: #c4c4c4;
+    border-radius: 5px;
   }
 
   .EditModalContract {
