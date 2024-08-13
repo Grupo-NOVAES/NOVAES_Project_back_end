@@ -1,29 +1,7 @@
-function showModalStage(){
-    document.getElementById('AddModalStage').style.display = "block";
-}
-
-function hideButton() {
-    document.getElementById('AddModalStage').style.display = "none";
-}
-
-function saveButton() {
-    console.log('Salvar Add Modal Stage!');
-}
-
-
-
-
 let selectedContractId = null;
 let modalVisible = false;
 
-document.addEventListener('click', function(event) {
-    const ModalOptions = document.getElementById('ModalOptions');
-    const target = event.target;
 
-    if (modalVisible && !ModalOptions.contains(target) && !target.closest('button')) {
-        hideModalActionsStage();
-    }
-});
 
 function showModalActionsStage(button) {
     const ModalOptions = document.getElementById('ModalOptions');
@@ -35,17 +13,30 @@ function showModalActionsStage(button) {
 
     ModalOptions.style.display = 'block';
     modalVisible = true;
+    document.getElementById("idStage").value = selectedContractId;
+    console.log(document.getElementById("idStage").value);
 }
+
+document.addEventListener('click', function(event) {
+    const ModalOptions = document.getElementById('ModalOptions');
+    const target = event.target;
+
+    if (modalVisible && !ModalOptions.contains(target) && !target.closest('button')) {
+        hideModalActionsStage();
+    }
+});
 
 function hideModalActionsStage() {
     const ModalOptions = document.getElementById('ModalOptions');
     ModalOptions.style.display = 'none';
     modalVisible = false;
 }
-
-
-
-
+function showModalStage(){
+    document.getElementById('AddModalStage').style.display = "block";
+}
+function hideModalStage() {
+    document.getElementById('AddModalStage').style.display = "none";
+}
 function showModalEditStage() {
     document.getElementById('EditModalContract').style.display = 'block';
     const contractRow = document.querySelector(`tr[data-id="${selectedContractId}"]`);
@@ -66,27 +57,35 @@ function saveButtonEditContract() {
 function confirmDeleteStage() {
     if (confirm('Deseja excluir este contrato?')) {
         deleteStage();
-        hideModalActionsStage();
+        hideAllModal();
+        
     }
 }
 
-
 function confirmConcludeStage(){
-    if(confirm('Deseja Concluir esta Etapa?')){
+    if(confirm('Deseja alterar o status desta Etapa?')){
         concludeStage();
         hideModalActionsStage();
     }
 }
 
-
-function updateStage(){
-    console.log('Etapa Atualizada')
+function hideAllModal(){
+    hideModalActionsStage();
+    hideModalEditStage();
+    hideModalStage();
 }
 
-function deleteStage(){
-    console.log('Etapa Excluida')
+async function deleteStage(){
+   let response = await fetch(`/stages/deleteStage/${selectedContractId}`,{
+    method:"POST"
+   });
+   console.log(JSON.stringify(response));
+   window.location.reload();
 }
 
-function concludeStage(){
-    console.log('Etapa concluida')
+async function concludeStage(){
+    let response = await fetch(`/stages/concludeStage/${selectedContractId}`,{
+        method:"POST"
+    });
+    window.location.reload();
 }

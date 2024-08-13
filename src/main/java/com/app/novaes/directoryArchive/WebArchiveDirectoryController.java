@@ -215,14 +215,14 @@ public class WebArchiveDirectoryController {
 		return "redirect:/directory/"+dto.getParentDirectoryId();
 }
 	
-	@DeleteMapping("/directory/delete/{directoryId}")
+	@PostMapping("/directory/delete/{directoryId}")
 	public String deleteDirectory(@PathVariable Long directoryId) {
 		DirectoryDTO dto = directoryAndArchivesService.getDirectoryDtoById(directoryId);
 		directoryAndArchivesService.deleteDirectoryById(directoryId);
 		return "redirect:/directory/"+dto.getParentDirectoryId();
 	}
 	
-	@DeleteMapping("/archive/delete/{archiveId}")
+	@PostMapping("/archive/delete/{archiveId}")
 	public String deleteArchive(@PathVariable Long archiveId) {
 		ArchiveDTO dto = directoryAndArchivesService.findArchiveById(archiveId);
 		directoryAndArchivesService.deleteArchiveById(archiveId);

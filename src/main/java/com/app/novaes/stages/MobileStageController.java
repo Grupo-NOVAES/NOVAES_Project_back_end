@@ -27,20 +27,20 @@ public class MobileStageController {
     private ContractRepository contractRepository;
 
     @GetMapping("/byContract/{id}")
-    public List<Stages> getAllStages(@PathVariable Long id) {
-    	List<Stages> listByContract = stagesRepository.findStagesByContract(id);
+    public List<Stage> getAllStages(@PathVariable Long id) {
+    	List<Stage> listByContract = stagesRepository.findStagesByContract(id);
         return listByContract;
     }
 
     @GetMapping("/{id}")
-    public Stages getStageById(@PathVariable Long id) {
+    public Stage getStageById(@PathVariable Long id) {
     	
         return stagesRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Estágio não encontrado"));
     }
 
     @PostMapping
-    public Stages createStage(@RequestBody Stages stage) {
+    public Stage createStage(@RequestBody Stage stage) {
     	Contract contract = contractRepository.findById(stage.getContract().getId())
     							.orElseThrow(() -> new RuntimeException("Contract not found"));
     	stage.setContract(contract);
@@ -48,8 +48,8 @@ public class MobileStageController {
     }
 
     @PutMapping("/{id}")
-    public Stages updateStage(@PathVariable Long id, @RequestBody Stages stageDetails) {
-        Stages stage = stagesRepository.findById(id)
+    public Stage updateStage(@PathVariable Long id, @RequestBody Stage stageDetails) {
+        Stage stage = stagesRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Estágio não encontrado"));
 
         stage.setTitle(stageDetails.getTitle());
@@ -62,8 +62,8 @@ public class MobileStageController {
     }
     
     @PutMapping("/alterStatus/{id}")
-    public Stages updateStatusStage(@PathVariable Long id) {
-    	Stages stage = stagesRepository.findById(id).orElseThrow(() -> new RuntimeException("Stage not found"));
+    public Stage updateStatusStage(@PathVariable Long id) {
+    	Stage stage = stagesRepository.findById(id).orElseThrow(() -> new RuntimeException("Stage not found"));
     	stage.setStatus(!stage.isStatus());
     	return stagesRepository.save(stage);
     }

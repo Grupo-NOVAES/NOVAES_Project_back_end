@@ -77,6 +77,10 @@
                 th:each="user : ${listContacts}"
                 th:data-id="${user.id}"
                 th:data-name="${user.name}"
+                th:data-lastname="${user.lastname}"
+                th:data-login="${user.login}"
+                th:data-phoneNumber="${user.phoneNumber}"
+                th:data-role="${user.role}"
                 class="userItem"
               >
                 <td>
@@ -134,7 +138,7 @@
               <label for="email">Email</label>
               <input type="text" name="email" id="email" itemid="email" class="inputlabel">
               <label for="number">Telefone</label>
-              <input type="number" name="number" id="number" class="inputlabel">
+              <input type="text" name="number" id="number" class="inputlabel">
               <label for="role">Hierarquia</label>
 
               <select name="role" class="inputSelection" id="role">

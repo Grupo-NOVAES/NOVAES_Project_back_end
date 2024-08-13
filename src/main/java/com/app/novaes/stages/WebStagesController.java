@@ -1,17 +1,17 @@
 package com.app.novaes.stages;
 
-import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -21,11 +21,9 @@ import com.app.novaes.contract.Contract;
 import com.app.novaes.contract.ContractService;
 import com.app.novaes.user.User;
 import com.app.novaes.user.UserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
-@RestController
+@Controller
 @RequestMapping("/stages")
 public class WebStagesController {
 
@@ -47,7 +45,7 @@ public class WebStagesController {
 	public ModelAndView stagesScreenClient(@PathVariable Long idContract) {
 	    ModelAndView modelAndView = new ModelAndView();
 
-	    List<Stages> listStages = stageService.getStagesByContractId(idContract); 
+	    List<Stage> listStages = stageService.getStagesByContractId(idContract); 
 	    User user = userService.getUserAuthInfo();
 	    modelAndView.addObject("user", user);
 
@@ -73,14 +71,14 @@ public class WebStagesController {
 
 	
 	@PostMapping
-	public ModelAndView addStages(@ModelAttribute Stages stages, RedirectAttributes redirectAttributes ) {
+	public String addStages(@ModelAttribute Stage stages, RedirectAttributes redirectAttributes ) {
 		
 	    System.out.println("Data: " + stages.getDateHour());
 	    Contract contract = contractService.getContractById(stages.getContract().getId());
 
 	    if (contract == null) {
 	        redirectAttributes.addFlashAttribute("message", "Contract not found");
-	        return new ModelAndView("redirect:/stages");
+	        return "redirect:/directory";
 	    }
 	    
 	    stages.setContract(contract); 
@@ -89,14 +87,40 @@ public class WebStagesController {
 	    
 	    if (client == null) {
 	        redirectAttributes.addFlashAttribute("message", "Client not found");
-	        return new ModelAndView("redirect:/stages");
+	        return "redirect:/directory";
 	    }
 	    
 	    contract.setClient(client);
 	    stagesRepository.save(stages);
 
 	    redirectAttributes.addFlashAttribute("message", "Etapa adicionada!");
-	    return stagesScreenClient(contract.getId());
+	    return "redirect:/stages/"+contract.getId();
+	}
+	
+	@PostMapping("/updateStage")
+	public String updateStages(@RequestParam(value = "id")Long id,
+							   @RequestParam(value = "title" , required = false)String title,
+							   @RequestParam(value = "description", required = false)String description,
+							   @RequestParam(value = "dateHour", required = false)String dateHour) throws ParseException {
+		
+		Date date = stageService.String2Date(dateHour);
+		stageService.updateStage(id, title, description, date);
+		
+		return "redirect:/stages/"+stageService.getStageById(id).getContract().getId();
+	}
+	
+	@PostMapping("/concludeStage/{id}")
+	public String concludeStage(@PathVariable Long id) {
+		Long idContract = stageService.getStageById(id).getContract().getId();
+		stageService.concludeStage(id);
+		return "redirect:/stages/"+idContract;
+	}
+	
+	@PostMapping("/deleteStage/{id}")
+	public String deleteStage(@PathVariable Long id) {
+		Long idContract = stageService.getStageById(id).getContract().getId();
+		stageService.deleteStage(id);
+		return "redirect:/stages/"+idContract;
 	}
 
 	

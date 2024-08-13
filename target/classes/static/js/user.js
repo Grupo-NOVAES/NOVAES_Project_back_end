@@ -56,13 +56,16 @@ function hideModalActionsUser() {
     ModalOptions.style.display = 'none';
     modalVisible = false;
 }
-
-
-
 function showModalEditUser() {
     document.getElementById('EditModalUser').style.display = 'block';
-    const contractRow = document.querySelector(`tr[data-id="${selectedUserId}"]`);
-    document.getElementById('name').value = contractRow.getAttribute('data-title');
+
+    const userRow = document.querySelector(`tr[data-id="${selectedUserId}"]`);
+
+    document.getElementById('name').value = userRow.getAttribute('data-name');
+    document.getElementById('lastName').value = userRow.getAttribute('data-lastname');
+    document.getElementById('email').value = userRow.getAttribute('data-login');
+    document.getElementById('number').value = userRow.getAttribute('data-phoneNumber');
+    document.getElementById('role').value = userRow.getAttribute('data-role');
 }
 
 function hideModalEditUser() {
@@ -86,9 +89,6 @@ function confirmDeleteContract() {
         hideModalActionsUser();
     }
 }
-
-
-
 function updateUser() {
     const userId = selectedUserId;
     const name = document.getElementById('name').value;
@@ -124,8 +124,6 @@ function updateUser() {
 
     
 }
-
-
 async function deleteUser(){
     console.log(selectedUserId)
     let response = await fetch(`/user/delete/${selectedUserId}`,{

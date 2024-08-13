@@ -19,7 +19,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Stages {
+public class Stage {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

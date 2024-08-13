@@ -1,79 +1,29 @@
-const folderItems = document.getElementsByClassName("folderItem");
-const fileItems = document.getElementsByClassName("fileItem");
 let currentDirectoryId = null;
 let currentArchiveId = null;
-
-for (let i = 0; i < folderItems.length; i++) {
-    folderItems[i].addEventListener('dblclick', function() {
-        const directoryId = this.getAttribute("data-id");
-        window.location.href = "/directory/" + directoryId;
-    });
-}
-
-for(let i=0;i < fileItems.length; i++){
-    fileItems[i].addEventListener('dblclick',function() {
-        const fileId = this.getAttribute("data-file-id");
-        window.location.href = "/archive/download/"+fileId;
-    })
-}
-
-
+let selectedUserId = null;
+let modalVisible = false;
 
 document.addEventListener('DOMContentLoaded', function () {
     const folderItems = document.getElementsByClassName("folderItem");
+    const fileItems = document.getElementsByClassName("fileItem");
 
     for (let i = 0; i < folderItems.length; i++) {
-
         folderItems[i].addEventListener('dblclick', function() {
             const directoryId = this.getAttribute("data-id");
             window.location.href = "/directory/" + directoryId;
-        });
-
-        //  folderItems[i].addEventListener('contextmenu', function(event) {
-        //      event.preventDefault();  //Previne o menu de contexto padrão do navegador
-            
-        //      const contextMenu = document.getElementById('context-menu');
-            
-        //       //Posiciona o menu de contexto
-        //      contextMenu.style.top = `${event.clientY}px`;
-        //      contextMenu.style.left = `${event.clientX}px`;
-        //      contextMenu.style.display = 'block';
-            
-            
-        //       //Armazena o ID do item clicado
-        //      contextMenu.setAttribute('data-id', this.getAttribute("data-id"));
-        //      document.getElementById("directoryId").value = contextMenu.getAttribute('data-id')
-        //      currentDirectoryId = contextMenu.getAttribute("data-id");
-        //  });
-        
+        });    
     }
-
-      //Fecha o menu de contexto quando clicar fora
-    //  document.addEventListener('click', function(event) {
-    //      const contextMenu = document.getElementById('context-menu');
-    //      if (!contextMenu.contains(event.target)) {
-    //          contextMenu.style.display = 'none';
-    //      }
-    //  });
-
-    // Alterna o tema
-    const toggleThemeButton = document.getElementById("theme-checkbox");
-    const body = document.body;
-    const mainElement = document.querySelector('main');
-    const headerElement = document.querySelector('header');
-    const navElement = document.querySelector('nav');
-
-
+    for(let i=0;i < fileItems.length; i++){
+        fileItems[i].addEventListener('dblclick',function() {
+            const fileId = this.getAttribute("data-file-id");
+            window.location.href = "/archive/download/"+fileId;
+        })
+    }
 });
 
-
-
-
-
-function showModal() {
+function showModalFolder() {
     document.getElementById('AddFolderModal').style.display = 'block';
 }
-
 function hideModalAddFolder() {
     document.getElementById('AddFolderModal').style.display = 'none';
 }
@@ -84,9 +34,6 @@ function saveButtonAddFolder() {
     console.log(id);
     hideModalAddFolder();
 }
-
-
-
 function showModalFile() {
     document.getElementById('AddFolderModalFile').style.display = 'block';
 }
@@ -99,9 +46,6 @@ function saveButtonFile() {
     console.log('Salvar arquivo');
     hideModalFile();
 }
-
-
-
 function showModalFolderName() {
     document.getElementById('EditModalFolder').style.display = "block";
 }
@@ -114,38 +58,21 @@ function saveButtonEditFolder () {
     console.log('Salvar Edição Pasta!')
     hideModalEdit();
 }
-
-
-function deleteFolder() {
-    if (currentDirectoryId === null) {
-        alert('Nenhum item selecionado para exclusão.');
-        return;
-    }
-
-    if (confirm('Você tem certeza que deseja excluir este item?')) {
-        fetch(`/directory/delete/${currentDirectoryId}`, {
-            method: 'DELETE', // Certifique-se de que o método é 'DELETE'
-        })
-        .then(response => {
-            console.log(JSON.stringify(response))
-            if (response.ok) {
-                alert('Item excluído com sucesso.');
-                location.reload(); // Recarrega a página para atualizar a lista
-            } else {
-                alert('Erro ao excluir o item. '+ currentDirectoryId);
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao excluir o item:', error);
-            alert('Erro ao excluir o item.');
-        });
-    }
-    hideModalActionsFile()
+function showModalFileName() {
+    document.getElementById('EditModalFile').style.display = "block";
 }
 
+function hideModalEditFile() {
+    document.getElementById('EditModalFile').style.display = "none";
+}
 
-function dowloadDirectory(){
-   window.location.href=`/directory/download/${currentDirectoryId}`;
+function hideModalEditFile() {
+    document.getElementById('EditModalFolder').style.display = "none";
+}
+
+function saveButtonEditFile () {
+    console.log('Salvar Edição Pasta!')
+    hideModalEditFile();
 }
 
 document.getElementById('searchInput').addEventListener('input', function() {
@@ -161,19 +88,6 @@ document.getElementById('searchInput').addEventListener('input', function() {
     });
 });
 
-
-
-
-
-
-
-
-
-// Refatoração
-
- let selectedUserId = null;
- let modalVisible = false;
-
  document.addEventListener('click', function(event) {
      const contextmenu = document.getElementById('ModalOptions');
      const target = event.target;
@@ -183,8 +97,8 @@ document.getElementById('searchInput').addEventListener('input', function() {
      }
  });
 
- //Aparece o modal dos 3 pontos
- function showModalActionsFile(button) {
+
+ function showModalActionsDirectory(button) {
      const contextmenu = document.getElementById('ModalOptions');
      selectedUserId = button.closest('tr').getAttribute('data-id');
 
@@ -196,20 +110,23 @@ document.getElementById('searchInput').addEventListener('input', function() {
      contextmenu.style.display = 'block';
      modalVisible = true;     
      currentDirectoryId = selectedUserId
-     document.getElementById("directoryId").value = selectedUserId;
-
+     console.log(selectedUserId);
+     console.log(currentDirectoryId);
+     document.getElementById("directoryId").value=currentDirectoryId;
  }
 
- //Esconde o modal de opções de 3 pontos
+
+
+
+function dowloadDirectory(){
+   window.location.href=`/directory/download/${currentDirectoryId}`;
+}
+
  function hideModalActionsFile() {
      const contextmenu = document.getElementById('ModalOptions');
      contextmenu.style.display = 'none';
      modalVisible = false;
  }
-
-
-
-
  let selectedFileId = null;
  let File = false;
 
@@ -250,43 +167,34 @@ document.getElementById('searchInput').addEventListener('input', function() {
 
 
 
- function showModalFileName() {
-    document.getElementById('EditModalFile').style.display = "block";
-}
-
-function hideModalEditFile() {
-    document.getElementById('EditModalFolder').style.display = "none";
-}
-
-function saveButtonEditFile () {
-    console.log('Salvar Edição Pasta!')
-    hideModalEditFile();
-}
-
-function deleteFile() {
+async function deleteFile() {
     if (currentArchiveId === null) {
         alert('Nenhum item selecionado para exclusão.');
         return;
     }
+    if(confirm('Você tem certeza que deseja excluir este Arquivo?')){
+       let response = await fetch(`/archive/delete/${currentArchiveId}`,{
+        method:'POST'
+       });
 
-    if (confirm('Você tem certeza que deseja excluir este item?')) {
-        fetch(`/archive/delete/${currentArchiveId}`, {
-            method: 'DELETE', // Certifique-se de que o método é 'DELETE'
-        })
-        .then(response => {
-            console.log(JSON.stringify(response))
-            if (response.ok) {
-                alert('Item excluído com sucesso.');
-                location.reload(); // Recarrega a página para atualizar a lista
-            } else {
-                alert('Erro ao excluir o item. '+ currentArchiveId);
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao excluir o item:', error);
-            alert('Erro ao excluir o item.');
-        });
+       console.log(JSON.stringify(response))
     }
+    window.location.reload();
     hideModalActionsFiles()
-    location.reload();
+}
+
+async function deleteFolder() {
+    if (currentDirectoryId === null) {
+        alert('Nenhum item selecionado para exclusão.');
+        return;
+    }
+
+    if (confirm('Você tem certeza que deseja excluir esta pasta?')) {
+        let response = await fetch(`/directory/delete/${currentDirectoryId}`, {
+            method: 'POST', 
+        });
+        console.log(JSON.stringify(response))
+    }
+    window.location.reload();
+    hideModalActionsFile()
 }

@@ -185,7 +185,7 @@
                         border-radius: 15px;
                         background-color: none;
                     "
-                    onclick="showModalActionsFile(this)"
+                    onclick="showModalActionsDirectory(this)"
                 >
                     <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
                 </button>
@@ -221,7 +221,7 @@
 
         <div id="ModalOptions" class="ModalOptions">
           <a
-            ><button onclick="dowloadFile()" class="btnOption">
+            ><button onclick="dowloadDirectory()" class="btnOption">
               <i
                 class="fa-solid fa-download fa-flip-horizontal fa-sm"
                 style="color: #1e3050"
@@ -230,13 +230,13 @@
             </button></a
           >
           <a
-            ><button onclick="showModalFileName()" class="btnOption">
+            ><button onclick="showModalFolderName()" class="btnOption">
               <i class="fa-solid fa-pencil fa-sm" style="color: #1e3050"></i>
               Renomear
             </button></a
           >
           <a
-            ><button onclick="deleteFile()" class="btnOption">
+            ><button onclick="deleteFolder()" class="btnOption">
               <i class="fa-solid fa-trash fa-sm" style="color: #1e3050"></i
               >Deletar
             </button></a
@@ -259,19 +259,19 @@
               Renomear Arquivo
             </button></a
           >
-          <a
-            ><button onclick="deleteFile()" class="btnOption">
+          <a>
+            <button onclick="deleteFile()" class="btnOption">
               <i class="fa-solid fa-trash fa-sm" style="color: #1e3050"></i
               >Deletar Arquivo
-            </button></a
-          >
+            </button>
+            </a>
         </div>
 
         <div class="EditModalFolder" id="EditModalFolder">
           <div class="labelinput">
             <form method="post" th:action="@{/directory/rename}">
               <div class="label">
-                <label for="nameFolder">Renomear</label>
+                <label for="nameFolder">Renomear Diretorio</label>
                 <input
                   type="text"
                   name="newNameFolder"
