@@ -169,7 +169,7 @@ table {
   margin-top: 5%;
   max-height: 60%; 
   overflow: scroll;
-  width: 100%;
+  width: 95%;
   border-radius: 5px;
   box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
 }
@@ -179,6 +179,10 @@ td {
   vertical-align: middle;
   text-align: left;
   padding-left: 15px;
+}
+
+.tdLogin {
+  max-width: 100px;
 }
 
 tr {
@@ -354,23 +358,26 @@ tr:hover {
   top: 50%;
   left: 50%;
   width: 350px;
-  height: 550px;
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 20px;
   box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   z-index: 1;
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
   color: #1e3050;
 }
 
-.EditModalUser label, .EditModalUser input, .EditModalUser button, .EditModalUser p {
+.EditModalUser label,
+.EditModalUser input,
+.EditModalUser button,
+.EditModalUser p {
   display: block;
   margin: 10px 0;
 }
 
-.EditModalUser button, .EditModalUser p {
+.EditModalUser button,
+.EditModalUser p {
   cursor: pointer;
 }
 
@@ -380,6 +387,13 @@ tr:hover {
   width: 100%;
   align-items: center;
   justify-content: space-around;
+}
+
+.EditModalUser .form {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin-left: 45px;
 }
 
 .EditModalUser .labelinput {
@@ -400,6 +414,26 @@ tr:hover {
   cursor: pointer;
 }
 
+.inputRenameContract {
+  height: 30px;
+  width: 200px;
+  padding: 10px 0px 10px 40px;
+  border-radius: 5px;
+  border: solid 1px #b5b5b5;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  opacity: 0.8;
+}
+.inputRenameContract:focus {
+  opacity: 1;
+  width: 220px;
+}
+
+.EditModalUser .ModalTitle {
+  font-size: large;
+  text-align: center;
+}
+
 .inputlabel {
   height: 30px;
   width: 200px;
@@ -409,8 +443,6 @@ tr:hover {
   transition: all .2s ease-in-out;
   outline: none;
   opacity: 0.8;
-  text-align: center;
-  justify-content: center;
   align-items: center;
 }
 .inputSelection{
@@ -426,7 +458,7 @@ tr:hover {
   align-items: center;
 }
 .inputlabel:focus {
-  opacity: 1;
+  border: solid 2px #b5b5b5;
   width: 220px;
 }
 

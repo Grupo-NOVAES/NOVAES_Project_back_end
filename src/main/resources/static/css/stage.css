@@ -16,7 +16,8 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-	flex: 20 10 500px;
+	flex: 20 1 500px;
+  margin-top: 20px;
 }
 main {
   display: flex;
@@ -24,454 +25,489 @@ main {
   height: 90vh;
   flex: 1;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
 }
-  .header-table {
-    display: flex;
-    flex-direction: row;
-    width: 95%;
-    margin-left: 20px;
-    margin: 5px;
-  }
-  
-  .container-input {
-    padding: 5px;
-    width: 50%;
-    position: relative;
-  }
-  
-  .input {
-    height: 30px;
-    width: 175px;
-    padding: 10px 0px 10px 40px;
-    border-radius: 5px;
-    border: solid 1px #b5b5b5;
-    transition: all .2s ease-in-out;
-    outline: none;
-    opacity: 0.8;
-  }
-  input:focus {
-    border: solid 2px #b5b5b5
-  }
-  
-  .container-input svg {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translate(0, -50%);
-  }
-  
-  .input:focus {
-    opacity: 1;
-    width: 250px;
-  }
-  
-  .btnCreate {
-    display: flex;
-    justify-content: flex-end;
-    width: 50%;
-    align-items: center;
-  }
-  
-  .CartBtn {
-    width: 175px;
-    height: 30px;
-    border-radius: 5px;
-    border: none;
-    background-color: #1e3050;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition-duration: .5s;
-    overflow: hidden;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.103);
-    position: relative;
-  }
-  
-  .IconContainer {
-    position: absolute;
-    left: -50px;
-    width: 30px;
-    height: 30px;
-    background-color: transparent;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    z-index: 2;
-    transition-duration: .5s;
-  }
-  
-  .icon {
-    border-radius: 1px;
-  }
-  
-  .text {
-    height: 100%;
-    width: fit-content;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    z-index: 1;
-    transition-duration: .5s;
-    margin-top: 15px;
-  }
-  .CartBtn:hover .IconContainer {
-    transform: translateX(58px);
-    border-radius: 40px;
-    transition-duration: .5s;
-  }
-  
-  .CartBtn:hover .text {
-    transform: translate(10px,0px);
-    transition-duration: .5s;
-  }
-  
-  .CartBtn:active {
-    transform: scale(0.95);
-    transition-duration: .5s;
-  }
-  table {
-    background-color: white;
-    height: 100%;
-    width: 100%;
-    text-align: center;
-    color: #1e3050;
-  }
-  
-  .table-container {
-    max-height: 60%; 
-    min-height: 300px;
-    overflow: scroll;
-    width: 100%;
-    border-radius: 5px;
-    box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
-  }
-  
-  td {
-    vertical-align: middle;
-    text-align: left;
-    padding-left: 50px;
-  }
-  
-  tr {
-    height: 60px;
-    width: 80px;
-    box-shadow: 0px 1px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-  tr:hover {
-    background-color: #a2a2a2;
-  }
-  
-  .table-container::-webkit-scrollbar {
-    height: 0px;
-    width: 3.5px;
-  }
-  
-  .table-container::-webkit-scrollbar-track {
-    background-color: #50535a;
-  }
-  
-  .table-container::-webkit-scrollbar-thumb:hover {
-    background-color: #D1E6E9;
-  }
-  .theme-switch {
-    width: 96%;
-    position: relative;
-    display: flex;
-    justify-content: flex-start;
-    direction: rtl;
-    margin-top: 5px;
-  }
-  #theme-checkbox {
-    display: none;
-  }
-  
-  #theme-checkbox + label {
-    font-size: 2rem;
-    height: 1em;
-    width: 2.5em;
-    border-radius: 0.25em;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    background-color: #cecece;
-    position: relative;
-  }
-  
-  #theme-checkbox:checked + label {
-    background-color: #3a3a3a;
-  }
-  
-  #theme-checkbox + label:active {
-    transform: scale(0.85);
-    transition: transform 0.2s;
-  }
-  
-  #theme-checkbox + label div {
-    width: 0.8em;
-    height: 0.8em;
-    border-radius: inherit;
-    position: absolute;
-    top: 0.1em;
-    left: 0.1em;
-    z-index: 10;
-    transition: 0.5s cubic-bezier(1, 0.33, 0.11, 1.34);
-    background-color: #f2f2f2;
-  }
-  
-  #theme-checkbox:checked + label div {
-    /* left: calc(2.5em - .8em - .1em); */
-    left: 1.6em;
-    background-color: #212121;
-  }
-  
-  #theme-checkbox + label span {
-    display: flex;
-  }
-  
-  #theme-checkbox + label svg {
-    display: inline-block;
-    height: 1em;
-    width: 1em;
-    padding: 0.15em;
-    box-sizing: border-box;
-  }
-  
-  #theme-checkbox + label span:first-of-type {
-    color: #3a3a3a;
-  }
-  
-  #theme-checkbox + label span:last-of-type {
-    color: #cecece;
-  }
+.header-table {
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+  margin: 5px;
+}
 
+.container-input {
+  width: 50%;
+  position: relative;
+}
 
-  .AddModalStage {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 350px;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    z-index: 1;
-    background-color: #F9F9F9;
-    color: #1e3050;
-  }
+.input {
+  height: 30px;
+  width: 175px;
+  padding: 10px 0px 10px 40px;
+  border-radius: 5px;
+  border: solid 1px #b5b5b5;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  opacity: 0.8;
+}
+input:focus {
+  border: solid 2px #b5b5b5;
+}
 
-  .AddModalStage .form {
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-    margin-left: 45px;
-  }
-  
-  .AddModalStage label, .AddModalStage input, .AddModalStage button, .AddModalStage p {
-    display: block;
-    margin: 10px 0;
-  }
-  
-  .AddModalStage button, .AddModalStage p {
-    cursor: pointer;
-  
-  }
-  
-  .AddModalStage .actions {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
-    justify-content: space-around;
-  }
-  
-  .AddModalStage .labelinput {
-    position: relative;
+.container-input svg {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translate(0, -50%);
+}
 
-  }
+.input:focus {
+  opacity: 1;
+  width: 250px;
+}
+
+.btnCreate {
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+  align-items: center;
+}
+
+.CartBtn {
+  width: 175px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #1e3050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition-duration: 0.5s;
+  overflow: hidden;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.103);
+  position: relative;
+}
+
+.IconContainer {
+  position: absolute;
+  left: -50px;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 2;
+  transition-duration: 0.5s;
+}
+
+.icon {
+  border-radius: 1px;
+}
+
+.text {
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  z-index: 1;
+  transition-duration: 0.5s;
+  margin-top: 15px;
+}
+.CartBtn:hover .IconContainer {
+  transform: translateX(58px);
+  border-radius: 40px;
+  transition-duration: 0.5s;
+}
+
+.CartBtn:hover .text {
+  transform: translate(10px, 0px);
+  transition-duration: 0.5s;
+}
+
+.CartBtn:active {
+  transform: scale(0.95);
+  transition-duration: 0.5s;
+}
+table {
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  color: #1e3050;
+}
+
+.table-container {
+  max-height: 60%;
+  min-height: 300px;
+  overflow: scroll;
+  width: 95%;
+  border-radius: 5px;
+  box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
+}
+
+td {
+  vertical-align: middle;
+  text-align: left;
+  padding: 10px;
+}
+
+tr {
+  height: 60px;
+  width: 80px;
+  box-shadow: 0px 1px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.tdIcon{
+  width: 50px;
+}
+
+.tdTitle {
+  max-width: 100px;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.tdDescription {
+  max-width: 200px;
+  word-break: break-word;
+  white-space: normal;
+  text-align: left;
+}
+
+.dtDateHour {
+  max-width: 100px;
+  text-align: left;
+}
+
+.dtStatus {
+  max-width: 30px;
+  text-align: left;
+}
+
+.tdMenu {
+  max-width: 150px;
+  text-align: right;
+}
+
+tr:hover {
+  background-color: #a2a2a2;
+}
+
+.table-container::-webkit-scrollbar {
+  height: 0px;
+  width: 3.5px;
+}
+
+.table-container::-webkit-scrollbar-track {
+  background-color: #50535a;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background-color: #d1e6e9;
+}
+.theme-switch {
+  width: 96%;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  direction: rtl;
+  margin-top: 5px;
+}
+#theme-checkbox {
+  display: none;
+}
+
+#theme-checkbox + label {
+  font-size: 2rem;
+  height: 1em;
+  width: 2.5em;
+  border-radius: 0.25em;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  background-color: #cecece;
+  position: relative;
+}
+
+#theme-checkbox:checked + label {
+  background-color: #3a3a3a;
+}
+
+#theme-checkbox + label:active {
+  transform: scale(0.85);
+  transition: transform 0.2s;
+}
+
+#theme-checkbox + label div {
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: inherit;
+  position: absolute;
+  top: 0.1em;
+  left: 0.1em;
+  z-index: 10;
+  transition: 0.5s cubic-bezier(1, 0.33, 0.11, 1.34);
+  background-color: #f2f2f2;
+}
+
+#theme-checkbox:checked + label div {
+  /* left: calc(2.5em - .8em - .1em); */
+  left: 1.6em;
+  background-color: #212121;
+}
+
+#theme-checkbox + label span {
+  display: flex;
+}
+
+#theme-checkbox + label svg {
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  padding: 0.15em;
+  box-sizing: border-box;
+}
+
+#theme-checkbox + label span:first-of-type {
+  color: #3a3a3a;
+}
+
+#theme-checkbox + label span:last-of-type {
+  color: #cecece;
+}
+
+.AddModalStage {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  z-index: 1;
+  background-color: #f9f9f9;
+  color: #1e3050;
+}
+
+.AddModalStage .form {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin-left: 45px;
+}
+
+.AddModalStage label,
+.AddModalStage input,
+.AddModalStage button,
+.AddModalStage p {
+  display: block;
+  margin: 10px 0;
+}
+
+.AddModalStage button,
+.AddModalStage p {
+  cursor: pointer;
+}
+
+.AddModalStage .actions {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.AddModalStage .labelinput {
+  position: relative;
+}
 
 .inputlabel {
-    height: 30px;
-    width: 175px;
-    padding: 10px 0px 10px 40px;
-    border-radius: 5px;
-    border: solid 1px #b5b5b5;
-    transition: all .2s ease-in-out;
-    outline: none;
-    opacity: 0.8;
-  }
+  height: 30px;
+  width: 175px;
+  padding: 10px 0px 10px 40px;
+  border-radius: 5px;
+  border: solid 1px #b5b5b5;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  opacity: 0.8;
+}
 
 .inputlabel:hover {
-    width: 210px;
-  }
+  width: 210px;
+}
 
 .inputlabeldate {
-    border: solid 1px #b5b5b5;
-    width: 175px;
-    border-radius: 5px;
-    outline: none;
-  }
-  
-  .AddModalStage .savebtn {
-    width: 100px;
-    height: 30px;
-    border-radius: 5px;
-    border: none;
-    background-color: #1e3050;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  border: solid 1px #b5b5b5;
+  width: 175px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.AddModalStage .savebtn {
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #1e3050;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ModalOptions {
+  width: 150px;
+  height: auto;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 4px 0px 2px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.ModalOptions .btnOption {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #ffffff;
+  color: #1e3050;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.ModalOptions .btnOption:last-child {
+  border-bottom: none;
+}
+
+.ModalOptions .btnOption:hover {
+  background-color: #c4c4c4;
+  border-radius: 5px;
+}
+
+.EditModalContract {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 350px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  z-index: 1;
+  background-color: #f9f9f9;
+  color: #1e3050;
+}
+
+.EditModalContract label,
+.EditModalContract input,
+.EditModalContract button,
+.EditModalContract p {
+  display: block;
+  margin: 10px 0;
+}
+
+.EditModalContract button,
+.EditModalContract p {
+  cursor: pointer;
+}
+
+.EditModalContract .actions {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.EditModalContract .labelinput {
+  position: relative;
+  padding-left: 45px;
+}
+
+.EditModalContract .savebtn {
+  width: 100px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: #1e3050;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.inputRenameContract {
+  height: 30px;
+  width: 200px;
+  padding: 10px 0px 10px 40px;
+  border-radius: 5px;
+  border: solid 1px #b5b5b5;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  opacity: 0.8;
+}
+.inputRenameContract:focus {
+  opacity: 1;
+  width: 220px;
+}
+
+.EditModalContract .ModalTitle {
+  font-size: large;
+  text-align: center;
+}
+
+@media only screen and (max-width: 923px) {
+  main {
+    height: calc(100vh - 330px);
   }
 
-  .ModalOptions {
-    width: 150px;
-    height: auto;
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    background-color: rgb(255, 255, 255);
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-shadow: 0 4px 0px 2px rgba(0,0,0,0.2);
-    z-index: 1000;
+  aside {
+    height: 100px;
   }
-  
-  .ModalOptions .btnOption {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    background-color: #ffffff;
-    color: #1e3050;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .ModalOptions .btnOption:last-child {
-    border-bottom: none;
-  }
-  
-  .ModalOptions .btnOption:hover {
-    background-color: #c4c4c4;
-    border-radius: 5px;
-  }
+}
 
-  .EditModalContract {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 350px;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    padding: 20px;
-    box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    z-index: 1;
-    background-color: #F9F9F9;
-    color: #1e3050;
-  }
-  
-  .EditModalContract label, .EditModalContract input, .EditModalContract button, .EditModalContract p {
+@media only screen and (max-width: 717px) {
+  #openMenu,
+  #closeMenu {
     display: block;
-    margin: 10px 0;
   }
-  
-  .EditModalContract button, .EditModalContract p {
-    cursor: pointer;
+
+  #openMenu {
+    margin-left: auto;
   }
-  
-  .EditModalContract .actions {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    align-items: center;
-    justify-content: space-around;
+
+  #closeMenu {
+    position: fixed;
+    right: 15px;
+    top: 15px;
   }
-  
-  .EditModalContract .labelinput {
-    position: relative;
-    padding-left: 45px;
-  }
-  
-  .EditModalContract .savebtn {
-    width: 100px;
-    height: 30px;
-    border-radius: 5px;
-    border: none;
-    background-color: #1e3050;
-    color: white;
-    display: flex;
+
+  nav {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(255, 255, 255, 0.8);
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    margin: 0;
+    display: none;
+    opacity: 0;
+    transition: 0.3s;
   }
-  
-  .inputRenameContract {
-    height: 30px;
-    width: 200px;
-    padding: 10px 0px 10px 40px;
-    border-radius: 5px;
-    border: solid 1px #b5b5b5;
-    transition: all .2s ease-in-out;
-    outline: none;
-    opacity: 0.8;
-  }
-  .inputRenameContract:focus {
-    opacity: 1;
-    width: 220px;
-  }
-
-  .EditModalContract .ModalTitle {
-    font-size: large;
-    text-align: center;
-  }
-
-
-  @media only screen and (max-width: 923px) {
-    main {
-      height: calc(100vh - 330px);
-    }
-  
-    aside {
-      height: 100px;
-    }
-  }
-  
-  @media only screen and (max-width: 717px) {
-    #openMenu,
-    #closeMenu {
-      display: block;
-    }
-  
-    #openMenu {
-      margin-left: auto;
-    }
-  
-    #closeMenu {
-      position: fixed;
-      right: 15px;
-      top: 15px;
-    }
-  
-    nav {
-      position: fixed;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(255, 255, 255, 0.8);
-      align-items: center;
-      justify-content: center;
-      margin: 0;
-      display: none;
-      opacity: 0;
-      transition: 0.3s;
-    }
-  }
+}

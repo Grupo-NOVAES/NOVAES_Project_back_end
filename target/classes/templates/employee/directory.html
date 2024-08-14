@@ -107,21 +107,19 @@
         <div class="AddFolderModal" id="AddFolderModal">
           <div class="labelinput">
             <form method="post" th:action="@{/directory}">
-              <div class="form">
-                <label for="name">Adicionar Pasta</label>
-                <input
-                  type="text"
-                  name="folderName"
-                  class="input"
-                  placeholder="Nome da Pasta"
-                  required
-                />
-                <input
-                  type="hidden"
-                  name="parentId"
-                  th:value="${parentDirectoryId}"
-                />
-              </div>
+              <label for="name">Adicionar Pasta</label>
+              <input
+                type="text"
+                name="folderName"
+                class="input"
+                placeholder="Nome da Pasta"
+                required
+              />
+              <input
+                type="hidden"
+                name="parentId"
+                th:value="${parentDirectoryId}"
+              />
               <div class="actions">
                 <button type="submit" class="savebtn">Salvar</button>
                 <p onclick="hideModalAddFolder()">Cancelar</p>
@@ -182,14 +180,14 @@
                     <button
                     style="
                         border: none;
-                        height: 50px;
-                        width: 50px;
+                        height: 40px;
+                        width: 40px;
                         border-radius: 15px;
                         background-color: none;
                     "
                     onclick="showModalActionsDirectory(this)"
                 >
-                    <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+                    <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
                 </button>
                 </td>
               </tr>
@@ -206,8 +204,8 @@
                   <button
                     style="
                       border: none;
-                      height: 50px;
-                      width: 50px;
+                      height: 40px;
+                      width: 40px;
                       border-radius: 15px;
                       background-color: none;
                     "
@@ -296,7 +294,7 @@
         <div class="EditModalFile" id="EditModalFile">
           <div class="labelinput">
             <form method="post" th:action="@{/archive/rename}">
-              <div class="label">
+              <div class="form">
                 <label for="nameFile">Renomear Arquivo</label>
                 <input
                   type="text"
@@ -306,8 +304,10 @@
                   placeholder="Novo Nome"
                   required
                 />
+                <input type="hidden" name="archiveId" id="archiveId" />
+
               </div>
-              <input type="hidden" name="archiveId" id="archiveId" />
+
               <div class="actions">
                 <button type="submit" class="savebtn" onclick="() =>{location.reload()}">Salvar</button>
                 <p onclick="hideModalEdit()">Sair</p>

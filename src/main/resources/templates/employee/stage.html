@@ -74,9 +74,9 @@
 				<form th:action="@{/stages}" method="post">
           <div class="form">
 				    <label for="title">Titulo da Etapa</label>
-				    <input type="text" name="title" id="title" class="inputlabel">
+				    <input type="text" name="title" id="title" class="inputlabel" maxlength="33">
 				    <label for="description">Descrição da Etapa</label>
-				    <input type="text" name="description" id="description" class="inputlabel">
+				    <input type="text" name="description" id="description" class="inputlabel" maxlength="200">
 				    <label for="datehour">Data limite da Etapa </label>
 				    <input type="date" name="dateHour" id="datehour" class="inputlabeldate">
 				    <input type="hidden" name="contract.id" th:value="${contract.id}" />
@@ -94,25 +94,25 @@
       <table>
         <tbody>
           <tr  id="stages" class="folderItem" th:each="stages : ${listStages}" th:data-id="${stages.id}" th:data-name="${stages.title}">
-            <td>
+            <td class="tdIcon">
               <i class="fa-solid fa-clock fa-2xl"></i>
             </td>
-            <td th:text="${stages.title}"></td>
-            <td th:text="${stages.description}"></td>
-            <td th:text="${stages.dateHour}"></td>
-            <td th:text="${stages.status}"></td>
-            <td style="white-space: nowrap">
+            <td th:text="${stages.title}" class="tdTitle"></td>
+            <td th:text="${stages.description}" class="tdDescription"></td>
+            <td th:text="${stages.dateHour}" class="dtDateHour"></td>
+            <td th:text="${stages.status}" class="dtStatus"></td>
+            <td style="white-space: nowrap" class="tdMenu">
               <button
               style="
                   border: none;
-                  height: 50px;
-                  width: 50px;
+                  height: 40px;
+                  width: 40px;
                   border-radius: 15px;
                   background-color: none;
               "
               onclick="showModalActionsStage(this)"
           >
-              <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
+              <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
           </button>
             </td>
           </tr>
@@ -140,9 +140,9 @@
     <div class="labelinput" method="post" th:action="@{/stages/updateStage}">
       <input type="hidden" id="idStage" name="id">
       <label for="titleStage">Titulo</label>
-      <input type="text" class="inputlabel" id="name" name="title"/>
+      <input type="text" class="inputlabel" id="name" name="title" maxlength="33"/>
       <label for="descriptionStage">Descrição</label>
-      <input type="text" name="description" id="description" class="inputlabel">
+      <input type="text" name="description" id="description" class="inputlabel" maxlength="200">
       <label for="date">Data</label>
       <input type="date" name="dateHour" id="datehour" class="inputlabeldate">
     </div>

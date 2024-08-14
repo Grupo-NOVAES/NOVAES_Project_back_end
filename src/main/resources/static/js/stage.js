@@ -8,14 +8,27 @@ function showModalActionsStage(button) {
     selectedContractId = button.closest('tr').getAttribute('data-id');
 
     const rect = button.getBoundingClientRect();
-    ModalOptions.style.top = `${rect.top + window.scrollY}px`; 
-    ModalOptions.style.left = `${rect.left + window.scrollX}px`; 
+    const modalWidth = ModalOptions.offsetWidth;
+    const modalHeight = ModalOptions.offsetHeight;
+
+    const marginLeft = 150;
+
+    let modalLeft = rect.left - modalWidth - marginLeft;
+    let modalTop = rect.top + window.scrollY;
+
+
+    ModalOptions.style.top = `${modalTop}px`;
+    ModalOptions.style.left = `${modalLeft}px`;
 
     ModalOptions.style.display = 'block';
     modalVisible = true;
     document.getElementById("idStage").value = selectedContractId;
     console.log(document.getElementById("idStage").value);
 }
+
+
+
+
 
 document.addEventListener('click', function(event) {
     const ModalOptions = document.getElementById('ModalOptions');

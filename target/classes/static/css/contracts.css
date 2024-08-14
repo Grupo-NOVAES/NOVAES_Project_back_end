@@ -26,13 +26,38 @@ main {
   align-items: center;
   justify-content: center;
 }
+
+.filters {
+  width: 95%;
+  display: flex;
+  flex-direction: row;
+}
+
 .container-input {
   display: flex;
   padding: 5px;
   width: 100%;
   position: relative;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
+}
+
+.namePrizeContainer{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+}
+#time{
+    margin-right: 4px;
+}
+#status{
+    margin-right: 5px;
+}
+.statusClientContainer{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
 }
 
 .input {
@@ -48,7 +73,7 @@ main {
 .container-input svg {
   position: absolute;
   top: 50%;
-  left: 160px;
+  left: 60px;
   transform: translate(0, -50%);
 }
 .input:focus {
@@ -133,16 +158,16 @@ table {
   max-height: 60%; 
   margin-top: 20px;
   overflow: scroll;
-  width: 100%;
+  width: 95%;
   border-radius: 5px;
   box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
 }
 td {
-  width: 10px;
   vertical-align: middle;
   text-align: left;
-  padding-left: 15px;
+  padding: 10px;
 }
+
 tr:hover {
   background-color: #a2a2a2;
 }
@@ -162,28 +187,8 @@ tr {
 .table-container::-webkit-scrollbar-thumb:hover {
   background-color: #D1E6E9;
 }
-.filters {
-  width: 100%;
-    display: flex;
-    flex-direction: row;
-}
-.namePrizeContainer{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    align-items: center;
-}
-#time{
-    margin-right: 4px;
-}
-#status{
-    margin-right: 5px;
-}
-.statusClientContainer{
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-}
+
+
 
 .AddModalContract {
   display: none;
