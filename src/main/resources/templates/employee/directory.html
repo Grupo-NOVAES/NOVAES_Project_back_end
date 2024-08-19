@@ -26,10 +26,7 @@
     <div class="container">
       <main role="main" class="main">
         <div class="listParentDirectory">
-          <div
-            th:each="directory : ${listNameParentDirectory}"
-            style="display: flex; flex-direction: row"
-          >
+          <div th:each="directory : ${listNameParentDirectory}" style="display: flex; flex-direction: row" class="listNameParentDirectory">
             <a th:href="@{/directory/{id}(id=${directory.id_Directory})}">
               <button
                 class="buttonBackDirectory"
@@ -118,10 +115,10 @@
                 th:data-id="${directory.id_Directory}"
                 th:data-name="${directory.name}"
               >
-                <td>
+                <td class="tdIcon">
                   <i class="fa-solid fa-folder fa-2xl"></i>
                 </td>
-                <td th:text="${directory.name}"></td>
+                <td th:text="${directory.name}" class="tdName"></td>
                 <td style="white-space: nowrap">
                     <button
                     style="
@@ -142,10 +139,10 @@
                 class="fileItem"
                 th:data-file-id="${archive.id}"
               >
-                <td>
+                <td class="tdIcon">
                   <i class="fa-solid fa-file fa-2xl" style="color: #929497"></i>
                 </td>
-                <td th:text="${archive.nameArchive}"></td>
+                <td th:text="${archive.nameArchive}" class="tdName"></td>
                 <td style="white-space: nowrap">
                   <button
                     style="
