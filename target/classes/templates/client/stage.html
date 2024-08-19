@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/diretorio.css}" />
+    <link rel="stylesheet" th:href="@{/css/stage.css}" />
+    <link rel="stylesheet" th:href="@{/css/components/header.css}" />
+    <link rel="stylesheet" th:href="@{/css/components/nav.css}" />
+    <link rel="stylesheet" th:href="@{/css/components/darkTheme.css}" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -11,21 +14,74 @@
       crossorigin="anonymous"
     />
     <script src="https://kit.fontawesome.com/a56b5a1294.js" crossorigin="anonymous"></script>
-    <title>Diretórios</title>
+    <title>Etapas</title>
 </head>
 <body>
-    <!-- Agrupa os elementos que compõe o cabeçalho. -->
     <div th:replace="fragments/header :: header"></div>
+	  <div th:replace="fragments/nav :: nav"></div>
 
 
-	<!-- Agrupa links de navegação no site. -->
-	<div th:replace="fragments/nav :: nav"></div>
-
+<div class="container">
 	<main>
 
-        <h1>Stage Client</h1>
+
+      <div class="header-table">
+        <div class="container-input">
+          <input type="text" placeholder="Buscar" name="text" class="input" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20px"
+            heigh="20px"
+            viewBox="0 0 512 512"
+          >
+            <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <path
+              fill="#1e3050"
+              d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
+            />
+          </svg>
+        </div>
+
+
+        <!--
+        <div>
+          <p th:href="@{/stages/{id}(id=${stages.contract_id})}"></p>
+        </div>>
+        -->
+      </div>
+
+
+		<div th:replace="fragments/interfaces/stage/modalAddStage :: div"></div>
+
+
+    <div class="table-container">
+      <table>
+        <tbody>
+          <tr  id="stages" class="folderItem" th:each="stages : ${listStages}" th:data-id="${stages.id}" th:data-name="${stages.title}">
+            <td class="tdIcon">
+              <i class="fa-solid fa-clock fa-2xl"></i>
+            </td>
+            <td th:text="${stages.title}" class="tdTitle"></td>
+            <td th:text="${stages.description}" class="tdDescription"></td>
+            <td th:text="${stages.dateHour}" class="dtDateHour"></td>
+            <td th:text="${stages.status}" class="dtStatus"></td>
+            
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div th:replace="fragments/interfaces/stage/modalOptnsStage :: div"></div>
+
+    <div th:replace="fragments/interfaces/stage/modalEditStage :: div"></div>
+
+    </div>
   </main>
 
 </div>
+
+<script th:src="@{/js/darkTheme.js}"></script>
+<script th:src="@{/js/logout.js}"></script>
+<script th:src="@{/js/stage.js}"></script>
 </body>
 </html>
