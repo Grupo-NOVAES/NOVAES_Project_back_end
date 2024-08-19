@@ -31,10 +31,12 @@ public class ClientService {
 	
 	public ClientDTO convertAClientToClientDTO(Client client) {
 		ClientDTO clientDTO = new ClientDTO();
+		clientDTO.setId(client.getId());
 		clientDTO.setName(client.getName());
 		clientDTO.setLastname(client.getLastname());
 		clientDTO.setLogin(client.getLogin());
 		clientDTO.setEnterpriseName(client.getEntrerprise_name());
+		clientDTO.setRole(client.getRole());
 		
 		return clientDTO;
 	}

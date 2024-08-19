@@ -66,13 +66,15 @@ function hideModalEditFile() {
     document.getElementById('EditModalFile').style.display = "none";
 }
 
-function hideModalEditFile() {
-    document.getElementById('EditModalFolder').style.display = "none";
-}
 
 function saveButtonEditFile () {
     console.log('Salvar Edição Pasta!')
     hideModalEditFile();
+}
+
+function hideAllModal(){
+    document.getElementById('EditModalFile').style.display = "none";
+    document.getElementById('AddFolderModalFile').style.display = 'none';
 }
 
 document.getElementById('searchInput').addEventListener('input', function() {
@@ -97,8 +99,6 @@ document.getElementById('searchInput').addEventListener('input', function() {
      }
  });
 
- 
-
  function showModalActionsDirectory(button) {
      const contextmenu = document.getElementById('ModalOptions');
      selectedUserId = button.closest('tr').getAttribute('data-id');
@@ -115,8 +115,6 @@ document.getElementById('searchInput').addEventListener('input', function() {
      console.log(currentDirectoryId);
      document.getElementById("directoryId").value=currentDirectoryId;
  }
-
-
 
 
 function dowloadDirectory(){

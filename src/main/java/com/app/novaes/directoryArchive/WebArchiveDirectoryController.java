@@ -2,6 +2,7 @@ package com.app.novaes.directoryArchive;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.tika.Tika;
@@ -49,14 +50,13 @@ public class WebArchiveDirectoryController {
 		
 		User user = userService.getUserAuthInfo();
     	modelAndView.addObject("user", user);
-    	
-		List<DirectoryDTO> nameParentDirectory = directoryAndArchivesService.getPathDirectoryById((long)1);
-		modelAndView.addObject("listNameParentDirectory" , nameParentDirectory);
-
 
         modelAndView.addObject("parentDirectoryId", (long)1);
 
     	if(userService.getTypeUser()) {
+    		List<DirectoryDTO> nameParentDirectory = directoryAndArchivesService.getPathDirectoryById((long)1);
+    		modelAndView.addObject("listNameParentDirectory" , nameParentDirectory);
+    		
     		List<DirectoryDTO> listDirectory = directoryAndArchivesService.getListDirectory();
     			
     	    modelAndView.addObject("listDirectory" , listDirectory);
@@ -64,11 +64,18 @@ public class WebArchiveDirectoryController {
     	        
     		modelAndView.setViewName("/employee/directory.html");
     	}else {
+    		
     		Client client = clientService.getClientAuthInfo();
     		List<DirectoryDTO> accessibleDirectories = directoryAndArchivesService.getAccessibleDirectories(client.getId());
-    			
+    		List<DirectoryDTO> nameParentDirectory = directoryAndArchivesService.getPathDirectoryById(client.getReferences_directory());
+    		List<ArchiveDTO> listArchive = directoryAndArchivesService.getListArchive(client.getReferences_directory());
+
+    		nameParentDirectory.remove(0);
+    		
+    		modelAndView.addObject("listNameParentDirectory" , nameParentDirectory);
     		modelAndView.addObject("listDirectory", accessibleDirectories);
-    			
+	        modelAndView.addObject("listArchive" , listArchive);
+
     		modelAndView.setViewName("/client/directory.html");
     	}
     	
@@ -111,9 +118,11 @@ public class WebArchiveDirectoryController {
                 	List<DirectoryDTO> accessibleSubDirectories = directoryAndArchivesService.getSubDirectoryByParentDirectory(id);
                     List<DirectoryDTO> listNameParentDirectory = directoryAndArchivesService.getPathDirectoryById(id);
                     listNameParentDirectory.remove(0);
-                    
+        			List<ArchiveDTO> listArchive = directoryAndArchivesService.getListArchive(id);
+
                     modelAndView.addObject("listNameParentDirectory" , listNameParentDirectory);
                     modelAndView.addObject("listDirectory", accessibleSubDirectories);
+                    modelAndView.addObject("listArchive", listArchive);
                     
                     modelAndView.setViewName("/client/directory.html");
                 }else {

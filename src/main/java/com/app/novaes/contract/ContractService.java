@@ -31,4 +31,8 @@ public class ContractService {
 		
 	}
 
+	public List<Contract> getContractByClientId(Long clientId) {
+		return contractRepository.findByClient(clientId);
+	}
+
 }

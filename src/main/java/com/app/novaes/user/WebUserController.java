@@ -88,8 +88,8 @@ public class WebUserController {
             Client client = clientService.getClientAuthInfo();
             ClientDTO clientDTO = clientService.convertAClientToClientDTO(client);
 
-            modelAndView.addObject("user", clientDTO);
-            modelAndView.setViewName("/client/profile.html");
+            modelAndView.addObject("userData", clientDTO);
+            modelAndView.setViewName("/ProfileVisit.html");
         }
 
         return modelAndView;

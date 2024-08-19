@@ -39,17 +39,21 @@ public class WebContractController {
 	@GetMapping
 	public ModelAndView contractScreenClient() {
 	    ModelAndView modelAndView = new ModelAndView();
-	    List<Contract> listContract = contractService.getAllContract();
+	    
 	    User user = userService.getUserAuthInfo();
-	    List<User> users = userService.getAllUser(); 
 	    
 	    modelAndView.addObject("user", user);
-	    modelAndView.addObject("listContract", listContract);
-	    modelAndView.addObject("users", users); 
+	    
 
 	    if(userService.getTypeUser()) {
+	    	List<Contract> listContract = contractService.getAllContract();
+	    	
+	    	modelAndView.addObject("listContract", listContract);
 	        modelAndView.setViewName("/employee/contract.html");
 	    } else {
+	    	List<Contract> listContract = contractService.getContractByClientId(user.getId());
+	    			
+	    	modelAndView.addObject("listContract", listContract);
 	        modelAndView.setViewName("/client/contract.html");
 	    }
 

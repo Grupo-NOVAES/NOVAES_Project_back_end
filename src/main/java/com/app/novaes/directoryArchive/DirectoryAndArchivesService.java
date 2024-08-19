@@ -112,17 +112,8 @@ public class DirectoryAndArchivesService {
     	Client client = clientRepository.findById(clientId)
     			.orElseThrow(ClientNotFoundException :: new);
     	
-    	Directory directoryFound = directoryRepository.findById(client.getReferences_directory())
-    			.orElseThrow(DirectoryNotFoundException :: new);
-  
-    	List<DirectoryDTO> listDirectoryDTO = new ArrayList<>();
-    	
-    	for(Directory directory : directoryFound.getSubDirectories()) {
-    		DirectoryDTO subDirectory = convertToDTORecursive(directory);
-    		listDirectoryDTO.add(subDirectory);
-    	}
-    	listDirectoryDTO.remove(0);
-    	return listDirectoryDTO;
+    	List<DirectoryDTO> listAcessibleDirectory = directoryRepository.findSubDirectoriesByParentId(client.getReferences_directory());
+    	return listAcessibleDirectory;
     }
 	
 	public List<DirectoryDTO> getSubDirectoryByParentDirectory(long directoryId){

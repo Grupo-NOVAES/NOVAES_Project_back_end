@@ -25,6 +25,10 @@ public interface DirectoryRepository extends JpaRepository<Directory, Long>{
     @Query("SELECT new com.app.novaes.directoryArchive.DirectoryDTO(d.id, d.name, d.parentDirectory.id, d.parentDirectory.name) FROM Directory d WHERE d.parentDirectory.id = 1")
     List<DirectoryDTO> findSubDirectoriesOfRoot();
     
+    @Query("SELECT new com.app.novaes.directoryArchive.DirectoryDTO(d.id, d.name, d.parentDirectory.id, d.parentDirectory.name) FROM Directory d WHERE d.id = :directoryId OR d.parentDirectory.id = :directoryId")
+    List<DirectoryDTO> findAllSubDirectoriesByClient(@Param("directoryId") Long directoryId);
+    
+    
     @Modifying
     @Transactional
     @Query("UPDATE Directory d SET d.name = :name WHERE d.id = :id")
