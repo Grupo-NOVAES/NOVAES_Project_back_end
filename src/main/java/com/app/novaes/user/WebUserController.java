@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +25,7 @@ import com.app.novaes.directoryArchive.DirectoryAndArchivesService;
 import com.app.novaes.employee.Employee;
 import com.app.novaes.employee.EmployeeService;
 
-@RestController
+@Controller
 @RequestMapping("/user")
 public class WebUserController {
 	
@@ -137,7 +138,7 @@ public class WebUserController {
 	}
 	
 	@PostMapping("/addUser")
-	public ModelAndView addUser(@RequestParam(value ="name")String name,
+	public String addUser(@RequestParam(value ="name")String name,
 								@RequestParam(value ="lastname")String lastname,
 								@RequestParam(value ="login")String login,
 								@RequestParam(value ="password")String password,
@@ -167,53 +168,58 @@ public class WebUserController {
 			}
 		}
 		
-		return ListUsers();
+		return "redirect:/user";
 	}
 	
 	@PostMapping("/editProfile")
-	public ModelAndView editProfile(@RequestParam(value ="name")String name,
+	public String editProfile(@RequestParam(value ="name")String name,
 							@RequestParam(value ="lastname")String lastname,
 							@RequestParam(value ="login", required = true)String login,
+							@RequestParam(value ="password", required = true)String password,
+							@RequestParam(value ="passwordConfirm", required = true)String passwordConfirm,
 							@RequestParam(value ="role")Role role) {
 		
-		System.out.println(name);
-		System.out.println(lastname);
-		System.out.println(login);
-		System.out.println(role.toString());
-		if(role == Role.USER) {
-			Client client = clientService.getClientById(userService.getUserAuthInfo().getId());
-			if(name != null) {
-				client.setName(name);
-			}if(lastname != null) {
-				client.setLastname(lastname);
-			}if(login != null) {
-				client.setLogin(login);
-			}if(role != null) {
-				client.setRole(role);
+		if(password.equals(passwordConfirm)) {
+			if(role == Role.USER) {
+				Client client = clientService.getClientById(userService.getUserAuthInfo().getId());
+				if(name != null) {
+					client.setName(name);
+				}if(lastname != null) {
+					client.setLastname(lastname);
+				}if(login != null) {
+					client.setLogin(login);
+				}if(password != null) {
+					client.setPassword(passwordEncoder.encode(password));
+				}if(role != null) {
+					client.setRole(role);
+				}
+				clientService.addUser(client);
+			}else {
+				Employee employee = employeeService.getEmployeeById(userService.getUserAuthInfo().getId());
+				if(name != null) {
+					employee.setName(name);
+				}if(lastname != null) {
+					employee.setLastname(lastname);
+				}if(login != null) {
+					employee.setLogin(login);
+				}if(password != null) {
+					employee.setPassword(passwordEncoder.encode(password));
+				}if(role != null) {
+					employee.setRole(role);
+				}
+				employeeService.addUser(employee);
 			}
-			clientService.addUser(client);
-		}else {
-			Employee employee = employeeService.getEmployeeById(userService.getUserAuthInfo().getId());
-			if(name != null) {
-				employee.setName(name);
-			}if(lastname != null) {
-				employee.setLastname(lastname);
-			}if(login != null) {
-				employee.setLogin(login);
-			}if(role != null) {
-				employee.setRole(role);
-			}
-			employeeService.addUser(employee);
 		}
 		
-		return profileScreen();
+		return "redirect:/profile";
 	}
 	
 	@PutMapping("/editUser")
 	public void editProfile(@RequestParam(value ="userId") Long id,
 							@RequestParam(value = "name") String name,
 							@RequestParam(value = "lastname") String lastname,
-							@RequestParam(value = "login") String login, 
+							@RequestParam(value = "login") String login,
+							@RequestParam(value = "password") String password,
 							@RequestParam(value = "role") Role role,
 							@RequestParam(value ="phoneNumber") String phoneNumber) {
 		if (role == Role.USER) {
@@ -227,12 +233,16 @@ public class WebUserController {
 			if (login != null) {
 				client.setLogin(login);
 			}
+			if(password != null) {
+				client.setPassword(passwordEncoder.encode(password));
+			}
 			if (role != null) {
 				client.setRole(role);
 			}
 			if(phoneNumber != null) {
 				client.setPhoneNumber(phoneNumber);
 			}
+			
 			clientService.addUser(client);
 		} else {
 			Employee employee = employeeService.getEmployeeById(id);
@@ -244,6 +254,9 @@ public class WebUserController {
 			}
 			if (login != null) {
 				employee.setLogin(login);
+			}
+			if(password != null) {
+				employee.setPassword(passwordEncoder.encode(password));
 			}
 			if (role != null) {
 				employee.setRole(role);
@@ -267,8 +280,8 @@ public class WebUserController {
 
 	
 	@DeleteMapping("/delete/{id}")
-	public ModelAndView deleteUser(@PathVariable Long id) {
+	public String deleteUser(@PathVariable Long id) {
 		userService.deleteUser(id);
-		return ListUsers();
+		return "redirect: /user";
 	}
 }

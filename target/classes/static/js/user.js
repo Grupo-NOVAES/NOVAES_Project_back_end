@@ -64,6 +64,7 @@ function showModalEditUser() {
     document.getElementById('name').value = userRow.getAttribute('data-name');
     document.getElementById('lastName').value = userRow.getAttribute('data-lastname');
     document.getElementById('email').value = userRow.getAttribute('data-login');
+    document.getElementById("password").value = "";
     document.getElementById('number').value = userRow.getAttribute('data-phoneNumber');
     document.getElementById('role').value = userRow.getAttribute('data-role');
 }
@@ -94,6 +95,7 @@ function updateUser() {
     const name = document.getElementById('name').value;
     const lastname = document.getElementById('lastName').value;
     const login = document.getElementById('email').value;
+    const password = document.getElementById("password").value;
     const phoneNumber = document.getElementById('number').value;
     const role = document.getElementById('role').value;
 
@@ -102,6 +104,7 @@ function updateUser() {
     formData.append('name', name);
     formData.append('lastname', lastname);
     formData.append('login', login);
+    formData.append('password', password);
     formData.append('phoneNumber', phoneNumber);
     formData.append('role', role);
 

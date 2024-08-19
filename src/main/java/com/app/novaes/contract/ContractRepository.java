@@ -10,4 +10,5 @@ public interface ContractRepository extends JpaRepository<Contract, Long>{
 	
 	@Query("SELECT c FROM Contract c WHERE c.client.id = :id")
     List<Contract> findByClient(Long id);
+
 }
