@@ -12,6 +12,8 @@ public class ArchiveDTO {
     private String name;
     private String type;
     private Long parentDirectoryId;
+    private String nameArchive;
+    
     
     public ArchiveDTO(Long id, String name, String type, Long parentDirectoryId) {
         this.id = id;

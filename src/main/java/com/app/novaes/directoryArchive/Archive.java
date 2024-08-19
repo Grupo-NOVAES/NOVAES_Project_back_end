@@ -32,8 +32,6 @@ public class Archive {
     @Column(length = 1280000000)
     @Lob
     private byte[] content;
-    
-
 
 
 }

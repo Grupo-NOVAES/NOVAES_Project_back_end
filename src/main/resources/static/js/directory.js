@@ -97,6 +97,7 @@ document.getElementById('searchInput').addEventListener('input', function() {
      }
  });
 
+ 
 
  function showModalActionsDirectory(button) {
      const contextmenu = document.getElementById('ModalOptions');

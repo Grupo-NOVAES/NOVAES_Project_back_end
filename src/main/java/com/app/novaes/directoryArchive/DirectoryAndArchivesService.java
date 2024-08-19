@@ -73,7 +73,12 @@ public class DirectoryAndArchivesService {
     }
 	
 	public List<ArchiveDTO> getListArchive(Long id_directory){
-        return archiveRepository.findArchivesByDirectoryId(id_directory);
+		List<ArchiveDTO> listArchive = archiveRepository.findArchivesByDirectoryId(id_directory);
+		for(ArchiveDTO dto : listArchive) {
+			String typeArchive = getFileExtensionFromMimeType(dto.getType());
+			dto.setNameArchive(dto.getName()+"."+typeArchive);
+		}
+        return listArchive;
 	}
 	
 	public List<DirectoryDTO> getListDirectory() {
@@ -152,6 +157,7 @@ public class DirectoryAndArchivesService {
 	public String getFileExtensionFromMimeType(String mimeType) {
 		System.out.println("Tipo do Arquivo: "+mimeType);
         switch (mimeType) {
+        	
             case "application/pdf":
                 return "pdf";
             case "image/jpeg":
@@ -159,7 +165,13 @@ public class DirectoryAndArchivesService {
             case "image/png":
                 return "png";
             case "image/jfif":
-            	return "jfif";         
+            	return "jfif";
+            case "text/csv":
+            	System.out.println("arquivo é planilha");
+            	return "csv";
+            case "text/plain":
+        		System.out.println("arquivo é texto");
+        		return "txt";
             case "application/zip":
                 return "zip";
             case "application/acad":
@@ -187,8 +199,7 @@ public class DirectoryAndArchivesService {
             	return "js";
             case "image/svg+xml":
             	return "svg";
-            case "text/plain":
-                return "txt";
+            
             case "application/xml":
             	return "xml";
             default:
@@ -270,8 +281,10 @@ public class DirectoryAndArchivesService {
 	public void addFile(MultipartFile file, Long parentDirectoryId) {
 		try {
             Archive archive = new Archive();
-            archive.setName(file.getOriginalFilename());
+            archive.setName(getSomeNameFile(file.getOriginalFilename()));
+            
             archive.setType(file.getContentType());
+            System.out.println(file.getContentType());
             archive.setContent(file.getBytes());
 
             Directory directory = directoryRepository.findById(parentDirectoryId)
@@ -283,6 +296,28 @@ public class DirectoryAndArchivesService {
             e.printStackTrace();
         }
 		
+	}
+
+	private String getSomeNameFile(String originalFilename) {
+		 if (originalFilename == null || originalFilename.isEmpty()) {
+	            return originalFilename;
+	     }
+		 
+		 int lastDotIndex = originalFilename.lastIndexOf('.');
+		 
+		 if (lastDotIndex <= 0) {
+	            return originalFilename;
+		 }
+		 
+		 String fileName = originalFilename.substring(0, lastDotIndex);
+	        
+	     String extension = originalFilename.substring(lastDotIndex);
+	        
+	     if (fileName.endsWith(extension)) {
+	            return fileName.substring(0, fileName.length() - extension.length());
+	     }
+	        
+	     return fileName;
 	}
 
 	public void renameArchive(Long archiveId, String newNameArchive) {
