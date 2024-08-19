@@ -121,6 +121,9 @@ document.getElementById('searchInput').addEventListener('input', function() {
 function dowloadDirectory(){
    window.location.href=`/directory/download/${currentDirectoryId}`;
 }
+function dowloadArchive(){
+    window.location.href=`/archive/download/${currentArchiveId}`;
+}
 
  function hideModalActionsFile() {
      const contextmenu = document.getElementById('ModalOptions');

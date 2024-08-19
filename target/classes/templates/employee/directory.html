@@ -199,7 +199,7 @@
                 <td>
                   <i class="fa-solid fa-file fa-2xl" style="color: #929497"></i>
                 </td>
-                <td th:text="${archive.name}"></td>
+                <td th:text="${archive.nameArchive}"></td>
                 <td style="white-space: nowrap">
                   <button
                     style="
@@ -245,7 +245,7 @@
 
         <div id="ModalOptionsFile" class="ModalOptionsFile">
           <a
-            ><button onclick="dowloadFile()" class="btnOption">
+            ><button onclick="dowloadArchive()" class="btnOption">
               <i
                 class="fa-solid fa-download fa-flip-horizontal fa-sm"
                 style="color: #1e3050"
