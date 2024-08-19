@@ -69,25 +69,7 @@
       </div>
 
 
-		<div class="AddModalStage" id="AddModalStage">
-		  <div class="labelinput">
-				<form th:action="@{/stages}" method="post">
-          <div class="form">
-				    <label for="title">Titulo da Etapa</label>
-				    <input type="text" name="title" id="title" class="inputlabel" maxlength="33">
-				    <label for="description">Descrição da Etapa</label>
-				    <input type="text" name="description" id="description" class="inputlabel" maxlength="200">
-				    <label for="datehour">Data limite da Etapa </label>
-				    <input type="date" name="dateHour" id="datehour" class="inputlabeldate">
-				    <input type="hidden" name="contract.id" th:value="${contract.id}" />
-          </div>
-				    <div class="actions">
-				        <button type="submit" class="savebtn">Salvar</button>
-				        <p onclick="hideModalStage()">Sair</p>
-				    </div>
-				</form>
-		  </div>
-    </div>
+		<div th:replace="fragments/interfaces/stage/modalAddStage :: div"></div>
 
 
     <div class="table-container">
@@ -102,16 +84,8 @@
             <td th:text="${stages.dateHour}" class="dtDateHour"></td>
             <td th:text="${stages.status}" class="dtStatus"></td>
             <td style="white-space: nowrap" class="tdMenu">
-              <button
-              style="
-                  border: none;
-                  height: 40px;
-                  width: 40px;
-                  border-radius: 15px;
-                  background-color: none;
-              "
-              onclick="showModalActionsStage(this)"
-          >
+              <button style=" border: none; height: 40px; width: 40px; border-radius: 15px; background-color: none;"
+               onclick="showModalActionsStage(this)">
               <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
           </button>
             </td>
@@ -120,41 +94,9 @@
       </table>
     </div>
 
+    <div th:replace="fragments/interfaces/stage/modalOptnsStage :: div"></div>
 
-    <div id="ModalOptions" class="ModalOptions">
-      <button onclick="showModalEditStage()" class="btnOption">
-        <i class="fa-solid fa-pencil fa-sm" style="color: #1e3050"></i>
-        Editar
-      </button>
-      <button onclick="confirmDeleteStage()" class="btnOption">
-        <i class="fa-solid fa-trash fa-sm" style="color: #1e3050"></i> Deletar
-      </button>
-      <button class="btnOption" onclick="confirmConcludeStage()">
-        <i class="fa-regular fa-circle-check" style="color: #1e3050;"></i> Alterar Status
-      </button>
-  </div>
-
-  <div class="EditModalContract" id="EditModalContract">
-    <p class="ModalTitle">Editar Etapa</p>
-    <form method="post" th:action="@{/stages/updateStage}">
-    <div class="labelinput" method="post" th:action="@{/stages/updateStage}">
-      <input type="hidden" id="idStage" name="id">
-      <label for="titleStage">Titulo</label>
-      <input type="text" class="inputlabel" id="name" name="title" maxlength="33"/>
-      <label for="descriptionStage">Descrição</label>
-      <input type="text" name="description" id="description" class="inputlabel" maxlength="200">
-      <label for="date">Data</label>
-      <input type="date" name="dateHour" id="datehour" class="inputlabeldate">
-    </div>
-
-    <div class="actions">
-      <button class="savebtn" type="submit" onclick="saveButtonEditContract()">
-        Salvar
-      </button>
-      <p onclick="hideModalEditStage()">Sair</p>
-    </div>
-    </form>
-  </div>
+    <div th:replace="fragments/interfaces/stage/modalEditStage :: div"></div>
 
     </div>
   </main>

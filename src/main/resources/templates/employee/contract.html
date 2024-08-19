@@ -169,54 +169,11 @@
           </button>
         </div>
 
-        <div class="AddModalContract" id="AddModalContract">
-          <div class="labelinput">
-            <form th:action="@{/contract}" method="post">
-              <div class="form">
-                <label for="title">Nome do Contrato</label>
-                <input type="text" name="title" id="title" class="inputmodal" />
-                <label for="time">Prazo</label>
-                <input type="date" name="time" id="time" class="inputmodaldate" />
-                <label for="clientLogin">Cliente do Contrato</label>
-                <input list="clientLoginOptions" type="text" name="client.login" id="clientLogin" class="inputmodal" />
-                <datalist id="clientLoginOptions">
-                  <option th:each="user : ${users}" th:value="${user.login}">
-                    [[${user.login}]]
-                  </option>
-                </datalist>
-              </div>
+        <div th:replace="fragments/interfaces/contract/modalAddContract :: div"></div>
 
-              <div class="actions">
-                <button type="submit" class="savebtn">Salvar</button>
-                <p onclick="hideModalContract()">Sair</p>
-              </div>
-            </form>
-          </div>
-        </div>
+        <div th:replace="fragments/interfaces/contract/modalOptnsContract :: div"></div>
 
-        <div id="ModalOptions" class="ModalOptions">
-          <button onclick="showModalContractName()" class="btnOption">
-            <i class="fa-solid fa-pencil fa-sm" style="color: #1e3050"></i>
-            Renomear
-          </button>
-          <button onclick="confirmDeleteContract()" class="btnOption">
-            <i class="fa-solid fa-trash fa-sm" style="color: #1e3050"></i> Deletar
-          </button>
-      </div>
-
-        <div class="EditModalContract" id="EditModalContract">
-          <div class="labelinput">
-            <label for="nameFolder">Renomear Contrato</label>
-            <input type="text" class="inputRenameContract" id="name" />
-          </div>
-
-          <div class="actions">
-            <button class="savebtn" onclick="saveButtonEditContract()">
-              Salvar
-            </button>
-            <p onclick="hideModalNameContract()">Sair</p>
-          </div>
-        </div>
+        <div th:replace="fragments/interfaces/contract/modalEditContract :: div"></div>
       </main>
     </div>
 

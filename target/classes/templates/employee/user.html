@@ -119,43 +119,10 @@
             </tbody>
           </table>
         </div>
-        <div id="ModalOptions" class="ModalOptions">
-            <button onclick="showModalEditUser()" class="btnOption">
-              <i class="fa-solid fa-pencil fa-sm" style="color: #1e3050"></i>
-              Editar
-            </button>
-            <button onclick="confirmDeleteContract()" class="btnOption">
-              <i class="fa-solid fa-trash fa-sm" style="color: #1e3050"></i> Deletar
-            </button>
-        </div>
-        <div class="EditModalUser" id="EditModalUser">
-            <p class="ModalTitle">Editar Usuário</p>
-            <div class="labelinput">
-              <label for="nameUser">Nome</label>
-              <input type="text" class="inputlabel" id="name"/>
-              <label for="lastName">Sobrenome</label>
-              <input type="text" name="inputlabel" id="lastName" class="inputlabel">
-              <label for="email">Email</label>
-              <input type="text" name="email" id="email" itemid="email" class="inputlabel">
-              <label for="number">Telefone</label>
-              <input type="text" name="number" id="number" class="inputlabel">
-              <label for="role">Hierarquia</label>
-
-              <select name="role" class="inputSelection" id="role">
-                <option value="ADMIN" th:selected="${user.role == 'ADMIN'}">administrador</option>
-                <option value="EMPLOYEE" th:selected="${user.role == 'EMPLOYEE'}">funcionario</option>
-                <option value="USER" th:selected="${user.role == 'USER'}">cliente</option>
-            </select>
-
-            </div>
         
-            <div class="actions">
-              <button class="savebtn" onclick="saveButtonEditUser()">
-                Salvar
-              </button>
-              <p onclick="hideModalEditUser()">Sair</p>
-            </div>
-        </div>
+        <div th:replace="fragments/interfaces/user/modalOptnsUser :: div"></div>
+
+        <div th:replace="fragments/interfaces/user/modalEditUser :: div"></div>
       </main>
     </div>
 

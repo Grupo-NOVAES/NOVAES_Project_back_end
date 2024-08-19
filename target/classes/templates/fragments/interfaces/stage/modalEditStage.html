@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="EditModalContract" id="EditModalContract">
+        <p class="ModalTitle">Editar Etapa</p>
+        <form method="post" th:action="@{/stages/updateStage}">
+        <div class="labelinput" method="post" th:action="@{/stages/updateStage}">
+          <input type="hidden" id="idStage" name="id">
+          <label for="titleStage">Titulo</label>
+          <input type="text" class="inputlabel" id="name" name="title" maxlength="33"/>
+          <label for="descriptionStage">Descrição</label>
+          <input type="text" name="description" id="description" class="inputlabel" maxlength="200">
+          <label for="date">Data</label>
+          <input type="date" name="dateHour" id="datehour" class="inputlabeldate">
+        </div>
+    
+        <div class="actions">
+          <button class="savebtn" type="submit" onclick="saveButtonEditContract()">
+            Salvar
+          </button>
+          <p onclick="hideModalEditStage()">Sair</p>
+        </div>
+        </form>
+      </div>
+</body>
+</html>

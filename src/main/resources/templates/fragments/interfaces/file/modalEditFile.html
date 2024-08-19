@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="EditModalFile" id="EditModalFile">
+        <div class="labelinput">
+          <form method="post" th:action="@{/archive/rename}">
+            <div class="form">
+              <label for="nameFile">Renomear Arquivo</label>
+              <input
+                type="text"
+                name="newNameArchive"
+                id="nameFile"
+                class="input"
+                placeholder="Novo Nome"
+                required
+              />
+              <input type="hidden" name="archiveId" id="archiveId" />
+
+            </div>
+
+            <div class="actions">
+              <button type="submit" class="savebtn" onclick="() =>{location.reload()}">Salvar</button>
+              <p onclick="hideModalEdit()">Sair</p>
+            </div>
+          </form>
+        </div>
+      </div>
+</body>
+</html>

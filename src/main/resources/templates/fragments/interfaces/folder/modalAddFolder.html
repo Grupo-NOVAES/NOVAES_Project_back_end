@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="AddFolderModal" id="AddFolderModal">
+        <div class="labelinput">
+          <form method="post" th:action="@{/directory}">
+            <div class="form">
+
+
+            <label for="name">Adicionar Pasta</label>
+            <input
+              type="text"
+              name="folderName"
+              class="input"
+              placeholder="Nome da Pasta"
+              required
+            />
+            <input
+              type="hidden"
+              name="parentId"
+              th:value="${parentDirectoryId}"
+            />
+          </div>
+          
+            <div class="actions">
+              <button type="submit" class="savebtn">Salvar</button>
+              <p onclick="hideModalAddFolder()">Cancelar</p>
+            </div>
+          </form>
+        </div>
+      </div>
+</body>
+</html>

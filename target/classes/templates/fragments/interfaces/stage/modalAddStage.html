@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="AddModalStage" id="AddModalStage">
+        <div class="labelinput">
+              <form th:action="@{/stages}" method="post">
+        <div class="form">
+                  <label for="title">Titulo da Etapa</label>
+                  <input type="text" name="title" id="title" class="inputlabel" maxlength="33">
+                  <label for="description">Descrição da Etapa</label>
+                  <input type="text" name="description" id="description" class="inputlabel" maxlength="200">
+                  <label for="datehour">Data limite da Etapa </label>
+                  <input type="date" name="dateHour" id="datehour" class="inputlabeldate">
+                  <input type="hidden" name="contract.id" th:value="${contract.id}" />
+        </div>
+                  <div class="actions">
+                      <button type="submit" class="savebtn">Salvar</button>
+                      <p onclick="hideModalStage()">Sair</p>
+                  </div>
+              </form>
+        </div>
+  </div>
+</body>
+</html>
