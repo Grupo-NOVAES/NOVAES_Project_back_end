@@ -135,3 +135,27 @@ async function deleteUser(){
     location.reload();
     console.log('User Deletado')
 }
+
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.getElementById('searchInput');
+    const userTableBody = document.getElementById('userTableBody');
+    const userItems = userTableBody.getElementsByClassName('userItem');
+  
+    searchInput.addEventListener('input', function () {
+      const filter = searchInput.value.toLowerCase();
+  
+      for (let i = 0; i < userItems.length; i++) {
+        const userName = userItems[i].getAttribute('data-name').toLowerCase();
+        const userLastName = userItems[i].getAttribute('data-lastname').toLowerCase();
+  
+        if (userName.includes(filter) || userLastName.includes(filter)) {
+          userItems[i].style.display = '';
+        } else {
+          userItems[i].style.display = 'none';
+        }
+      }
+    });
+  });
+  

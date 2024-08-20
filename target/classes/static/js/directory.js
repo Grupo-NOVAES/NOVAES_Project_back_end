@@ -200,3 +200,26 @@ async function deleteFolder() {
     window.location.reload();
     hideModalActionsFile()
 }
+
+
+
+
+function filterTable() {
+    const input = document.getElementById("searchInput");
+    const filter = input.value.toLowerCase();
+    const table = document.getElementById("directoryTable");
+    const rows = table.getElementsByTagName("tr");
+  
+    for (let i = 0; i < rows.length; i++) {
+      const td = rows[i].getElementsByClassName("tdName")[0];
+      if (td) {
+        const textValue = td.textContent || td.innerText;
+        if (textValue.toLowerCase().indexOf(filter) > -1) {
+          rows[i].style.display = "";
+        } else {
+          rows[i].style.display = "none";
+        }
+      }
+    }
+  }
+  

@@ -29,7 +29,7 @@
           <div class="namePrizeContainer">
             <div class="container-input">
               <label for="name" class="labelText">Nome: </label>
-              <input type="text" placeholder="Buscar" name="text" class="input"/>
+              <input type="text" id="nameFilter" placeholder="Buscar" name="text" class="input" />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20px"
@@ -51,6 +51,8 @@
                 placeholder="Buscar"
                 name="text"
                 class="input"
+                id="timeFilter"
+                
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -75,6 +77,8 @@
                 placeholder="Buscar"
                 name="text"
                 class="input"
+                id="statusFilter"
+                
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -96,6 +100,7 @@
                 placeholder="Buscar"
                 name="text"
                 class="input"
+                id="clientFilter"
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -122,6 +127,7 @@
                 th:data-id="${contract.id}"
                 th:data-title="${contract.title}"
                 th:data-time="${contract.time}"
+                th:data-status="${contract.concluded}"
                 th:data-client="${contract.client.id}"
               >
                 <td><i class="fa-solid fa-handshake fa-2xl"></i></td>

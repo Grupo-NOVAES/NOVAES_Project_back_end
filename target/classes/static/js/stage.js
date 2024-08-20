@@ -102,3 +102,19 @@ async function concludeStage(){
     });
     window.location.reload();
 }
+
+
+document.querySelector('.input').addEventListener('input', function () {
+    const searchTerm = this.value.toLowerCase();
+    const stages = document.querySelectorAll('#stages');
+
+    stages.forEach(function (stage) {
+        const stageName = stage.getAttribute('data-name').toLowerCase();
+
+        if (stageName.includes(searchTerm)) {
+            stage.style.display = '';
+        } else {
+            stage.style.display = 'none';
+        }
+    });
+});
