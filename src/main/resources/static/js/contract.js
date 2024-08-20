@@ -127,19 +127,20 @@ document.getElementById("nameFilter").addEventListener("input", function () {
 });
 
 document.getElementById("timeFilter").addEventListener("input", function () {
-  const searchTerm = this.value.toLowerCase();
+  const inputDate = new Date(this.value);
   const contracts = document.querySelectorAll(".contractItem");
 
   contracts.forEach(function (contract) {
-    const contractTime = contract.getAttribute("data-time").toLowerCase();
+    const contractDate = new Date(contract.getAttribute("data-time"));
 
-    if (contractTime.includes(searchTerm)) {
+    if (contractDate <= inputDate) {
       contract.style.display = "";
     } else {
       contract.style.display = "none";
     }
   });
 });
+
 
 document.getElementById("statusFilter").addEventListener("input", function () {
   const searchTerm = this.value.toLowerCase();

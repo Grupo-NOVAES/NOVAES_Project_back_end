@@ -70,6 +70,16 @@ main {
   outline: none;
   opacity: 0.8;
 }
+.inputSelection{
+  height: 30px;
+  width: 300px;
+  border-radius: 5px;
+  padding-left: 30px;
+  border: solid 1px #b5b5b5;
+  transition: all .2s ease-in-out;
+  outline: none;
+  opacity: 0.8;
+}
 .container-input svg {
   position: absolute;
   top: 50%;

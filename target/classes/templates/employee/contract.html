@@ -47,7 +47,7 @@
             <div class="container-input">
               <label for="time" id="time" class="labelText">Prazo: </label>
               <input
-                type="text"
+                type="date"
                 placeholder="Buscar"
                 name="text"
                 class="input"
@@ -72,14 +72,18 @@
           <div class="statusClientContainer">
             <div class="container-input">
               <label for="status" id="status" class="labelText">Status: </label>
-              <input
+              <!--<input
                 type="text"
                 placeholder="Buscar"
                 name="text"
                 class="input"
                 id="statusFilter"
                 
-              />
+              />-->
+              <select id="statusFilter" class="inputSelection">
+                <option value="true">Concluido</option>
+                <option value="false">Em Andamento</option>
+              </select>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20px"
