@@ -133,9 +133,10 @@ li {
 
 .Btn:hover .text {
   opacity: 1;
-  width: 50%;
+  width: 55%;
   transition-duration: .3s;
-  padding-right: 25px;
+  padding-right: 23px;
+  margin-top: 15px;
 }
 
 .Btn:active {
