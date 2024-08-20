@@ -357,6 +357,7 @@ tr:hover {
   position: fixed;
   top: 50%;
   left: 50%;
+  height: 500px;
   width: 350px;
   transform: translate(-50%, -50%);
   background-color: white;
@@ -366,6 +367,7 @@ tr:hover {
   z-index: 1;
   background-color: #f9f9f9;
   color: #1e3050;
+  overflow: scroll;
 }
 
 .EditModalUser label,
@@ -384,6 +386,7 @@ tr:hover {
 .EditModalUser .actions {
   display: flex;
   flex-direction: row;
+  height: 75px;
   width: 100%;
   align-items: center;
   justify-content: space-around;
@@ -465,6 +468,22 @@ tr:hover {
 .EditModalUser .ModalTitle {
   font-size: large;
   text-align: center;
+}
+
+
+.EditModalUser::-webkit-scrollbar {
+  height: 0px;
+  width: 3.5px;
+}
+
+.EditModalUser::-webkit-scrollbar-track {
+  background-color: #b8b8b8;
+  border-radius: 5px;
+}
+
+.EditModalUser::-webkit-scrollbar-thumb:hover {
+  height: 25px;
+  background-color: #1e3050;
 }
 
 @media only screen and (max-width: 717px) {

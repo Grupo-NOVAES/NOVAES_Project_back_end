@@ -34,8 +34,8 @@
                 <input type="text" name="lastname" id="lastname" class="input_name" placeholder="Sobrenome">
             </div>
             <input type="text" name="login" id="login" class="input" placeholder="Email">
-            <input type="password" name="password" id="password" class="input" placeholder="Senha">
-            <input type="password" name="confirmPassword" id="confirmPassword" class="input" placeholder="Confirmar Senha">
+            <input type="password" name="password" id="password" class="darkInput" placeholder="Senha">
+            <input type="password" name="confirmPassword" id="confirmPassword" class="darkInput" placeholder="Confirmar Senha">
             <input type="text" name="phoneNumber" id="phoneNumber" class="input" placeholder="Numero de telefone">
 
             <select name="role" class="input" id="role" onchange="toggleFields()">
@@ -45,11 +45,11 @@
             </select>
 
             <div class="ifEmployee" id="ifEmployee">
-                <input type="text" name="office" id="office" class="input" placeholder="Cargo na Empresa">
+                <input type="text" name="office" id="office" class="darkInput" placeholder="Cargo na Empresa">
             </div>
 
             <div class="ifClient" id="ifClient">
-                <input type="text" name="enterpriseName" id="enterpriseName" class="input" placeholder="Nome da Empresa">
+                <input type="text" name="enterpriseName" id="enterpriseName" class="darkInput" placeholder="Nome da Empresa">
                 <select name="references_directory" class="input" id="references_directory">
                   <option th:each="directory : ${listDirectorys}" th:value="${directory.id_Directory}" th:text="${directory.name}"></option>
                   
