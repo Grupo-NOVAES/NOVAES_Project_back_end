@@ -65,8 +65,8 @@
             <td th:text="${stages.description}" class="tdDescription"></td>
             <td th:text="${stages.dateHour}" class="dtDateHour"></td>
             <td class="dtStatus">
-              <img th:if="${stages.status == true}" th:src="@{/icones/check_small.png}" class="iconConcludedContract">
-                <img th:if="${stages.status == false}" th:src="@{/icones/X.png}" class="iconConcludedContract">
+              <img th:if="${stages.status == true}" th:src="@{/icones/check_small.svg}" class="iconConcludedContract">
+              <img th:if="${stages.status == false}" th:src="@{/icones/X.svg}" class="iconConcludedContract">
             </td>
             
           </tr>

@@ -83,6 +83,7 @@
                 
               />-->
               <select id="statusFilter" class="inputSelection">
+                <option value="">Todos</option>
                 <option value="true">Concluido</option>
                 <option value="false">Em Andamento</option>
               </select>
@@ -133,6 +134,7 @@
                 th:data-id="${contract.id}"
                 th:data-title="${contract.title}"
                 th:data-time="${contract.time}"
+                th:data-status="${contract.concluded}"
                 th:data-client="${contract.client.id}"
               >
                 <td><i class="fa-solid fa-handshake fa-2xl"></i></td>

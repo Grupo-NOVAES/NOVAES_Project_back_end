@@ -149,7 +149,7 @@ document.getElementById("statusFilter").addEventListener("input", function () {
   contracts.forEach(function (contract) {
     const contractStatus = contract
       .getAttribute("data-status")
-      .toLocaleLowerCase();
+      .toLowerCase();
 
     if (contractStatus.includes(searchTerm)) {
       contract.style.display = "";
