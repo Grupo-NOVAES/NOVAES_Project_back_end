@@ -171,6 +171,7 @@ tr {
   max-width: 100px;
   word-break: break-word;
   white-space: normal;
+  font-weight: bold;
 }
 
 .tdDescription {
