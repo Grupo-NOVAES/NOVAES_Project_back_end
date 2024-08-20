@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/profile.css}" />
+    <link rel="stylesheet" th:href="@{/css/profileVisit.css}" />
     <link rel="stylesheet" th:href="@{/css/components/nav.css}" />
     <link rel="stylesheet" th:href="@{/css/components/header.css}" />
     <link rel="stylesheet" th:href="@{/css/components/darkTheme.css}" />
@@ -14,7 +14,7 @@
       crossorigin="anonymous"
     />
     <script src="https://kit.fontawesome.com/a56b5a1294.js" crossorigin="anonymous"></script>
-    <title>Diretórios</title>
+    <title>Perfil</title>
 </head>
 <body>
     <!-- Agrupa os elementos que compõe o cabeçalho. -->
@@ -28,38 +28,22 @@
     <main>
         <section id="principal">
             <section id="right">
-                <img id="imageProfile" th:if="${imageProfile != null}" th:src="'data:image/png;base64,' + ${imageProfile}" alt="Foto de Perfil do Usuário" />
-                <img id="imageProfile-none" th:unless="${imageProfile != null}" th:src="@{/icones/LogosGrupoNovaesApp.png}" alt="Ícone de Usuário Padrão" />
+			    <img id="imageProfile" th:if="${imageProfile != null}" th:src="'data:image/png;base64,' + ${imageProfile}" alt="Foto de Perfil do Usuário" />
+			
+			    <img id="imageProfile-none" th:unless="${imageProfile != null}" th:src="@{/icones/LogosGrupoNovaesApp.png}" alt="Ícone de Usuário Padrão" />
                 
-                <button id="uploadButton" class="CartBtn">
-                    <p class="textBtnAccContract">Trocar foto de Perfil</p>
-                </button>
-                <input type="file" id="fileInput" style="display: none;" />
-                <input type="hidden" id="userId" th:value="${user.id}" />
-            </section>
-            
-            
+			</section>
 
 
             <section id="left">
                 <h1>Meu Perfil</h1>
-                <form id="forms" method="post" th:action="@{/user/editProfile}">
+                <form id="forms">
                     <div class="names">
-                        <input class="inputs-name" placeholder="Nome" th:value="${user.name}" name="name">
-                        <input class="inputs-name" placeholder="Sobrenome" th:value="${user.lastname}" name="lastname">
+                        <input class="inputs-name" placeholder="Nome" th:value="${userData.name}"  disabled>
+                        <input class="inputs-name" placeholder="Sobrenome" th:value="${userData.lastname}"  disabled>
                     </div>
-                    <input class="inputs" placeholder="Email" th:value="${user.login}" name="login">
-
-                    <select name="role" class="inputs" id="role" onchange="toggleFields()">
-                        <option value="ADMIN" th:selected="${user.role == 'ADMIN'}">administrador</option>
-                        <option value="EMPLOYEE" th:selected="${user.role == 'EMPLOYEE'}">funcionario</option>
-                        <option value="USER" th:selected="${user.role == 'USER'}">cliente</option>
-                    </select>
-                    
-
-                    <button class="CartBtnEdit">
-                        <p class="textBtnAccContract">Alterar Informações de Perfil</p>
-                    </button>
+                    <input class="inputs" placeholder="Email" th:value="${userData.login}"  disabled>
+                    <input class="inputs" placeholder="Cargo" th:value="${userData.role}"  disabled>
                 </form>
             </section>
         </section>
@@ -68,7 +52,6 @@
     </div>
 
 </body>
-<script th:src="@{/js/profile.js}"></script>
 <script th:src="@{/js/darkTheme.js}"></script>
 <script th:src="@{/js/logout.js}"></script>
 </html>

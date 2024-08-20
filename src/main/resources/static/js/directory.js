@@ -2,6 +2,7 @@ let currentDirectoryId = null;
 let currentArchiveId = null;
 let selectedUserId = null;
 let modalVisible = false;
+let File = false;
 
 document.addEventListener('DOMContentLoaded', function () {
     const folderItems = document.getElementsByClassName("folderItem");
@@ -13,17 +14,18 @@ document.addEventListener('DOMContentLoaded', function () {
             window.location.href = "/directory/" + directoryId;
         });    
     }
-    for(let i=0;i < fileItems.length; i++){
-        fileItems[i].addEventListener('dblclick',function() {
+    for(let i=0; i < fileItems.length; i++){
+        fileItems[i].addEventListener('dblclick', function() {
             const fileId = this.getAttribute("data-file-id");
             window.location.href = "/archive/download/"+fileId;
-        })
+        });
     }
 });
 
 function showModalFolder() {
     document.getElementById('AddFolderModal').style.display = 'block';
 }
+
 function hideModalAddFolder() {
     document.getElementById('AddFolderModal').style.display = 'none';
 }
@@ -34,6 +36,7 @@ function saveButtonAddFolder() {
     console.log(id);
     hideModalAddFolder();
 }
+
 function showModalFile() {
     document.getElementById('AddFolderModalFile').style.display = 'block';
 }
@@ -46,6 +49,7 @@ function saveButtonFile() {
     console.log('Salvar arquivo');
     hideModalFile();
 }
+
 function showModalFolderName() {
     document.getElementById('EditModalFolder').style.display = "block";
 }
@@ -54,10 +58,11 @@ function hideModalEdit() {
     document.getElementById('EditModalFolder').style.display = "none";
 }
 
-function saveButtonEditFolder () {
-    console.log('Salvar Edição Pasta!')
+function saveButtonEditFolder() {
+    console.log('Salvar Edição Pasta!');
     hideModalEdit();
 }
+
 function showModalFileName() {
     document.getElementById('EditModalFile').style.display = "block";
 }
@@ -66,13 +71,12 @@ function hideModalEditFile() {
     document.getElementById('EditModalFile').style.display = "none";
 }
 
-
-function saveButtonEditFile () {
-    console.log('Salvar Edição Pasta!')
+function saveButtonEditFile() {
+    console.log('Salvar Edição Pasta!');
     hideModalEditFile();
 }
 
-function hideAllModal(){
+function hideAllModal() {
     document.getElementById('EditModalFile').style.display = "none";
     document.getElementById('AddFolderModalFile').style.display = 'none';
 }
@@ -90,99 +94,81 @@ document.getElementById('searchInput').addEventListener('input', function() {
     });
 });
 
- document.addEventListener('click', function(event) {
-     const contextmenu = document.getElementById('ModalOptions');
-     const target = event.target;
+document.addEventListener('click', function(event) {
+    const directoryContextMenu = document.getElementById('ModalOptions');
+    const fileContextMenu = document.getElementById('ModalOptionsFile');
+    const target = event.target;
 
-     if (modalVisible && !contextmenu.contains(target) && !target.closest('button')) {
-         hideModalActionsFiles();
-     }
- });
+    if (modalVisible && !directoryContextMenu.contains(target) && !target.closest('button')) {
+        hideModalActionsDirectory();
+    }
 
- function showModalActionsDirectory(button) {
-     const contextmenu = document.getElementById('ModalOptions');
-     selectedUserId = button.closest('tr').getAttribute('data-id');
+    if (File && !fileContextMenu.contains(target) && !target.closest('button')) {
+        hideModalActionsFiles();
+    }
+});
 
-     //aonde vai aparecer
-     const rect = button.getBoundingClientRect();
-     contextmenu.style.top = `${rect.top + window.scrollY}px`; 
-     contextmenu.style.left = `${rect.left + window.scrollX}px`; 
+function showModalActionsDirectory(button) {
+    const contextmenu = document.getElementById('ModalOptions');
+    selectedUserId = button.closest('tr').getAttribute('data-id');
 
-     contextmenu.style.display = 'block';
-     modalVisible = true;     
-     currentDirectoryId = selectedUserId
-     console.log(selectedUserId);
-     console.log(currentDirectoryId);
-     document.getElementById("directoryId").value=currentDirectoryId;
- }
+    const rect = button.getBoundingClientRect();
+    contextmenu.style.top = `${rect.top + window.scrollY}px`; 
+    contextmenu.style.left = `${rect.left + window.scrollX}px`; 
 
-
-function dowloadDirectory(){
-   window.location.href=`/directory/download/${currentDirectoryId}`;
-}
-function dowloadArchive(){
-    window.location.href=`/archive/download/${currentArchiveId}`;
+    contextmenu.style.display = 'block';
+    modalVisible = true;     
+    currentDirectoryId = selectedUserId;
+    document.getElementById("directoryId").value = currentDirectoryId;
 }
 
- function hideModalActionsFile() {
-     const contextmenu = document.getElementById('ModalOptions');
-     contextmenu.style.display = 'none';
-     modalVisible = false;
- }
- let selectedFileId = null;
- let File = false;
+function hideModalActionsDirectory() {
+    const contextmenu = document.getElementById('ModalOptions');
+    contextmenu.style.display = 'none';
+    modalVisible = false;
+}
 
- document.addEventListener('click', function(event) {
-     const contextmenu = document.getElementById('ModalOptionsFile');
-     const target = event.target;
+function downloadDirectory() {
+    window.location.href = `/directory/download/${currentDirectoryId}`;
+}
 
-     if (File && !contextmenu.contains(target) && !target.closest('button')) {
-         hideModalActionsFiles();
-     }
- });
+function downloadFile() {
+    window.location.href = `/archive/download/${currentArchiveId}`;
+}
 
- //Aparece o modal dos 3 pontos
- function showModalActionsFiles(button) {
-     const contextmenu = document.getElementById('ModalOptionsFile');
-     selectedFileId = button.closest('tr').getAttribute('data-file-id');
+function showModalActionsFiles(button) {
+    const contextmenu = document.getElementById('ModalOptionsFile');
+    selectedFileId = button.closest('tr').getAttribute('data-file-id');
 
-     //aonde vai aparecer
-     const rect = button.getBoundingClientRect();
-     contextmenu.style.top = `${rect.top + window.scrollY}px`; 
-     contextmenu.style.left = `${rect.left + window.scrollX}px`; 
+    const rect = button.getBoundingClientRect();
+    contextmenu.style.top = `${rect.top + window.scrollY}px`; 
+    contextmenu.style.left = `${rect.left + window.scrollX}px`; 
 
-     contextmenu.style.display = 'block';
-     File = true;     
-     currentArchiveId = selectedFileId
-     console.log(selectedFileId)
-     document.getElementById("archiveId").value = selectedFileId;
+    contextmenu.style.display = 'block';
+    File = true;
+    currentArchiveId = selectedFileId;
+    document.getElementById("archiveId").value = selectedFileId;
+}
 
- }
-
- //Esconde o modal de opções de 3 pontos
- function hideModalActionsFiles() {
-     const contextmenu = document.getElementById('ModalOptionsFile');
-     contextmenu.style.display = 'none';
-     File = false;
- }
-
-
-
+function hideModalActionsFiles() {
+    const contextmenu = document.getElementById('ModalOptionsFile');
+    contextmenu.style.display = 'none';
+    File = false;
+}
 
 async function deleteFile() {
     if (currentArchiveId === null) {
         alert('Nenhum item selecionado para exclusão.');
         return;
     }
-    if(confirm('Você tem certeza que deseja excluir este Arquivo?')){
-       let response = await fetch(`/archive/delete/${currentArchiveId}`,{
-        method:'POST'
-       });
-
-       console.log(JSON.stringify(response))
+    if (confirm('Você tem certeza que deseja excluir este Arquivo?')) {
+        let response = await fetch(`/archive/delete/${currentArchiveId}`, {
+            method: 'POST'
+        });
+        console.log(JSON.stringify(response));
     }
     window.location.reload();
-    hideModalActionsFiles()
+    hideModalActionsFiles();
 }
 
 async function deleteFolder() {
@@ -195,8 +181,8 @@ async function deleteFolder() {
         let response = await fetch(`/directory/delete/${currentDirectoryId}`, {
             method: 'POST', 
         });
-        console.log(JSON.stringify(response))
+        console.log(JSON.stringify(response));
     }
     window.location.reload();
-    hideModalActionsFile()
+    hideModalActionsDirectory();
 }

@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import org.apache.tika.Tika;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -215,7 +216,7 @@ public class DirectoryAndArchivesService {
         return path;
     }
     
-	public List<DirectoryDTO> getPathDirectoryById(Long id) {
+	protected List<DirectoryDTO> getPathDirectoryById(Long id) {
         Directory directory = directoryRepository.findById(id)
                 .orElseThrow(DirectoryNotFoundException::new);
         List<DirectoryDTO> listPath = buildPath(directory);
@@ -223,30 +224,51 @@ public class DirectoryAndArchivesService {
         return listPath;
     }
 	
-	public byte[] zipDirectory(Directory directory) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        try (ZipOutputStream zos = new ZipOutputStream(baos)) {
-            zipDirectoryRecursive(directory, "", zos);
-        }
-        return baos.toByteArray();
-    }
+	protected byte[] zipDirectory(Directory directory) {
+	    try (ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	         ZipOutputStream zipOut = new ZipOutputStream(baos)) {
 
-    private void zipDirectoryRecursive(Directory directory, String parentPath, ZipOutputStream zos) throws IOException {
-        String dirPath = parentPath + directory.getName() + "/";
+	        addFilesToZip(directory, zipOut, ""); // O caminho inicial é vazio para a raiz do zip
 
-        zos.putNextEntry(new ZipEntry(dirPath));
-        zos.closeEntry();
+	        zipOut.finish();
+	        return baos.toByteArray();
+	    } catch (IOException e) {
+	        throw new RuntimeException("Failed to zip directory", e);
+	    }
+	}
 
-        for (Archive archive : directory.getArchives()) {
-            zos.putNextEntry(new ZipEntry(dirPath + archive.getName()));
-            zos.write(archive.getContent());
-            zos.closeEntry();
-        }
 
-        for (Directory subDir : directory.getSubDirectories()) {
-            zipDirectoryRecursive(subDir, dirPath, zos);
-        }
-    }
+
+	private void addFilesToZip(Directory directory, ZipOutputStream zipOut, String parentPath) throws IOException {
+	    String currentPath = parentPath.isEmpty() ? directory.getName() : parentPath + "/" + directory.getName();
+
+	    if (!parentPath.isEmpty()) {
+	        zipOut.putNextEntry(new ZipEntry(currentPath + "/"));
+	        zipOut.closeEntry();
+	    }
+
+	    for (Archive archive : directory.getArchives()) {
+	        Tika tika = new Tika();
+	        String mimeType = tika.detect(archive.getContent());
+	        String fileExtension = getFileExtensionFromMimeType(mimeType);
+	        
+	        if (fileExtension == null) {
+	            fileExtension = "bin"; 
+	        }
+
+	        String fileName = archive.getName() + "." + fileExtension;
+	        ZipEntry zipEntry = new ZipEntry(currentPath + "/" + fileName);
+	        zipOut.putNextEntry(zipEntry);
+	        zipOut.write(archive.getContent());
+	        zipOut.closeEntry();
+	    }
+
+	    for (Directory subDirectory : directory.getSubDirectories()) {
+	        addFilesToZip(subDirectory, zipOut, currentPath);
+	    }
+	}
+
+
 
 	public void addDirectory(String folderName , Long parentId) {
 		Directory parentDirectory = directoryRepository.findById(parentId).orElseThrow(DirectoryNotFoundException::new);

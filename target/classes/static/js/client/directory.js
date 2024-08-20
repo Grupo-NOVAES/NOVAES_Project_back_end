@@ -5,7 +5,26 @@ let modalVisible = false;
 let selectedFileId = null;
 let File = false;
 
-// Função para fechar todos os modais
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    const folderItems = document.getElementsByClassName("folderItem");
+    const fileItems = document.getElementsByClassName("fileItem");
+
+    for (let i = 0; i < folderItems.length; i++) {
+        folderItems[i].addEventListener('dblclick', function() {
+            const directoryId = this.getAttribute("data-id");
+            window.location.href = "/directory/" + directoryId;
+        });    
+    }
+    for(let i=0; i < fileItems.length; i++){
+        fileItems[i].addEventListener('dblclick', function() {
+            const fileId = this.getAttribute("data-file-id");
+            window.location.href = "/archive/download/"+fileId;
+        });
+    }
+});
+
 function hideAllModals() {
     document.getElementById('AddFolderModalFile').style.display = 'none';
     document.getElementById('ModalOptions').style.display = 'none';
@@ -41,6 +60,13 @@ function showModalActionsDirectory(button) {
     currentDirectoryId = selectedUserId;
     console.log(selectedUserId);
     console.log(currentDirectoryId);
+}
+function downloadDirectory() {
+    window.location.href = `/directory/download/${currentDirectoryId}`;
+}
+
+function downloadFile() {
+    window.location.href = `/archive/download/${currentArchiveId}`;
 }
 
 function showModalFile() {

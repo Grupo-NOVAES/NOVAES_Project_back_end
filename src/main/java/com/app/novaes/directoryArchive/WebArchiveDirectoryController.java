@@ -170,30 +170,26 @@ public class WebArchiveDirectoryController {
 	}
 	
 	@GetMapping("/directory/download/{id}")
-    public ResponseEntity<ByteArrayResource> downloadDirectory(@PathVariable Long id) {
-        try {
-            logger.info("Buscando o diretório com ID: {}", id);
-            Directory directory = directoryAndArchivesService.getDirectoryById(id);
+	public ResponseEntity<ByteArrayResource> downloadDirectoryById(@PathVariable Long id) {
+	    Directory directory = directoryAndArchivesService.getDirectoryById(id);
 
-            logger.info("Gerando arquivo zip para o diretório: {}", directory.getName());
-            byte[] zipData = directoryAndArchivesService.zipDirectory(directory);
+	    byte[] zipBytes = directoryAndArchivesService.zipDirectory(directory);
 
-            ByteArrayResource resource = new ByteArrayResource(zipData);
+	    ByteArrayResource resource = new ByteArrayResource(zipBytes);
 
-            logger.info("Retornando arquivo zip com tamanho: {} bytes", zipData.length);
-            return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + directory.getName() + ".zip")
-                .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .contentLength(zipData.length)
-                .body(resource);
-        } catch (IOException e) {
-            logger.error("Erro ao gerar o arquivo zip: {}", e.getMessage());
-            return ResponseEntity.internalServerError().build();
-        } catch (Exception e) {
-            logger.error("Erro inesperado: {}", e.getMessage(), e);
-            return ResponseEntity.internalServerError().build();
-        }
-    }
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + directory.getName() + ".zip\"");
+
+	    return ResponseEntity
+	            .ok()
+	            .headers(headers)
+	            .contentLength(zipBytes.length)
+	            .contentType(MediaType.APPLICATION_OCTET_STREAM)
+	            .body(resource);
+	}
+
+
+
 	
 	@PostMapping("/directory")
 	public String  addDirectory(@RequestParam("folderName") String folderName, @RequestParam("parentId") Long parentId) {
