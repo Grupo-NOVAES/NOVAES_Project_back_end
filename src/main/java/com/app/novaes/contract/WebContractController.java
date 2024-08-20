@@ -44,7 +44,7 @@ public class WebContractController {
 	    
 	    modelAndView.addObject("user", user);
 	    
-
+		
 	    if(userService.getTypeUser()) {
 	    	List<Contract> listContract = contractService.getAllContract();
 	    	
