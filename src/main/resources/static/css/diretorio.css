@@ -143,7 +143,6 @@ main {
 }
 
 table {
-  background-color: white;
   height: 100%;
   width: 100%;
   text-align: center;
@@ -155,9 +154,9 @@ table {
   overflow: scroll;
   width: 95%;
   border-radius: 5px;
-  box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
   margin-top: 30px;
-
+  background-color: #f3f3f3;
+  border: solid 1px rgba(0, 0, 0, 0.15);
 }
 
 .tdIcon {
