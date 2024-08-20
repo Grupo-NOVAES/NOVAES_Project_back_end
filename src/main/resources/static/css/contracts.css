@@ -372,6 +372,10 @@ tr {
   opacity: 1;
   width: 220px;
 }
+.iconConcludedContract{
+  width: 25px;
+  height: 25px;
+}
 
 @media only screen and (max-width: 717px) {
   #openMenu,

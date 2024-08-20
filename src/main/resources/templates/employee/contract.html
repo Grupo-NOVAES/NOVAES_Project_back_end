@@ -133,7 +133,10 @@
                 <td><i class="fa-solid fa-handshake fa-2xl"></i></td>
                 <td th:text="${contract.title}"></td>
                 <td th:text="${contract.time}"></td>
-                <td th:text="${contract.concluded}"></td>
+                <td>
+                  <img th:if="${contract.concluded == true}" th:src="@{/icones/check_small.png}" class="iconConcludedContract">
+                  <img th:if="${contract.concluded == false}" th:src="@{/icones/X.png}" class="iconConcludedContract">
+                </td>
                 <td th:text="${contract.client.name}"></td>
                 <td style="white-space: nowrap">
                   <button

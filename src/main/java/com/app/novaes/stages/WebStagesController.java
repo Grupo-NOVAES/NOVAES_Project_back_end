@@ -51,6 +51,7 @@ public class WebStagesController {
 
 	    Contract contractFound = contractService.getContractById(idContract);
 	    modelAndView.addObject("contract", contractFound);
+	    contractService.concludedContract(idContract);
 
 	    if(userService.getTypeUser()) {
 	        modelAndView.addObject("listStages", listStages);
@@ -113,6 +114,7 @@ public class WebStagesController {
 	public String concludeStage(@PathVariable Long id) {
 		Long idContract = stageService.getStageById(id).getContract().getId();
 		stageService.concludeStage(id);
+		
 		return "redirect:/stages/"+idContract;
 	}
 	
