@@ -124,10 +124,20 @@
         </div>
 
         <div class="table-container">
-          <table class="tabela">
+          <table>
+            <thead>
+              <tr class="trHead">
+                <th class="tdIcon"></th>
+                <th class="tdTitle">Nome do Contrato</th>
+                <th class="tdTime">Prazo</th>
+                <th class="tdStatus">Status</th>
+                <th class="tdClient">Cliente</th>
+                <th style="border: none;height: 40px; width: 40px;border-radius: 15px;background-color: none;"></th>
+              </tr>
+            </thead>
             <tbody>
               <tr
-              class="contractItem"
+                class="contractItem"
                 th:each="contract : ${listContract}"
                 th:data-id="${contract.id}"
                 th:data-title="${contract.title}"
@@ -135,14 +145,14 @@
                 th:data-status="${contract.concluded}"
                 th:data-client="${contract.client.name}"
               >
-                <td><i class="fa-solid fa-handshake fa-2xl"></i></td>
+                <td class="tdIcon"><i class="fa-solid fa-handshake fa-2xl"></i></td>
                 <td th:text="${contract.title}"  class="tdTitle"></td>
-                <td th:text="${contract.time}"></td>
-                <td>
+                <td th:text="${contract.time}" class="tdTime"></td>
+                <td class="tdStatus">
                   <img th:if="${contract.concluded == true}" th:src="@{/icones/check_small.svg}" class="iconConcludedContract">
                   <img th:if="${contract.concluded == false}" th:src="@{/icones/X.svg}" class="iconConcludedContract">
                 </td>
-                <td th:text="${contract.client.name}"></td>
+                <td class="tdClient" th:text="${contract.client.name}"></td>
                 <td style="white-space: nowrap">
                   <button
                       style="

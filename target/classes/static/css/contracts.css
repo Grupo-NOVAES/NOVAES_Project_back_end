@@ -157,13 +157,16 @@ main {
   transform: scale(0.95);
   transition-duration: .5s;
 }
+
+
 table {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 100%;
   text-align: center;
   color: #1e3050;
-  background-color: #f3f3f3;
-  border: solid 0px rgba(0, 0, 0, 0.15);
+
 }
 .table-container {
   max-height: 60%; 
@@ -174,17 +177,50 @@ table {
   background-color: #f3f3f3;
   border: solid 1px rgba(0, 0, 0, 0.15);
 }
-td {
+
+table thead {
+  display: table;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 30px;
+  background-color: #e0e0e0;
+}
+
+table thead .trHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 30px;
+}
+
+.tdIcon {
   vertical-align: middle;
   text-align: left;
-  padding: 10px;
+  padding-left: 10px;
+  width: 5%;
 }
 
 .tdTitle {
   font-weight: bold;
+  width: 25%;
 }
 
-tr:hover {
+.tdTime{
+  width: 25%;
+}
+
+.tdStatus {
+  width: 20%
+}
+
+.tdClient {
+  width: 25%;
+}
+
+.contractItem:hover {
   background-color: #a2a2a2;
   cursor: pointer;
 }

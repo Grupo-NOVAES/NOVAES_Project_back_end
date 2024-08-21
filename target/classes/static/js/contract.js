@@ -28,10 +28,18 @@ function showModalActionsContract(button) {
   selectedContractId = button.closest("tr").getAttribute("data-id");
 
   const rect = button.getBoundingClientRect();
-  ModalOptions.style.top = `${rect.top + window.scrollY}px`;
-  ModalOptions.style.left = `${rect.right + window.scrollX}px`;
 
-  ModalOptions.style.display = "block";
+  const marginLeft = 125;
+  const margintTop = -45;
+
+  let modalLeft = rect.left - marginLeft;
+  let modalTop = rect.top + margintTop;
+
+
+  ModalOptions.style.top = `${modalTop}px`;
+  ModalOptions.style.left = `${modalLeft}px`;
+
+  ModalOptions.style.display = 'block';
   modalVisible = true;
 }
 

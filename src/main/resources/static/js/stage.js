@@ -8,13 +8,12 @@ function showModalActionsStage(button) {
     selectedContractId = button.closest('tr').getAttribute('data-id');
 
     const rect = button.getBoundingClientRect();
-    const modalWidth = ModalOptions.offsetWidth;
-    const modalHeight = ModalOptions.offsetHeight;
 
-    const marginLeft = 150;
+    const marginLeft = 155;
+    const marginTop = -100;
 
-    let modalLeft = rect.left - modalWidth - marginLeft;
-    let modalTop = rect.top + window.scrollY;
+    let modalLeft = rect.left  - marginLeft;
+    let modalTop = rect.top + marginTop;
 
 
     ModalOptions.style.top = `${modalTop}px`;

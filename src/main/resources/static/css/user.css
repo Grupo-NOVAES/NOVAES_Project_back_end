@@ -19,13 +19,14 @@ body {
 	flex: 20 1 500px;
   margin-top: 20px;
 }
+
 main {
   display: flex;
   flex-direction: column;
   height: 90vh;
   flex: 1;
   align-items: center;
-
+  justify-content: space-evenly;
 }
 
 .listParentDirectory {
@@ -43,13 +44,11 @@ main {
   width: 95%;
   margin-left: 20px;
   margin: 5px;
-
-  margin-top: 3%;
-
+  justify-content: space-between;
+  padding: 2px;
 }
 
 .container-input {
-  padding: 5px;
   width: 50%;
   position: relative;
 }
@@ -151,51 +150,86 @@ main {
 }
 
 .profilePhotoIcon{
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     border-radius: 70px;
     border: 0.5px solid rgba(0, 0, 0, 0.658);
 }
 
 table {
-  height: 100%;
+  border-collapse: collapse;
   width: 100%;
-  text-align: center;
   color: #1e3050;
 }
 
 .table-container {
   max-height: 60%; 
-  margin-top: 20px;
-  overflow: scroll;
+  overflow: auto;
   width: 95%;
   border-radius: 5px;
   background-color: #f3f3f3;
   border: solid 1px rgba(0, 0, 0, 0.15);
+  position: relative;
 }
 
-td {
-  width: 10px;
+table thead {
+  display: table;
+  table-layout: fixed;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  background-color: #e0e0e0;
+}
+
+table thead .trHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 30px;
+  table-layout: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+tbody {
+  display: block;
+  width: 100%;
+  overflow-y: auto;
+  max-height: 100%; /* Controla a altura do conteúdo rolável */
+}
+
+.tdIcon {
   vertical-align: middle;
-  text-align: left;
-  padding-left: 15px;
+  justify-content: center;
+  width: 10%;
 }
 
 .tdName {
   font-weight: bold;
+  width: 20%;
+}
+
+.tdSobrenome {
+  width: 10%;
 }
 
 .tdLogin {
-  max-width: 100px;
+  width: 30%;
+}
+
+.tdTelefone {
+  width: 30%;
 }
 
 tr {
-  height: 90px;
+  height: 60px;
   width: 80px;
   box-shadow: 0px 1px rgba(0, 0, 0, 0.1);
-  text-align: middle;
+  text-align: center;
 }
-tr:hover {
+.userItem:hover {
   background-color: #a2a2a2;
 }
 

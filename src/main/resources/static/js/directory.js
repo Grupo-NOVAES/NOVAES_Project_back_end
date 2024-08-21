@@ -113,11 +113,19 @@ function showModalActionsDirectory(button) {
     selectedUserId = button.closest('tr').getAttribute('data-id');
 
     const rect = button.getBoundingClientRect();
-    contextmenu.style.top = `${rect.top + window.scrollY}px`; 
-    contextmenu.style.left = `${rect.left + window.scrollX}px`; 
+
+    const marginLeft = 125;
+    const marginTop = -40;
+
+    let modalLeft = rect.left - marginLeft;
+    let modalTop = rect.top + marginTop;
+
+
+    contextmenu.style.top = `${modalTop}px`;
+    contextmenu.style.left = `${modalLeft}px`;
 
     contextmenu.style.display = 'block';
-    modalVisible = true;     
+    modalVisible = true;   
     currentDirectoryId = selectedUserId;
     document.getElementById("directoryId").value = currentDirectoryId;
 }
@@ -141,8 +149,16 @@ function showModalActionsFiles(button) {
     selectedFileId = button.closest('tr').getAttribute('data-file-id');
 
     const rect = button.getBoundingClientRect();
-    contextmenu.style.top = `${rect.top + window.scrollY}px`; 
-    contextmenu.style.left = `${rect.left + window.scrollX}px`; 
+
+    const marginLeft = 180;
+    const marginTop = -40;
+
+    let modalLeft = rect.left - marginLeft;
+    let modalTop = rect.top + marginTop;
+
+
+    contextmenu.style.top = `${modalTop}px`;
+    contextmenu.style.left = `${modalLeft}px`;
 
     contextmenu.style.display = 'block';
     File = true;

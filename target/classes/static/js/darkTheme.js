@@ -11,6 +11,7 @@ const cardBtnEditElement = document.querySelector('.CartBtnEdit');
 const activeElement = document.querySelector('.nav-item');
 const btnBackDirectory = document.querySelector('.buttonBackDirectory');
 const btnAlterInfoProfile = document.getElementById("saveButton");
+const theadTable = document.querySelector('thead');
 
 function alterTheme() {
     const isDarkTheme = body.classList.contains("dark-theme");
@@ -60,6 +61,14 @@ function alterTheme() {
             btnAlterInfoProfile.classList.add("dark-theme");
         } else {
             btnAlterInfoProfile.classList.remove("dark-theme");
+        }
+    }
+
+    if(theadTable != null){
+        if(isDarkTheme){
+            theadTable.classList.add("dark-theme");
+        }else{
+            theadTable.classList.remove("dark-theme");
         }
     }
 

@@ -107,7 +107,14 @@
         <div th:replace="fragments/interfaces/file/modalAddFile :: div"></div>
 
         <div class="table-container">
-          <table id="directoryTable">
+          <table>
+            <thead>
+              <tr class="trHead">
+                <th class="thIcon"></th>
+                <th class="thName">Nome</th>
+                <th class="thActions"></th>
+              </tr>
+            </thead>
             <tbody>
               <tr
                 id="folder"
@@ -120,19 +127,19 @@
                   <i class="fa-solid fa-folder fa-2xl"></i>
                 </td>
                 <td th:text="${directory.name}" class="tdName"></td>
-                <td style="white-space: nowrap">
-                    <button
+                <td class="tdButton">
+                  <button
                     style="
-                        border: none;
-                        height: 40px;
-                        width: 40px;
-                        border-radius: 15px;
-                        background-color: none;
+                      border: none;
+                      height: 40px;
+                      width: 40px;
+                      border-radius: 15px;
+                      background-color: none;
                     "
                     onclick="showModalActionsDirectory(this)"
-                >
+                  >
                     <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
-                </button>
+                  </button>
                 </td>
               </tr>
               <tr
@@ -144,7 +151,7 @@
                   <i class="fa-solid fa-file fa-2xl" style="color: #929497"></i>
                 </td>
                 <td th:text="${archive.nameArchive}" class="tdName"></td>
-                <td style="white-space: nowrap">
+                <td class="tdButton">
                   <button
                     style="
                       border: none;
@@ -162,6 +169,7 @@
             </tbody>
           </table>
         </div>
+        
 
         <div th:replace="fragments/interfaces/folder/modalOptnsFolder :: div"></div>
 
