@@ -56,6 +56,17 @@
 
     <div class="table-container">
       <table>
+        <thead>
+          <tr class="trHead">
+            <th class="tdIcon"></i></th>
+            <th class="tdTitle">Titulo</th>
+            <th class="tdDescription">Descrição</th>
+            <th class="dtDateHour">Prazo</th>
+            <th class="dtStatus">Status</th>
+            <th style="white-space: nowrap" class="tdMenu">
+            </th>
+          </tr>
+        </thead>
         <tbody>
           <tr  id="stages" class="folderItem" th:each="stages : ${listStages}" th:data-id="${stages.id}" th:data-name="${stages.title}">
             <td class="tdIcon">
@@ -65,10 +76,19 @@
             <td th:text="${stages.description}" class="tdDescription"></td>
             <td th:text="${stages.dateHour}" class="dtDateHour"></td>
             <td class="dtStatus">
-              <img th:if="${stages.status == true}" th:src="@{/icones/check_small.svg}" class="iconConcludedContract">
-              <img th:if="${stages.status == false}" th:src="@{/icones/X.svg}" class="iconConcludedContract">
+                <img th:if="${stages.status == true}" th:src="@{/icones/check_small.svg}" class="iconConcludedContract">
+                <img th:if="${stages.status == false}" th:src="@{/icones/X.svg}" class="iconConcludedContract">
             </td>
-            
+            <td style="white-space: nowrap" class="tdMenu">
+              <button 
+                  disabled
+                  style=" border: none; 
+                          height: 40px; 
+                          width: 40px; 
+                          border-radius: 15px; 
+                          background-color: transparent;"></button>
+               </button>
+            </td>
           </tr>
         </tbody>
       </table>

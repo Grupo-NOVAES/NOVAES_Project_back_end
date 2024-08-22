@@ -88,7 +88,14 @@
         <div th:replace="fragments/interfaces/file/modalAddFile :: div"></div>
 
         <div class="table-container">
-          <table id="directoryTable">
+          <table>
+            <thead>
+              <tr class="trHead">
+                <th class="thIcon"></th>
+                <th class="thName">Nome</th>
+                <th class="thActions"></th>
+              </tr>
+            </thead>
             <tbody>
               <tr
                 id="folder"
@@ -97,23 +104,22 @@
                 th:data-id="${directory.id_Directory}"
                 th:data-name="${directory.name}"
               >
-                <td>
+                <td class="tdIcon">
                   <i class="fa-solid fa-folder fa-2xl"></i>
                 </td>
-                <td th:text="${directory.name}"></td>
-                <td style="white-space: nowrap">
-                    <button
+                <td th:text="${directory.name}" class="tdName"></td>
+                <td class="tdButton">
+                  <button
+                    disabled
                     style="
-                        border: none;
-                        height: 40px;
-                        width: 40px;
-                        border-radius: 15px;
-                        background-color: none;
+                      border: none;
+                      height: 40px;
+                      width: 40px;
+                      border-radius: 15px;
+                      background-color: transparent;
                     "
-                    onclick="showModalActionsDirectory(this)"
-                >
-                    <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
-                </button>
+                  >
+                  </button>
                 </td>
               </tr>
               <tr
@@ -121,22 +127,21 @@
                 class="fileItem"
                 th:data-file-id="${archive.id}"
               >
-                <td>
+                <td class="tdIcon">
                   <i class="fa-solid fa-file fa-2xl" style="color: #929497"></i>
                 </td>
-                <td th:text="${archive.nameArchive}"></td>
-                <td style="white-space: nowrap">
+                <td th:text="${archive.nameArchive}" class="tdName"></td>
+                <td class="tdButton">
                   <button
+                    disabled
                     style="
                       border: none;
                       height: 40px;
                       width: 40px;
                       border-radius: 15px;
-                      background-color: none;
+                      background-color: transparent;
                     "
-                    onclick="showModalActionsFiles(this)"
                   >
-                    <i class="fa-solid fa-ellipsis-vertical fa-xl"></i>
                   </button>
                 </td>
               </tr>
