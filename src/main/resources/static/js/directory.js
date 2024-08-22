@@ -7,6 +7,15 @@ let File = false;
 document.addEventListener('DOMContentLoaded', function () {
     const folderItems = document.getElementsByClassName("folderItem");
     const fileItems = document.getElementsByClassName("fileItem");
+    const messageError = document.getElementById("messageError");
+
+    console.log("Vendo mensagem de erro")
+    if(messageError != null){
+        console.log("mensagem de erro nao é vazia")
+        if(messageError.textContent === "409"){
+            alert("Já existe uma pasta com esse nome!");
+        }
+    }
 
     for (let i = 0; i < folderItems.length; i++) {
         folderItems[i].addEventListener('dblclick', function() {

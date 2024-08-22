@@ -270,12 +270,20 @@ public class DirectoryAndArchivesService {
 
 
 
-	public void addDirectory(String folderName , Long parentId) {
-		Directory parentDirectory = directoryRepository.findById(parentId).orElseThrow(DirectoryNotFoundException::new);
-		Directory directory = new Directory();
-		directory.setName(folderName);
-		directory.setParentDirectory(parentDirectory);
-		directoryRepository.save(directory);
+	public boolean addDirectory(String folderName , Long parentId) {
+		if(verifyIfAFolderWithSameNameAlreadyExist(parentId,folderName)) {
+			Directory parentDirectory = directoryRepository.findById(parentId).orElseThrow(DirectoryNotFoundException::new);
+			Directory directory = new Directory();
+			directory.setName(folderName);
+			directory.setParentDirectory(parentDirectory);
+			directoryRepository.save(directory);
+			System.out.println("Adicionando Pasta");
+			return true;
+			
+		}
+		System.out.println("Nao adicionando Pasta");
+		return false;
+		
 	}
 	
 	public void RefresePageDirectory() {
@@ -344,6 +352,19 @@ public class DirectoryAndArchivesService {
 
 	public ArchiveDTO findArchiveById(Long archiveId) {
 		return archiveRepository.findArchiveDTOById(archiveId);
+	}
+	
+	private boolean verifyIfAFolderWithSameNameAlreadyExist(Long parentDirectoryId,String newName) {
+		List<DirectoryDTO> listDto = directoryRepository.findSubDirectoriesByParentId(parentDirectoryId);
+		
+		for(DirectoryDTO dto :listDto) {
+			if(dto.getName().equals(newName)) {
+				System.out.println("Alguma pasta contem o mesmo nome");
+				return false;
+			}
+		}
+		System.out.println("Nenhuma pasta contem o mesmo nome");
+		return true;
 	}
 
 

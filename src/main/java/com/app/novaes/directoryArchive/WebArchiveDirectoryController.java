@@ -193,8 +193,13 @@ public class WebArchiveDirectoryController {
 	
 	@PostMapping("/directory")
 	public String  addDirectory(@RequestParam("folderName") String folderName, @RequestParam("parentId") Long parentId) {
-	    directoryAndArchivesService.addDirectory(folderName, parentId);
-	    return "redirect:/directory/"+parentId;
+	    if(directoryAndArchivesService.addDirectory(folderName, parentId)) {
+	    	return "redirect:/directory/"+parentId;
+	    }else {
+	    	return "redirect:/directory/"+parentId+"?messageError=409";
+	    }
+	    
+	    
 	}
 	
 	@PostMapping("/archive")

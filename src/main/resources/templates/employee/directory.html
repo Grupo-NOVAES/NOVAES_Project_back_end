@@ -106,6 +106,7 @@
 
         <div th:replace="fragments/interfaces/file/modalAddFile :: div"></div>
 
+        <p hidden th:text="${param.messageError}" id="messageError"></p>
         <div class="table-container">
           <table>
             <thead>
@@ -184,8 +185,9 @@
       </main>
     </div>
 
-    <script th:src="@{/js/darkTheme.js}"></script>
+    
     <script th:src="@{/js/logout.js}"></script>
+    <script th:src="@{/js/darkTheme.js}"></script>
     <script th:src="@{/js/directory.js}"></script>
     <script th:src="@{/js/directoryResponsivity.js}"></script>
   </body>

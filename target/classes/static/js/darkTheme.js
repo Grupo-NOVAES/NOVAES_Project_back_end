@@ -114,6 +114,7 @@ function getCookie(name) {
 }
 
 function loadTheme() {
+    console.log("Funçao de carregar tema chamada")
     const theme = getCookie("theme");
     if (theme === "dark") {
         document.getElementById("theme-checkbox").checked = true;
