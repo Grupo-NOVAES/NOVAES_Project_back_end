@@ -199,6 +199,8 @@ tr {
   width: 35%;
   word-break: break-word;
   text-align: left;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .dtDateHour {
