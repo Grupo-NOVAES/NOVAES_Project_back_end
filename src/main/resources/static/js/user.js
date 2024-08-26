@@ -56,8 +56,6 @@ function showModalActionsUser(button) {
 
     ModalOptions.style.display = 'block';
     modalVisible = true;
-    document.getElementById("idUser").value = selectedContractId;
-    console.log(document.getElementById("idUser").value);
 
 }
 
