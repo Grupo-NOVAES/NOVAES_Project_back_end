@@ -61,12 +61,12 @@ public class WebUserController {
     			
     	    modelAndView.addObject("listContacts", listContacts);
     	    	
-    		modelAndView.setViewName("/employee/user.html");
+    		modelAndView.setViewName("employee/user");
     	}else {
     		List<User> listContacts = userService.getUserByRole(Role.ADMIN);
     			
     	    modelAndView.addObject("listContacts", listContacts);
-    		modelAndView.setViewName("/client/managers.html");
+    		modelAndView.setViewName("client/managers");
     	}
     	
 		
@@ -84,13 +84,13 @@ public class WebUserController {
     	modelAndView.addObject("imageProfile", userService.getProfilePhoto(user));
         boolean ifEmployee = userService.getTypeUser();
         if (ifEmployee) {           
-            modelAndView.setViewName("/employee/profile.html");
+            modelAndView.setViewName("employee/profile");
         } else {
             Client client = clientService.getClientAuthInfo();
             ClientDTO clientDTO = clientService.convertAClientToClientDTO(client);
 
             modelAndView.addObject("userData", clientDTO);
-            modelAndView.setViewName("/client/profile.html");
+            modelAndView.setViewName("client/profile");
         }
 
         return modelAndView;
@@ -113,7 +113,7 @@ public class WebUserController {
     	if(userData.equals(user)) {
     		return profileScreen();
     	}else {
-    		modelAndView.setViewName("/ProfileVisit.html");
+    		modelAndView.setViewName("ProfileVisit");
     		return modelAndView;
     	}
     }
@@ -128,11 +128,11 @@ public class WebUserController {
 		if(userService.getTypeUser()) {
 			modelAndView.addObject("user",user);
 			
-			modelAndView.setViewName("/employee/addUser.html");
+			modelAndView.setViewName("employee/addUser");
 			
 			return modelAndView;
 		}else {
-			modelAndView.setViewName("ErrorPage.html");
+			modelAndView.setViewName("ErrorPage");
 			return modelAndView;
 		}
 	}

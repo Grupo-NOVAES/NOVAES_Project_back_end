@@ -55,15 +55,15 @@ public class WebStagesController {
 
 	    if(userService.getTypeUser()) {
 	        modelAndView.addObject("listStages", listStages);
-	        modelAndView.setViewName("/employee/stage.html");
+	        modelAndView.setViewName("employee/stage");
 	    } else {
 	        Client client = clientService.getClientAuthInfo();
 	        
 	        if(contractFound.getClient().equals(client)) {
 	            modelAndView.addObject("listStages", listStages);
-	            modelAndView.setViewName("/client/stage.html");
+	            modelAndView.setViewName("client/stage");
 	        } else {
-	            modelAndView.setViewName("/client/errorScreen.html");
+	            modelAndView.setViewName("client/errorScreen");
 	        }
 	    }
 

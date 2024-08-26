@@ -49,12 +49,12 @@ public class WebContractController {
 	    	List<Contract> listContract = contractService.getAllContract();
 	    	
 	    	modelAndView.addObject("listContract", listContract);
-	        modelAndView.setViewName("/employee/contract.html");
+	        modelAndView.setViewName("employee/contract");
 	    } else {
 	    	List<Contract> listContract = contractService.getContractByClientId(user.getId());
 	    			
 	    	modelAndView.addObject("listContract", listContract);
-	        modelAndView.setViewName("/client/contract.html");
+	        modelAndView.setViewName("client/contract");
 	    }
 
 	    return modelAndView;

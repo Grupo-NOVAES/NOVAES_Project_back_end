@@ -103,7 +103,7 @@ public class WebArchiveDirectoryController {
     	        modelAndView.addObject("listDirectory" , listDirectory);
     	        modelAndView.addObject("listArchive" , listArchive);
     	        
-    			modelAndView.setViewName("/employee/directory.html");
+    			modelAndView.setViewName("employee/directory");
     		}else {
     			Client client = clientService.getClientAuthInfo();
     			
@@ -124,9 +124,9 @@ public class WebArchiveDirectoryController {
                     modelAndView.addObject("listDirectory", accessibleSubDirectories);
                     modelAndView.addObject("listArchive", listArchive);
                     
-                    modelAndView.setViewName("/client/directory.html");
+                    modelAndView.setViewName("client/directory");
                 }else {
-                	modelAndView.setViewName("/ErrorPage.html");
+                	modelAndView.setViewName("ErrorPage");
                 }
 
     		}
