@@ -192,7 +192,7 @@ async function deleteFile() {
         });
         console.log(JSON.stringify(response));
     }
-    window.location.reload();
+    
     hideModalActionsFiles();
 }
 
@@ -208,6 +208,6 @@ async function deleteFolder() {
         });
         console.log(JSON.stringify(response));
     }
-    window.location.reload();
+   
     hideModalActionsDirectory();
 }
