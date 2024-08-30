@@ -92,14 +92,14 @@ async function deleteStage(){
     method:"POST"
    });
    console.log(JSON.stringify(response));
-   
+   window.location.reload();
 }
 
 async function concludeStage(){
     let response = await fetch(`/stages/concludeStage/${selectedContractId}`,{
         method:"POST"
     });
-    
+    window.location.reload();
 }
 
 
