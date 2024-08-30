@@ -1,27 +1,29 @@
 
-
-body{
+.body{
     font-family: 'Montserrat', sans-serif;
     display: flex;
+    height: 120dvh;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
 }
 main{
-    display: flex;
-    flex-direction: column;
+    display: flex; 
+    flex-direction: row; 
     align-items: center;
-    width: 1000px;
     font-family: 'Roboto';
-    margin-top: 100px;
+    width: 90dvw;
+    height: 100dvh;
 }
 
 .intro {
     display: flex;
     flex-direction: column; 
-    height: 200px; 
+    height: 250px;
     align-items: left;
     justify-content: space-around; 
     width: 50%;
+    padding-left: 75px;
 }
 
 .intro .textIntro {
@@ -34,26 +36,38 @@ main{
     margin-top: 20px;
     margin-left: 80px;
 }
+
+.sectionMain {
+    display: flex;
+    flex-direction: column;
+    align-items : center;
+    justify-content: center;
+    width: 50%;
+    height: 70dvh;
+    padding-right: 50px;
+}
+
 #form_main{
     background-color: rgb(240, 240, 240);
-    width: 400px;
-    height: 450px;
+    width: 60%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
+    border-radius: 10px;
     box-shadow:  0 1px 5px rgba(0, 0, 0, 0.5);
-    margin-bottom: 30px;
 }
 
 .logo{
     margin-bottom: 30px;
 }
-
+#inputs{
+    width: 100%;
+}
 .input {
     height: 35px;
-    width: 275px;
+    width: 100%;
     padding: 10px 0px 10px 20px;
     border: none;
     border-radius: 5px;
@@ -63,7 +77,7 @@ main{
   }
   .input:focus {
     opacity: 1;
-    width: 275px;
+    width: 100%;
     border: solid 1px #b5b5b5;
   }
 
@@ -97,7 +111,7 @@ label, button{
 
 footer{
     visibility: visible;
-    height: 300px;
+    height: 100px;
     width: 100%;
     display: flex;
     flex-direction: column;
