@@ -165,7 +165,15 @@ public class DirectoryAndArchivesService {
         		System.out.println("arquivo é texto");
         		return "txt";
             case "application/zip":
+            case "application/x-zip-compressed":
                 return "zip";
+            case "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet":
+            case "application/x-tika-ooxml":
+            	System.out.println("arquivo xlsx");
+            	return "xlsx";
+            case "application/vnd.openxmlformats-officedocument.wordprocessingml.document":
+            	return "docx";
+ 
             case "application/acad":
             case "application/x-autocad":
                 return "dwg";
@@ -180,6 +188,7 @@ public class DirectoryAndArchivesService {
             case "application/x-tika-msoffice":
                 return "rvt";
             case "application/octet-stream":
+            case"image/vnd.dxf; format=ascii":
             	return "cpg";
             case "application/vnd.dbf":
             	return "dbf";
@@ -195,6 +204,7 @@ public class DirectoryAndArchivesService {
             case "application/xml":
             	return "xml";
             default:
+            	System.out.println("arquivo nulo");
                 return null; 
         }
     }
@@ -305,7 +315,7 @@ public class DirectoryAndArchivesService {
             archive.setName(getSomeNameFile(file.getOriginalFilename()));
             
             archive.setType(file.getContentType());
-            System.out.println(file.getContentType());
+            System.out.println("tipo do arquivo que sera adicionado"+file.getContentType());
             archive.setContent(file.getBytes());
 
             Directory directory = directoryRepository.findById(parentDirectoryId)
