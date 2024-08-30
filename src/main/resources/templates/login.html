@@ -6,45 +6,42 @@
     <link rel="stylesheet" th:href="@{/css/login.css}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">    <title>Login</title>
 </head>
-<body>
+<body class="body">
 
 
-    <main style=" display: flex; flex-direction: row; justify-content: space-around;">  
-
-
+    <main>  
             <section class="intro">
                 <img th:src="@{/img/LogoGrupoNovaesFigma.png}" alt="logo" width="400">
                 <p class="textIntro">Gupo Novaes ajuda você a se conectar e acompanhar o andamento de seus projetos.</p>
             </section>
 
+            <section class="sectionMain">
+                <section id="form_main">
 
-            <section id="form_main">
-                <form th:action="@{/login}" id="campos" method="post">
-                
-                    <img th:src="@{/icones/LogosGrupoNovaesApp.png}" alt="logo" width="65" class="logo">
-                
-                        <div th:if="${param.error}" class="error-card">
-                            <p class="error-message">Usuário e senha inválidos</p>
-                        </div>
-                        
-                        <div id="inputs">
-                        	<input type="email" id="ipt" name="email" placeholder="Email" required class="input"><br><br>
-                        	<input type="password" id="ipt" name="password" placeholder="Senha" required class="input"><br><br>
-
-                            <input class="caixaCheckBox" type="checkbox" id="manterConectado" name="rememberMe" >
-                            <label for="manterConectado" class="checkBox">Mantenha-me conectado</label><br><br>
-
-                        </div>
-                
-                
-                    <button id="btn_login" class="button entrar">Entrar</button>
-                
-                </form>
-
+                    <form th:action="@{/login}" id="campos" method="post">       
+    
+                        <img th:src="@{/icones/LogosGrupoNovaesApp.png}" alt="logo" width="65" class="logo">   
+    
+                            <div th:if="${param.error}" class="error-card">
+                                <p class="error-message">Usuário e senha inválidos</p>
+                            </div>
+                            
+                            <div id="inputs">
+                                <input type="email" name="email" placeholder="Email" required class="input"><br><br>
+                                <input type="password" name="password" placeholder="Senha" required class="input"><br><br>
+                                <input class="caixaCheckBox" type="checkbox" id="manterConectado" name="rememberMe" >
+                                <label for="manterConectado" class="checkBox">Mantenha-me conectado</label><br><br>
+                            </div>
+                                    
+                        <button id="btn_login" class="button entrar">Entrar</button>
+                    
+                    </form>
+    
+                </section>
             </section>
             
+            
     </main>     
-    
-    <div th:replace="fragments/footer :: footer"></div>
+    <div th:replace="~{fragments/footer :: footer}"></div>
 </body>
 </html>
