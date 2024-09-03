@@ -19,11 +19,10 @@ main{
 .intro {
     display: flex;
     flex-direction: column; 
+    align-items: center;
+    text-align: center;
     height: 250px;
-    align-items: left;
-    justify-content: space-around; 
     width: 50%;
-    padding-left: 75px;
 }
 
 .intro .textIntro {
@@ -31,11 +30,6 @@ main{
     font-weight: bold;
 }
 
-#logo{
-    margin-right: 190px;
-    margin-top: 20px;
-    margin-left: 80px;
-}
 
 .sectionMain {
     display: flex;
@@ -44,12 +38,11 @@ main{
     justify-content: center;
     width: 50%;
     height: 70dvh;
-    padding-right: 50px;
 }
 
 #form_main{
     background-color: rgb(240, 240, 240);
-    width: 60%;
+    width: 70%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -88,7 +81,6 @@ main{
   }
   .input:focus {
     opacity: 1;
-    width: 100%;
     border: solid 1px #b5b5b5;
   }
 
@@ -129,45 +121,20 @@ footer{
     flex-direction: column;
     align-items: center;
 }
-#footer{
-    display: flex;
-    height: 125px;
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    background-color: #007B8F;
-    color: white;
-    margin-top: 100px;
-}
-
-#_text_footer {
-    display: flex;
-    height: 90px;
-    width: auto;
-    color: white;
-    margin: 40px 50px;
-}
-
-.text{
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 10pt;
-    margin-right: 2%;
-    margin-left: 2%;
-}
 
 #text_footer{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 80%;
 }
 #titulo_footer{
     size: 12pt;
     margin-top: 15px;
+}
+#pfooter{
+    word-break: break-all;
 }
 .input_form{
     margin-bottom: 20px;
@@ -198,19 +165,6 @@ footer{
 		right: 15px;
 		top: 15px;
 	}
-    footer{
-        visibility: visible;
-        height: 300px;
-        width: 100%;
-    }
-    #footer{
-        display: flex;
-        flex-direction: row;
-        align-content: center;
-        background-color: #007B8F;
-        color: white;
-        margin-top: 20px;
-    }
 
     .text{
         margin: 20px;
@@ -219,12 +173,21 @@ footer{
         margin-right: 7%;
         margin-left: 7%;
     }
-    #text_footer{
-       margin-left: 30%;
-    }
-    #titulo_footer{
-        margin-left: 22%;
-        size: 10pt;
+
+}
+
+@media screen and (max-width: 500px) {
+    #form_main{
+        background-color: rgb(240, 240, 240);
+        width: 70%;
+        height: 80%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        box-shadow:  0 1px 5px rgba(0, 0, 0, 0.5);
+        padding: 10px;
     }
 }
 
