@@ -49,6 +49,7 @@ function hideModalActionsContract() {
   modalVisible = false;
 }
 
+
 function showModalContract() {
   document.getElementById("AddModalContract").style.display = "block";
 }
@@ -183,3 +184,30 @@ document.getElementById("clientFilter").addEventListener("input", function () {
     }
   });
 });
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('input', function() {
+      const title = document.getElementById('title').value;
+      var dateValue = document.getElementById("contractDate").value;
+      const clientLogin = document.getElementById('clientLogin').value;
+
+      const saveBtn = document.getElementById('savebtn');
+
+      if (title !=="" &&  dateValue !=="" && clientLogin !=="") {
+          saveBtn.style.display="block";
+      }
+      else{
+        saveBtn.style.display="none";
+      }
+  });
+});
+
+function getDateValue() {
+  var dateValue = document.getElementById("contractDate").value;
+  console.log("Selected Date:", dateValue);
+}
+
+
+
+

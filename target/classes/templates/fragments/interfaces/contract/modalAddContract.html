@@ -11,8 +11,10 @@
             <div class="form">
               <label for="title">Nome do Contrato</label>
               <input type="text" name="title" id="title" class="inputmodal" maxlength="33"/>
+
               <label for="time">Prazo</label>
-              <input type="date" name="time" id="time" class="inputmodaldate" />
+              <input type="date" id="contractDate" class="inputmodaldate" onclick="getDateValue()"/>
+              
               <label for="clientLogin">Cliente do Contrato</label>
               <input list="clientLoginOptions" type="text" name="client.login" id="clientLogin" class="inputmodal" />
               <datalist id="clientLoginOptions">
@@ -23,11 +25,12 @@
             </div>
 
             <div class="actions">
-              <button type="submit" class="savebtn">Salvar</button>
+              <button type="submit" class="savebtn" id="savebtn" >Salvar</button>
               <p onclick="hideModalContract()">Sair</p>
             </div>
           </form>
         </div>
       </div>
+
 </body>
 </html>
