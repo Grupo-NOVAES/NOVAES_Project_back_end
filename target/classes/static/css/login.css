@@ -57,17 +57,28 @@ main{
     justify-content: center;
     border-radius: 10px;
     box-shadow:  0 1px 5px rgba(0, 0, 0, 0.5);
+    padding: 10px;
 }
 
 .logo{
     margin-bottom: 30px;
 }
 #inputs{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
+    padding: 10px;
+}
+
+.checkbox{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
 }
 .input {
     height: 35px;
-    width: 100%;
+    width: 90%;
     padding: 10px 0px 10px 20px;
     border: none;
     border-radius: 5px;
@@ -92,17 +103,18 @@ label, button{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    width: 100%;
 }
 #btn_login{
     font-family: 'Roboto', sans-serif;
     background-color: #007B8F;
     color: rgb(255, 255, 255);
-    width: 250px;
+    width: 60%;
     padding: 5px 10px;
     border-radius: 5px;
     border: none;
     margin-top: 30px;
-    
 }
 #btn_login:hover{
     background-color: #083C52;
@@ -199,10 +211,7 @@ footer{
         color: white;
         margin-top: 20px;
     }
-    #form_main{
-        background-color: rgb(255, 255, 255);
-        box-shadow: none;
-    }
+
     .text{
         margin: 20px;
         display: flex;
@@ -216,10 +225,6 @@ footer{
     #titulo_footer{
         margin-left: 22%;
         size: 10pt;
-    }
-    #main{
-        width: 600px;
-        box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
     }
 }
 
