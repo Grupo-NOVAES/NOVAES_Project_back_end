@@ -12,6 +12,7 @@ const activeElement = document.querySelector('.nav-item');
 const btnBackDirectory = document.querySelector('.buttonBackDirectory');
 const btnAlterInfoProfile = document.getElementById("saveButton");
 const theadTable = document.querySelector('thead');
+const spanElement = document.querySelectorAll('span');
 
 function alterTheme() {
     const isDarkTheme = body.classList.contains("dark-theme");
@@ -23,6 +24,15 @@ function alterTheme() {
         } else {
             link.classList.remove("dark-theme-a");
             link.style.color = "#1e3050";
+        }
+    });
+    spanElement.forEach(span => {
+        if (isDarkTheme) {
+            span.classList.add("dark-theme-a");
+            span.style.color = "";
+        } else {
+            span.classList.remove("dark-theme-a");
+            span.style.color = "#1e3050";
         }
     });
 
