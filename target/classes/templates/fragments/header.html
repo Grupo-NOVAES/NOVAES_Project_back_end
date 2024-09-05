@@ -1,48 +1,94 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-    <header class="d-flex justfy-content-btween align-itens-center p-3 text-white"  th:fragment="header">
-        <img id="logo" th:src="@{/img/LogoGrupoNovaesBranca.png}" alt="Novaes Logo" height="50px" width="200px">
-        <section id="links">
-            <a class="a_links" href="https://gruponovaes.com/" >HOME</a>
-
-            <div class="dropdown">
-              <button id="btndpd" class="dropbtn"> <a  >ÁREAS DE ATUAÇÃO</a></button>
-              <div class="dropdown-content">
-                <a href="https://gruponovaes.com/portfolio-saneamento-meio-ambiente/" class="a">SANEAMENTO E MEIO AMBIENTE</a>
-                <a href="https://gruponovaes.com/arquitetura/">ARQUITETURA E CONSTRUÇÃO</a>
-                <a href="https://gruponovaes.com/empreendimentos/">EMPREENDIMENTOS À VENDA</a>
-                </div>
-            </div>
-			  
-            <a class="a_links" href="https://gruponovaes.com/?page_id=230773" >SOLIDARIEDADE</a>
-            <a class="a_links" href="https://gruponovaes.com/blog/" >BLOG</a>
-
-            
-
-        </section>
-        
-        <section id="icones">
-            
-            
-            <a href="https://www.instagram.com/grupo_novaes/">
-                <i class="fa-brands fa-instagram fa-lg" style="color: #929497;"></i>
-            </a>
-            <a href="https://www.facebook.com/gruponovaes/">
-                <i class="fa-brands fa-facebook-f" style="color: #929497;"></i>            </a>
-            </a>
-            <a href="https://www.youtube.com/channel/UC0HGGKKsSjs9tDrGgZGUwnw">
-                <i class="fa-brands fa-youtube" style="color: #929497;"></i>
-            <a href="https://www.linkedin.com/company/gruponovaes">
-                <i class="fa-brands fa-linkedin-in" style="color: #929497;"></i>
-            </a>
-        </section>
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/css/components/header.css}" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <img
+          id="logo"
+          th:src="@{/img/LogoGrupoNovaesBranca.png}"
+          alt="Novaes Logo"
+          height="50px"
+          width="200px"
+        />
+      </div>
+      <button class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="menu-items">
+        <a class="a_links" href="https://gruponovaes.com/">HOME</a>
+        <div class="dropdown">
+          <button id="btndpd" class="dropbtn"><a>ÁREAS DE ATUAÇÃO</a></button>
+          <div class="dropdown-content">
+            <a
+              href="https://gruponovaes.com/portfolio-saneamento-meio-ambiente/"
+              class="a"
+              >SANEAMENTO E MEIO AMBIENTE</a
+            >
+            <a href="https://gruponovaes.com/arquitetura/"
+              >ARQUITETURA E CONSTRUÇÃO</a
+            >
+            <a href="https://gruponovaes.com/empreendimentos/"
+              >EMPREENDIMENTOS À VENDA</a
+            >
+          </div>
+          <a class="a_links" href="https://gruponovaes.com/?page_id=230773"
+            >SOLIDARIEDADE</a
+          >
+          <a class="a_links" href="https://gruponovaes.com/blog/">BLOG</a>
+        </div>
+      </div>
+      <div class="social-icons">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-linkedin-in"></i>
+      </div>
+      <div class="menu-container">
+        <a class="a_links" href="https://gruponovaes.com/">HOME</a>
+        <a>ÁREAS DE ATUAÇÃO</a>
+        <a
+          href="https://gruponovaes.com/portfolio-saneamento-meio-ambiente/"
+          class="a"
+          >SANEAMENTO E MEIO AMBIENTE</a
+        >
+        <a href="https://gruponovaes.com/arquitetura/"
+          >ARQUITETURA E CONSTRUÇÃO</a
+        >
+        <a href="https://gruponovaes.com/empreendimentos/"
+          >EMPREENDIMENTOS À VENDA</a
+        >
+        <a class="a_links" href="https://gruponovaes.com/?page_id=230773"
+          >SOLIDARIEDADE</a
+        >
+        <a class="a_links" href="https://gruponovaes.com/blog/">BLOG</a>
+        <div class="social-icons">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-linkedin-in"></i>
+        </div>
+      </div>
     </header>
-    <script th:src="@{/js/directoryResponsivity.js}"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      document
+        .querySelector(".menu-toggle")
+        .addEventListener("click", function () {
+          document.querySelector(".menu-container").classList.toggle("show");
+        });
+    </script>
+  </body>
 </html>

@@ -1,115 +1,121 @@
 header {
-    background: #1e3050;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    height: 80px;
-    flex: 1 1 100vw;
-    z-index: 1;
-  }
-  #links {
-    margin-right: 200px;
-    display: flex;
-    align-self: center;
-    font-size: 10pt;
-    justify-content: center;
-    text-align: center;
-  }
-    
-  .a_links {
-    color: white;
-    text-decoration: none;
-    margin-inline: 0 20px;
-  }
-  
-  #icones {
-      display: flex;
-      align-self: center;
-      filter: opacity(100%);
-    }
-    
-    #icones a {
-      margin-inline: 0 20px;
-      text-decoration: none;
-    }
-    #icones a :hover {
-      opacity: 0.7;
-    }
-  .logo {
-    height: 50px;
-    z-index: 500;
-  }
-  .dropbtn {
-    background-color: rgba(255, 255, 255, 0);
-    color: white;
-    font-size: 13px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    margin-right: 15px;
-  }
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    min-width: 250px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    background-color: white;
-    border-radius: 5px;
-  }
-  
-  .dropdown-content a {
-    color: #007B8F;
-    padding: 20px 20px;
-    text-decoration: none;
-    display: flex;
-  }                                                             
-  
-  .dropdown-content a:hover {background-color: #f1f1f1}
-  
-  .dropdown:hover .dropdown-content {
-    display: block;
-  }
-  
-  .dropdown:hover .dropbtn {
-    color: #76bfcc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1e3050;
+  padding: 10px 20px;
+  color: white;
+  position: relative;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.menu-items {
+  display: flex;
+  gap: 20px;
+}
+
+.menu-items a {
+  color: white;
+  text-decoration: none;
+}
+
+.social-icons i {
+  margin-left: 15px;
+  color: white;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.menu-container {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: #1e3050;
+  width: 100%;
+  padding: 10px;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.menu-container a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+}
+
+.menu-container.show {
+  display: flex;
+}
+
+/* Media Query para telas menores */
+@media (max-width: 768px) {
+  .menu-items {
+      display: none;
   }
 
-  #openMenu, #closeMenu {
-    /* Remove a borda. */
-    border: none;
-  
-    /* Remove a cor de fundo. */
-    background: none;
-  
-    /* Tamanho da fonte. */
-    font-size: 30px;
-  
-    /* Espessura da forte. */
-    font-weight: bold;
-  
-    /* Margem ao redor do elemento              */
-    /* (superior, direito, inferior e esquerdo) */
-    padding: 0px 5px 0px 5px;
-  
-    /* Muda o cursor do mouse para ponteiro.*/
-    cursor: pointer;
-  
-    /* Oculta o elemento. */
-    display: none;
+  .social-icons {
+      display: none;
   }
 
-  @media (max-width: 870px) {
-    .header{
-      position: sticky;
-      flex: 1 1 100vw;    }
+  .menu-toggle {
+      display: block;
   }
-  
+}
+.dropbtn {
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+  font-size: 13px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  min-width: 250px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.dropdown-content a {
+  color: #007b8f;
+  padding: 20px 20px;
+  text-decoration: none;
+  display: flex;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  color: #76bfcc;
+}

@@ -18,8 +18,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  height: calc(100vh - 80px);
-  margin-top: 80px;
+  height: 100vh;
   width: 200px;
   padding: 15px 15px;
   background-color: #f3f3f3;
@@ -30,6 +29,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
+  margin-top: 50px;
 }
 
 .close {

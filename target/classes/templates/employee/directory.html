@@ -22,8 +22,9 @@
   <body>
     <div th:replace="~{fragments/header :: header}"></div>
     <div th:replace="~{fragments/nav :: nav}"></div>
-    <div class="container">
+
       <main role="main" class="main">
+        
         <div class="listParentDirectory">
           <div th:each="directory : ${listNameParentDirectory}" style="display: flex; flex-direction: row" class="listNameParentDirectory">
             <a th:href="@{/directory/{id}(id=${directory.id_Directory})}">
@@ -37,7 +38,7 @@
           </div>
         </div>
 
-        <div class="header-table">
+        <div class="header-table .col-md-4">
           <div class="container-input">
             <input
               type="text"
@@ -184,7 +185,7 @@
       </main>
     </div>
 
-    
+    <script th:src="@{/js/header.js}"></script>
     <script th:src="@{/js/logout.js}"></script>
     <script th:src="@{/js/darkTheme.js}"></script>
     <script th:src="@{/js/directory.js}"></script>
