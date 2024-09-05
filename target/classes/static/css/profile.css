@@ -104,33 +104,11 @@ a {
   color: #76bfcc;
 }
 
-.nav-item {
-  width: 150px;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  height: 35px;
-  border-radius: 5px;
+.text {
+  margin-top: 18px;
 }
 
-ul {
-  height: 50dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 
-li {
-  margin: 20px;
-}
-
-#perfil {
-  height: 30dvh;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: end;
-}
 
 .CartBtn {
   width: 275px;
