@@ -84,7 +84,7 @@ main {
   border-radius: 1px;
 }
 
-.text {
+.textBtn {
   height: 100%;
   width: fit-content;
   display: flex;
@@ -94,7 +94,6 @@ main {
   z-index: 1;
   transition-duration: .5s;
   margin-top: 15px;
-  font-size: small;
 }
 
 .CartBtn:hover .IconContainer {
@@ -106,6 +105,7 @@ main {
 .CartBtn:hover .text {
   transform: translate(10px,0px);
   transition-duration: .5s;
+  font-size: 8px;
 }
 
 .CartBtn:active {
@@ -114,13 +114,14 @@ main {
 }
 
 table {
+  height: 40%;
   width: 100%;
   border-collapse: collapse; /* Garante que a tabela ocupe toda a largura disponível */
   color: #1e3050;
 }
 
 .table-container {
-  max-height: 60%; 
+  height: 40%; 
   overflow-y: scroll; /* Permite que o conteúdo role verticalmente */
   width: 95%;
   border-radius: 5px;
@@ -696,6 +697,24 @@ tr {
   .CartBtn {
     width: 125px;
   }
+
+  .input {
+    width: 135px;
+  }
+  .input:focus{
+    width: 140px;
+    border: solid 2px #b5b5b5;
+  }
+
+  .textBtn{
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 485px) {
+  .CartBtn {
+    width: 80px;
+  }
   .input {
     width: 100px;
   }
@@ -703,33 +722,23 @@ tr {
     width: 110px;
     border: solid 2px #b5b5b5;
   }
-  .text{
+  .textBtn {
     font-size: 12px;
   }
 }
 
-@media (max-width: 445px) {
+@media (max-width: 365px) {
   .CartBtn {
-    width: 80px;
+    width: 70px;
   }
   .input {
-    width: 80px;
+    width: 70px;
   }
   .input:focus{
-    width: 90px;
+    width: 85px;
     border: solid 2px #b5b5b5;
   }
-}
-
-@media (max-width: 335px) {
-  .CartBtn {
-    width: 50px;
-  }
-  .input {
-    width: 50px;
-  }
-  .input:focus{
-    width: 50px;
-    border: solid 2px #b5b5b5;
+  .textBtn {
+    font-size: 10px;
   }
 }
