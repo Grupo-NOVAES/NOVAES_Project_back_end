@@ -60,34 +60,6 @@ public class DatabaseInit implements CommandLineRunner{
 
             employeeRepository.save(admin);
         }
-        if(employeeRepository.findByLogin("gerente@novaes.com") == null) {
-        	Employee gerente = new Employee();
-        	gerente.setName("Novaes");
-        	gerente.setLastname("Employee");
-        	gerente.setLogin("gerente@novaes.com");
-        	gerente.setPassword(passwordEncoder.encode("123456"));
-        	gerente.setPhoneNumber("(16) 99999-9999");
-        	gerente.setEnabled(true);
-        	gerente.setRole(Role.ADMIN);
-        	gerente.setOffice("Funcionario");
-        	gerente.setAdmin(true);
-
-            employeeRepository.save(gerente);
-        }
-        if(employeeRepository.findByLogin("eng@novaes.com") == null) {
-        	Employee employee = new Employee();
-        	employee.setName("Novaes");
-            employee.setLastname("Employee");
-            employee.setLogin("eng@novaes.com");
-            employee.setPassword(passwordEncoder.encode("123456"));
-            employee.setPhoneNumber("(16) 99999-9999");
-            employee.setEnabled(true);
-            employee.setRole(Role.EMPLOYEE);
-            employee.setOffice("Funcionario");
-            employee.setAdmin(false);
-
-            employeeRepository.save(employee);
-        }
         if(clientRepository.findByLogin("client@novaes.com") == null) {
         	client.setName("Agúas");
         	client.setLastname("de Araçoiaba");
@@ -105,33 +77,10 @@ public class DatabaseInit implements CommandLineRunner{
 	}
 	
 	public void inserRootDirectory() {
-		boolean ifRootNotExist = false;
 		if(directoryRepository.findByName("root") == null) {
 			Directory root = new Directory();
 			root.setName("root");
 			directoryRepository.save(root);
-			ifRootNotExist=true;
 		}
-		if(ifRootNotExist) {
-			Directory directory = new Directory();
-			directory.setName("Jau");
-			directory.setParentDirectory(directoryRepository.findByName("root"));
-			directoryRepository.save(directory);
-		}
-		if(ifRootNotExist) {
-			Directory directory = new Directory();
-			directory.setName("Aguas de Aracoiaba");
-			directory.setParentDirectory(directoryRepository.findByName("root"));
-			directoryRepository.save(directory);
-		}
-		if(ifRootNotExist) {
-			Directory directory = new Directory();
-			directory.setName("Itu");
-			directory.setParentDirectory(directoryRepository.findByName("root"));
-			directoryRepository.save(directory);
-		}
-	}
-	
-	
-
+	}	
 }
