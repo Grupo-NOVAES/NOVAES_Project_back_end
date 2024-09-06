@@ -278,3 +278,19 @@ li .icon {
   color: #cecece;
 }
 
+#imageProfile-nav{
+  border-radius: 100px;
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+  margin-left: 2px;
+}
+#imageProfile-none-nav{
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  margin-left: 2px;
+}
+
+
