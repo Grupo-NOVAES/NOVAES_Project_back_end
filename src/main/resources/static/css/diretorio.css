@@ -1,31 +1,7 @@
-*{
-  margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-body {
-  font-family: 'Montserrat', sans-serif;
-  background-color: #f9f9f9;
-	display: flex;
-	flex-wrap: wrap;
-	flex: 1 1 100vw;
-  overflow: hidden;
-
-}
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-	flex: 20 10 500px;
-  margin-top: 10px;
-}
 main {
-  display: flex;
-  flex-direction: column;
-  height: 90vh;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
+  margin-left: 100px;
+  padding: 20px;
+  transition: margin-left 0.3s; /* Transição suave para a mudança de margem */
 }
 
 .listParentDirectory {
@@ -39,6 +15,7 @@ main {
 .header-table {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
   width: 95%;
   margin-top: 20px;
 }
@@ -70,13 +47,6 @@ main {
   opacity: 1;
   width: 225px;
   border: solid 2px #b5b5b5;
-}
-
-.btnCreate {
-  display: flex;
-  justify-content: flex-end;
-  width: 50%;
-  align-items: center;
 }
 
 .CartBtn {
@@ -114,7 +84,7 @@ main {
   border-radius: 1px;
 }
 
-.text {
+.textBtn {
   height: 100%;
   width: fit-content;
   display: flex;
@@ -135,6 +105,7 @@ main {
 .CartBtn:hover .text {
   transform: translate(10px,0px);
   transition-duration: .5s;
+  font-size: 8px;
 }
 
 .CartBtn:active {
@@ -143,13 +114,14 @@ main {
 }
 
 table {
+  height: 40%;
   width: 100%;
   border-collapse: collapse; /* Garante que a tabela ocupe toda a largura disponível */
   color: #1e3050;
 }
 
 .table-container {
-  max-height: 60%; 
+  height: 40%; 
   overflow-y: scroll; /* Permite que o conteúdo role verticalmente */
   width: 95%;
   border-radius: 5px;
@@ -697,93 +669,76 @@ tr {
 }
 /*MODAIS*/
 
-
-@media only screen and (max-width: 717px) {
-  #openMenu,
-  #closeMenu {
-    display: block;
+@media (max-width: 768px) {
+  .menu-items {
+      display: none;
   }
 
-  #openMenu {
-    margin-left: auto;
+  .social-icons {
+      display: none;
   }
 
-  #closeMenu {
-    position: fixed;
-    right: 15px;
-    top: 15px;
+  .menu-toggle {
+      display: block;
+  }
+
+  .menu-container {
+      display: none; /* Inicialmente escondido em telas pequenas */
   }
 
   nav {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(255, 255, 255, 0.8);
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    display: none;
-    opacity: 0;
-    transition: 0.3s;
+      width: 75px; /* Ajuste o tamanho do menu lateral */
+  }
+
+  main {
+      margin-left: 75px; /* Ajuste a margem para o conteúdo principal */
+      padding: 20px;
+  }
+  .CartBtn {
+    width: 125px;
+  }
+
+  .input {
+    width: 135px;
+  }
+  .input:focus{
+    width: 140px;
+    border: solid 2px #b5b5b5;
+  }
+
+  .textBtn{
+    font-size: 14px;
   }
 }
-@media (max-width: 1115px) {
-  .container {
-    margin-left: 220px;
+
+@media (max-width: 485px) {
+  .CartBtn {
+    width: 80px;
+  }
+  .input {
+    width: 100px;
+  }
+  .input:focus{
+    width: 110px;
+    border: solid 2px #b5b5b5;
+  }
+  .textBtn {
+    font-size: 12px;
   }
 }
 
-@media only screen and (max-width: 717px) {
-	#openMenu, #closeMenu {
-		/* Retorna a visibilidade padrão. */
-		display: block;
-	}
-
-	#openMenu {
-		/* Espaço a esquerda será preenchido automaticamente
-		   colocando os itens a direita. */
-		margin-left: auto;
-	}
-
-	#closeMenu {
-		/* Torna a posição do elemento fixa. */
-		position: fixed;
-
-		/* Dispõe o elemento a 15px da esquerda. */
-		right: 15px;
-
-		/* Dispõe o elemento a 15px do topo. */
-		top: 15px;
-	}
-
-	nav {
-		/* Torna a posição do elemento fixa. */
-		position: fixed;
-
-		/* Ocupa 100% da largura da tela de exibição. */
-		width: 100vw;
-
-		/* Ocupa 100% da altura da tela de exibição. */
-		height: 100vh;
-
-		/* Cor em RGB, mais transparência. */
-		background: #f3f3f3;
-
-		/* Alinha os itens na horizontal. */
-		align-items: center;
-
-		/* Alinha os itens na vertical. */
-		justify-content: center;
-
-		/* Remove a margem externa de todos os lados do elemento. */
-		margin: 0;
-
-		/* Oculta o elemento. */
-		display: none;
-
-		/* Velocidade de transição de um estado para outro. */
-		transition: 0.3s;
-
-    z-index: 1;
-	}
+@media (max-width: 365px) {
+  .CartBtn {
+    width: 70px;
+  }
+  .input {
+    width: 70px;
+  }
+  .input:focus{
+    width: 85px;
+    border: solid 2px #b5b5b5;
+  }
+  .textBtn {
+    font-size: 10px;
+  }
 }

@@ -41,7 +41,7 @@ public class WebContractController {
 	    ModelAndView modelAndView = new ModelAndView();
 	    
 	    User user = userService.getUserAuthInfo();
-	    
+	    modelAndView.addObject("imageProfile", userService.getProfilePhoto(user));
 	    modelAndView.addObject("user", user);
 	    
 		

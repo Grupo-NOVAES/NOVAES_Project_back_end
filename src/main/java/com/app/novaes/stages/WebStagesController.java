@@ -47,6 +47,7 @@ public class WebStagesController {
 
 	    List<Stage> listStages = stageService.getStagesByContractId(idContract); 
 	    User user = userService.getUserAuthInfo();
+	    modelAndView.addObject("imageProfile", userService.getProfilePhoto(user));
 	    modelAndView.addObject("user", user);
 
 	    Contract contractFound = contractService.getContractById(idContract);

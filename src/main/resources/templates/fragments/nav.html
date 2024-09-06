@@ -9,11 +9,6 @@
   <body>
 
     <nav th:fragment="nav"  class="BarraLateral close">
-      <button style="border:none; background-color: transparent;">
-        <div class="box-menu btnMenu toggle">
-          <i class="fa-solid fa-bars"></i>
-        </div>
-      </button>
 
       <div class="menu-bar">
         <div class="menu">
@@ -41,7 +36,8 @@
             <li class="nav-link">
               <a th:href="@{/user/profile}" style="text-decoration: none;">
                  <div class="btnProfile" id="btnprofile">
-                  <i class="fa-solid fa-circle fa-2xl icon" style="color: #b0b0b0;"></i>
+                  <img id="imageProfile-nav" th:if="${imageProfile != null}" th:src="'data:image/png;base64,' + ${imageProfile}" alt="Foto de Perfil do Usuário" />
+                  <img id="imageProfile-none-nav" th:unless="${imageProfile != null}" th:src="@{/icones/LogosGrupoNovaesApp.png}" alt="Ícone de Usuário Padrão" />
                   <p id="nomeUser" th:text="${user.name}"></p>
                   
                 </div>
@@ -82,7 +78,7 @@
 
     </nav>
 
-    <!-- JavaScript -->
+    
     <script th:src="@{/js/sidebar.js}"></script>
   </body>
 </html>
