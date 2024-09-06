@@ -74,12 +74,12 @@
           <table>
             <thead>
               <tr class="trHead">
-                <th class="tdIcon"></th>
-                <th class="tdName">Nome</th>
-                <th class="tdSobrenome">Sobrenome</th>
-                <th class="tdLogin">Email</th>
-                <th class="tdTelefone">Telefone</th>
-                <th style="border: none; height: 40px; width: 40px; border-radius: 15px; background-color: none;"></th>
+                <th ></th>
+                <th >Nome</th>
+                <th >Sobrenome</th>
+                <th >Email</th>
+                <th >Telefone</th>
+                <th ></th>
               </tr>
             </thead>
             <tbody id="userTableBody">
@@ -107,10 +107,10 @@
                     alt="Foto de Perfil Padrão"
                   />
                 </td>
-                <td th:text="${user.name}" class="tdName"></td>
-                <td th:text="${user.lastname}" class="tdSobrenome"></td>
-                <td th:text="${user.login}" class="tdLogin"></td>
-                <td th:text="${user.phoneNumber}" class="tdTelefone"></td>
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.lastname}"></td>
+                <td th:text="${user.login}"></td>
+                <td th:text="${user.phoneNumber}"></td>
                 <td style="white-space: nowrap">
                   <button
                     style="

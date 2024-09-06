@@ -25,7 +25,6 @@ main {
   flex-direction: row;
   justify-content: space-around;
   width: 95%;
-  margin-top: 20px;
 }
 
 .container-input {
@@ -739,6 +738,9 @@ tr {
   .textBtn {
     font-size: 12px;
   }
+  .table-container{
+    margin-bottom: 50px;
+  }
 }
 
 @media (max-width: 365px) {
@@ -753,6 +755,6 @@ tr {
     border: solid 2px #b5b5b5;
   }
   .textBtn {
-    font-size: 10px;
+    font-size: 12px;
   }
 }
