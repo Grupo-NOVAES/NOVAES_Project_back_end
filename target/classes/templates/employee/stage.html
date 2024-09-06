@@ -16,13 +16,12 @@
     <script src="https://kit.fontawesome.com/a56b5a1294.js" crossorigin="anonymous"></script>
     <title>Etapas</title>
 </head>
-<body>
+<body style="overflow: hidden;">
     <!-- Agrupa os elementos que compõe o cabeçalho. -->
     <div th:replace="fragments/header :: header"></div>
 
 
 	<div th:replace="fragments/nav :: nav"></div>
-  <div class="container">
 	<main>
 
 
@@ -72,7 +71,7 @@
 		<div th:replace="fragments/interfaces/stage/modalAddStage :: div"></div>
 
 
-    <div class="table-container">
+    <div class="table-responsive">
       <table>
         <thead>
           <tr class="trHead">
@@ -115,7 +114,6 @@
     </div>
   </main>
 
-</div>
 <script th:src="@{/js/darkTheme.js}"></script>
 <script th:src="@{/js/logout.js}"></script>
 <script th:src="@{/js/stage.js}"></script>

@@ -19,11 +19,11 @@
     ></script>
     <title>Usuários</title>
   </head>
-  <body>
+  <body style="overflow: hidden;">
     <div th:replace="fragments/header :: header"></div>
 
     <div th:replace="fragments/nav :: nav"></div>
-    <div class="container">
+
       <main role="main" class="main">
         <div class="headerTable">
           <div class="container-input">
@@ -64,13 +64,13 @@
                     />
                   </svg>
                 </span>
-                <p class="text">Adicionar Usuário</p>
+                <p class="textBtn">Adicionar Usuário</p>
               </button>
             </div>
           </a>
         </div>
 
-        <div class="table-container">
+        <div class="table-responsive">
           <table>
             <thead>
               <tr class="trHead">
@@ -135,7 +135,6 @@
 
         <div th:replace="fragments/interfaces/user/modalEditUser :: div"></div>
       </main>
-    </div>
 
     <script th:src="@{/js/darkTheme.js}"></script>
     <script th:src="@{/js/logout.js}"></script>
