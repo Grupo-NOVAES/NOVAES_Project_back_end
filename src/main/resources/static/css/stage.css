@@ -91,7 +91,7 @@ input:focus {
   border-radius: 1px;
 }
 
-.text {
+.textBtn {
   height: 100%;
   width: fit-content;
   display: flex;
@@ -100,7 +100,7 @@ input:focus {
   color: white;
   z-index: 1;
   transition-duration: 0.5s;
-  margin-top: 15px;
+  margin-top: 16px;
 }
 .CartBtn:hover .IconContainer {
   transform: translateX(58px);
@@ -108,7 +108,7 @@ input:focus {
   transition-duration: 0.5s;
 }
 
-.CartBtn:hover .text {
+.CartBtn:hover .textBtn {
   transform: translate(10px, 0px);
   transition-duration: 0.5s;
 }
@@ -133,10 +133,16 @@ table {
   color: #1e3050;
 }
 
+
+table thead {
+  background-color: #e0e0e0;
+}
+
+
 table,
 th,
 td {
-  border: 1px solid #ddd;
+  box-shadow: 0px 1px rgba(0, 0, 0, 0.1);
 }
 
 th,
@@ -433,7 +439,6 @@ td {
     flex-direction: column;
     width: 95%;
     margin: 5px;
-    background-color: yellow;
   }
   .btnCreate{
     width: 175px;
@@ -445,7 +450,6 @@ td {
     flex-direction: column;
     width: 95%;
     margin: 5px;
-    background-color: yellow;
   }
   .btnCreate{
     width: 150px;

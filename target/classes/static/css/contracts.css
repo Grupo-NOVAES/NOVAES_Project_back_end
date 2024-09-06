@@ -159,10 +159,16 @@ table {
   color: #1e3050;
 }
 
+
+table thead {
+  background-color: #e0e0e0;
+}
+
+
 table,
 th,
 td {
-  border: 1px solid #ddd;
+  box-shadow: 0px 1px rgba(0, 0, 0, 0.1);
 }
 
 th,
