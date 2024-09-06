@@ -1,7 +1,15 @@
+
 main {
   margin-left: 100px;
   padding: 20px;
   transition: margin-left 0.3s; /* Transição suave para a mudança de margem */
+  overflow: hidden;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .listParentDirectory {
@@ -146,6 +154,7 @@ tbody {
   width: 100%;
   overflow-y: auto;
   max-height: 100%; /* Controla a altura do conteúdo rolável */
+
 }
 
 table thead .trHead {
@@ -160,7 +169,7 @@ table thead .trHead {
   vertical-align: middle;
   text-align: left;
   padding-left: 10px;
-  width: 100px;
+  width: 5%;
 }
 
 .thName {
@@ -172,12 +181,17 @@ table thead .trHead {
   word-break: break-word;
   white-space: normal;
   text-align: left;
-  width: 90%;
+  width: 95%;
+
+}
+
+.tdButton{
+  width: 5%;
 }
 
 tr {
   height: 60px;
-  width: 80px;
+  width: 80x;
   box-shadow: 0px 1px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
@@ -407,7 +421,7 @@ tr {
   padding: 20px;
   box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  z-index: 2;
+  z-index: 3;
   background-color: #F9F9F9;
   color: #1e3050;
 }
@@ -470,7 +484,7 @@ tr {
   padding: 20px;
   box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  z-index: 2;
+  z-index: 3;
   background-color: #F9F9F9;
   color: #1e3050;
 }
@@ -575,7 +589,7 @@ tr {
   padding: 20px;
   box-shadow: 1.5px 1.5px 4px 1px rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  z-index: 1;
+  z-index: 3;
   background-color: #F9F9F9;
   color: #1e3050;
 }

@@ -16,7 +16,7 @@
     <script src="https://kit.fontawesome.com/a56b5a1294.js" crossorigin="anonymous"></script>
     <title>Diretórios</title>
 </head>
-<body>
+<body style="overflow: hidden;">
     <!-- Agrupa os elementos que compõe o cabeçalho. -->
     <div th:replace="~{fragments/header :: header}"></div>
 
@@ -24,10 +24,10 @@
 
     	<!-- Agrupa links de navegação no site. -->
     <div th:replace="fragments/nav :: nav"></div>
-    <div class="container">
+
     <main>
         <section id="principal">
-            <section id="right">
+            <section id="right" class="col-md-6">
                 <img id="imageProfile" th:if="${imageProfile != null}" th:src="'data:image/png;base64,' + ${imageProfile}" alt="Foto de Perfil do Usuário" />
                 <img id="imageProfile-none" th:unless="${imageProfile != null}" th:src="@{/icones/LogosGrupoNovaesApp.png}" alt="Ícone de Usuário Padrão" />
                 
@@ -41,8 +41,8 @@
             
 
 
-            <section id="left">
-                <h1>Meu Perfil</h1>
+            <section id="left"  class="col-md-6">
+                <p>Meu Perfil</p>
                 <form id="forms" method="post" th:action="@{/user/editProfile}">
                     <div class="names">
                         <input class="inputs-name" placeholder="Nome" th:value="${user.name}" name="name">
@@ -66,8 +66,6 @@
             </section>
         </section>
     </main>
-</div>
-    </div>
 
 </body>
 <script th:src="@{/js/profile.js}"></script>
