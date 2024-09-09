@@ -19,11 +19,11 @@
     ></script>
     <title>Contratos</title>
   </head>
-  <body>
+  <body style="overflow: hidden;">
     <div th:replace="fragments/header :: header"></div>
 
     <div th:replace="fragments/nav :: nav"></div>
-    <div class="container">
+
       <main role="main" class="main">
         <div class="filters">
           <div class="namePrizeContainer">
@@ -36,6 +36,7 @@
                 heigh="20px"
                 viewBox="0 0 512 512"
               >
+                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                 <path
                   fill="#1e3050"
                   d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
@@ -59,6 +60,7 @@
                 heigh="20px"
                 viewBox="0 0 512 512"
               >
+                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                 <path
                   fill="#1e3050"
                   d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
@@ -70,6 +72,14 @@
           <div class="statusClientContainer">
             <div class="container-input">
               <label for="status" id="status" class="labelText">Status: </label>
+              <!--<input
+                type="text"
+                placeholder="Buscar"
+                name="text"
+                class="input"
+                id="statusFilter"
+                
+              />-->
               <select id="statusFilter" class="inputSelection">
                 <option value=""> Todos</option>
                 <option value="true">Concluido</option>
@@ -81,6 +91,7 @@
                 heigh="20px"
                 viewBox="0 0 512 512"
               >
+                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                 <path
                   fill="#1e3050"
                   d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
@@ -102,6 +113,7 @@
                 heigh="20px"
                 viewBox="0 0 512 512"
               >
+                <!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                 <path
                   fill="#1e3050"
                   d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
@@ -111,7 +123,7 @@
           </div>
         </div>
 
-        <div class="table-container">
+        <div class="table-responsive">
           <table>
             <thead>
               <tr class="trHead">
@@ -120,7 +132,6 @@
                 <th class="tdTime">Prazo</th>
                 <th class="tdStatus">Status</th>
                 <th class="tdClient">Cliente</th>
-                <th style="border: none;height: 40px; width: 40px;border-radius: 15px;background-color: none;"></th>
               </tr>
             </thead>
             <tbody>
@@ -141,20 +152,6 @@
                   <img th:if="${contract.concluded == false}" th:src="@{/icones/X.svg}" class="iconConcludedContract">
                 </td>
                 <td class="tdClient" th:text="${contract.client.name}"></td>
-                <td style="white-space: nowrap">
-                  <button
-                      disabled
-                      style="
-                          border: none;
-                          height: 40px;
-                          width: 40px;
-                          border-radius: 15px;
-                          background-color: transparent
-                          
-                      "
-                  >
-                  </button>
-              </td>
               </tr>
             </tbody>
           </table>
@@ -167,10 +164,9 @@
 
         <div th:replace="fragments/interfaces/contract/modalEditContract :: div"></div>
       </main>
-    </div>
 
     <script th:src="@{/js/contract.js}"></script>
     <script th:src="@{/js/darkTheme.js}"></script>
     <script th:src="@{/js/logout.js}"></script>
-  </body>
+    <script th:src="@{/js/sidebar.js}"></script>  </body>
 </html>
