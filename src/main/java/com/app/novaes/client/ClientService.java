@@ -51,7 +51,7 @@ public class ClientService {
 		client.setRole(user.getRole());
 		client.setEntrerprise_name(enterpriseName);
 		client.setReferences_directory(references_directory);
-		
+		System.out.println("diretorio relacionado: "+references_directory.toString());
 		clientRepository.save(client);
 		
 	}

@@ -49,10 +49,10 @@
             </div>
 
             <div class="ifClient" id="ifClient">
-                <input type="text" name="enterpriseName" id="enterpriseName" class="darkInput" placeholder="Nome da Empresa">
-                <select name="references_directory" class="input" id="references_directory">
+                <input type="text" name="enterpriseName" id="enterpriseName" class="darkInput" placeholder="Nome da Empresa" >
+                <select name="referencesDirectory" class="input" id="references_directory" required>
+                  <option value="" disabled selected>Escolha um diretório</option>
                   <option th:each="directory : ${listDirectorys}" th:value="${directory.id_Directory}" th:text="${directory.name}"></option>
-                  
               </select>
               
             </div>

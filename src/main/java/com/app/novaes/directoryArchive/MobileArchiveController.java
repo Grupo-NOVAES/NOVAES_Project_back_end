@@ -36,31 +36,22 @@ public class MobileArchiveController {
     
     @Autowired
     private UserRepository userRepository;
+    
+    private final DirectoryAndArchivesService directoryAndArchivesService;
+    
+    public MobileArchiveController(DirectoryAndArchivesService directoryAndArchivesService) {
+    	this.directoryAndArchivesService=directoryAndArchivesService;
+    }
 
     
     @GetMapping("/directory")
     public List<DirectoryDTO> getAllDirectories() throws Exception {
-        Directory root = directoryRepository.findByName("root");
-        if (root == null) {
-            throw new RuntimeException("Root directory not found");
-           
-        }
-        List<DirectoryDTO> listDirectory = new ArrayList<>();
-        for(Directory directory : root.getSubDirectories()) {
-        	listDirectory.add(DirectoryAndArchivesService.convertToDTORecursive(directory));
-        }
-        
-        return listDirectory;
+       return directoryAndArchivesService.getListDirectory();
     }
     
     @GetMapping("/directory/getRoot")
     public DirectoryDTO getDirectoryRoot(){
-    	if(directoryRepository.findByName("root") == null) {
-    		Directory directory = new Directory();
-    		directory.setName("root");
-    		directoryRepository.save(directory);
-    	}
-    	return DirectoryAndArchivesService.convertToDTORecursive(directoryRepository.findByName("root"));
+    	return directoryAndArchivesService.getDirectoryDtoById((long)1);
     }
 
     @GetMapping("/directory/{id}")

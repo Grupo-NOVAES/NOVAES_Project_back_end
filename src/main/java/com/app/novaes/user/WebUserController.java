@@ -53,6 +53,7 @@ public class WebUserController {
 		
 		
 		User user = userService.getUserAuthInfo();
+    	modelAndView.addObject("imageProfile", userService.getProfilePhoto(user));
     	modelAndView.addObject("user", user);
     
     	
@@ -147,7 +148,7 @@ public class WebUserController {
 								@RequestParam(value ="role")String role,
 								@RequestParam(value ="office",required = false) String office,
 								@RequestParam(value = "enterpriseName",required = false) String enterpriseName,
-								@RequestParam(value = "referencesDirectory", required = false) Long references_directory) {
+								@RequestParam(value = "referencesDirectory", required = true) Long references_directory) {
 		
 		if(!(password.equals(confirmPassword))) {
 			throw new PasswordNotEqualsException();
@@ -159,6 +160,7 @@ public class WebUserController {
 		user.setPhoneNumber(phoneNumber);
 		user.setRole(userService.convertString2Role(role));
 		user.setPassword(passwordEncoder.encode(password));
+		
 		
 		if(!userService.verifyIfAlreadyLoginExist(login)) {
 			if(user.getRole() == Role.USER) {
