@@ -567,6 +567,9 @@ tr {
   color: white;
   transition: all 0.3s;
 }
+.browse-button .btnFindFile{
+  color: #ffffff;
+}
 
 .browse-button:hover {
   background-color: #929497;
