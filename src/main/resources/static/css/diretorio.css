@@ -153,7 +153,6 @@ tbody {
   width: 100%;
   overflow-y: auto;
   max-height: 100%; /* Controla a altura do conteúdo rolável */
-
 }
 
 table thead .trHead {
@@ -172,8 +171,7 @@ table thead .trHead {
 }
 
 .thName {
-  text-align: center;
-  width: 90%;
+  padding-right: 40px;
 }
 
 .tdName {
