@@ -1,0 +1,114 @@
+main {
+  margin-left: 100px;
+  padding: 20px;
+  transition: margin-left 0.3s; /* Transição suave para a mudança de margem */
+  overflow: hidden;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: scroll;
+}
+#titleForms {
+  font-size: 20pt;
+  font-weight: bold;
+}
+#form_user{
+    display: flex;
+    flex-direction: column;
+    height: 75vh;
+    width: 45%;
+    justify-content: center;
+    align-items: center;
+}
+#names{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.input_name{
+    width: 48%;
+    height: 35px;
+    border: none;
+    background-color: #ffffff;
+    border: 2px solid #929497;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    font-size: 10pt;
+}
+.input{
+    width: 100%;
+    height: 35px;
+    border: none;
+    background-color: #ffffff;
+    border: 1px solid #929497;
+    padding: 5px;
+    font-size: 10pt;
+    border-radius: 4px;
+}
+.darkInput {
+  width: 100%;
+  height: 35px;
+  border: none;
+  background-color: #ffffff;
+  border: 2px solid #929497;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+#addBtn{
+    width: 60%;
+    height: 30px;
+    border: none;
+    background-color: #1e3050;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 12pt;
+}
+.ifEmployee, .ifClient {
+  width: 100%;
+  display: none;
+}
+
+@media (max-width: 776px){
+  #addBtn{
+    width: 60%;
+    height: 30px;
+    border: none;
+    background-color: #1e3050;
+    border-radius: 5px;
+    color: #ffffff;
+    font-size: 8pt;
+}
+}
+
+@media (max-width: 432px) {
+  #titleForms{
+    font-size: 16pt;
+  }
+}
+
+@media (max-width: 373px) {
+  #titleForms{
+    font-size: 12pt;
+  }
+  .input{
+    height: 20px;
+  }
+}
+@media (max-width: 373px) {
+  #titleForms{
+    font-size: 10pt;
+  }
+}
+@media (max-width: 286px) {
+  #titleForms{
+    font-size: 8pt;
+  }
+}
