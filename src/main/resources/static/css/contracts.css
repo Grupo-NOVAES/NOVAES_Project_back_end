@@ -190,7 +190,7 @@ td {
   white-space: nowrap; /* Evita quebra de linha dentro das células */
 }
 
-.contractItem:hover {
+table .stageItem:hover {
   background-color: #a2a2a2;
   cursor: pointer;
 }
@@ -281,12 +281,7 @@ td {
   height: 50px;
   align-items: center;
 }
-.folderItem{
-  cursor: pointer;
-}
-.fileItem{
-  cursor: pointer;
-}
+
 
 
 /* Modal Styles */

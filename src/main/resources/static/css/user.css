@@ -57,10 +57,7 @@ main {
   width: 50%;
   align-items: center;
 }
-#linkAddUser{
-    text-decoration: none;
-    color: none;
-}
+
 .CartBtn {
   width: 175px;
   height: 30px;
@@ -173,6 +170,7 @@ td {
 
 .userItem:hover {
   background-color: #a2a2a2;
+  border-radius: 0;
 }
 
 .table-container::-webkit-scrollbar {

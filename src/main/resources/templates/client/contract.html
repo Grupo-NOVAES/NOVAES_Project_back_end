@@ -19,7 +19,7 @@
     ></script>
     <title>Contratos</title>
   </head>
-  <body>
+  <body style="overflow: hidden;">
     <div th:replace="fragments/header :: header"></div>
 
     <div th:replace="fragments/nav :: nav"></div>
@@ -120,7 +120,6 @@
                 <th class="tdTime">Prazo</th>
                 <th class="tdStatus">Status</th>
                 <th class="tdClient">Cliente</th>
-                <th style="border: none;height: 40px; width: 40px;border-radius: 15px;background-color: none;"></th>
               </tr>
             </thead>
             <tbody>
@@ -141,20 +140,7 @@
                   <img th:if="${contract.concluded == false}" th:src="@{/icones/X.svg}" class="iconConcludedContract">
                 </td>
                 <td class="tdClient" th:text="${contract.client.name}"></td>
-                <td style="white-space: nowrap">
-                  <button
-                      disabled
-                      style="
-                          border: none;
-                          height: 40px;
-                          width: 40px;
-                          border-radius: 15px;
-                          background-color: transparent
-                          
-                      "
-                  >
-                  </button>
-              </td>
+                
               </tr>
             </tbody>
           </table>
