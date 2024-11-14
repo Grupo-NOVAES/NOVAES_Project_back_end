@@ -16,7 +16,7 @@
     <script src="https://kit.fontawesome.com/a56b5a1294.js" crossorigin="anonymous"></script>
     <title>Perfil</title>
 </head>
-<body>
+<body style="overflow: hidden;">
     <!-- Agrupa os elementos que compõe o cabeçalho. -->
     <div th:replace="~{fragments/header :: header}"></div>
 
@@ -24,10 +24,11 @@
 
     	<!-- Agrupa links de navegação no site. -->
     <div th:replace="fragments/nav :: nav"></div>
-    <div class="container">
+
+
     <main>
         <section id="principal">
-            <section id="right">
+            <section id="right" class="col-md-6">
 			    <img id="imageProfile" th:if="${imageProfile != null}" th:src="'data:image/png;base64,' + ${imageProfile}" alt="Foto de Perfil do Usuário" />
 			
 			    <img id="imageProfile-none" th:unless="${imageProfile != null}" th:src="@{/icones/LogosGrupoNovaesApp.png}" alt="Ícone de Usuário Padrão" />
@@ -35,7 +36,7 @@
 			</section>
 
 
-            <section id="left">
+            <section id="left" class="col-md-6">
                 <h1>Meu Perfil</h1>
                 <form id="forms">
                     <div class="names">
@@ -48,10 +49,9 @@
             </section>
         </section>
     </main>
-</div>
-    </div>
 
 </body>
 <script th:src="@{/js/darkTheme.js}"></script>
 <script th:src="@{/js/logout.js}"></script>
+<script th:src="@{/js/header.js}"></script>
 </html>
