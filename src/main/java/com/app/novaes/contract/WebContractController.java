@@ -28,6 +28,7 @@ public class WebContractController {
 	private final UserService userService;
 	private final ClientService clientService;
 	private final ContractService contractService;
+	private final static String errorPage = "ErrorPage.html";
 	
 	public WebContractController(UserService userService, ClientService clientService, ContractService contractService) {
 		this.clientService=clientService;
