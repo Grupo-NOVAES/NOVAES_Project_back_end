@@ -56,6 +56,13 @@ main {
   border: solid 2px #b5b5b5;
 }
 
+.btnCreate {
+  display: flex;
+  justify-content: flex-end;
+  width: 40%;
+  align-items: center;
+}
+
 .CartBtn {
   width: 175px;
   height: 30px;
@@ -109,10 +116,9 @@ main {
   transition-duration: .5s;
 }
 
-.CartBtn:hover .text {
+.CartBtn:hover .textBtn {
   transform: translate(10px,0px);
   transition-duration: .5s;
-  font-size: 8px;
 }
 
 .CartBtn:active {

@@ -85,7 +85,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr  id="stages" class="folderItem" th:each="stages : ${listStages}" th:data-id="${stages.id}" th:data-name="${stages.title}">
+          <tr  id="stages" class="stageItem" th:each="stages : ${listStages}" th:data-id="${stages.id}" th:data-name="${stages.title}">
             <td class="tdIcon">
               <i class="fa-solid fa-clock fa-2xl"></i>
             </td>
@@ -118,5 +118,6 @@
 <script th:src="@{/js/logout.js}"></script>
 <script th:src="@{/js/stage.js}"></script>
 <script th:src="@{/js/sidebar.js}"></script>
+<script th:src="@{/js/header.js}"></script>
 </body>
 </html>
