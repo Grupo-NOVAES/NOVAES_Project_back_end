@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" th:href="@{/css/contracts.css}" />
+    <link rel="stylesheet" th:href="@{/css/components/header.css}" />
+    <link rel="stylesheet" th:href="@{/css/components/nav.css}" />
+    <link rel="stylesheet" th:href="@{/css/components/darkTheme.css}" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/a56b5a1294.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Contratos</title>
+  </head>
+  <body>
+    <div th:replace="fragments/header :: header"></div>
+
+    <div th:replace="fragments/nav :: nav"></div>
+    <div class="container">
+      <main role="main" class="main">
+        <div class="filters">
+          <div class="namePrizeContainer">
+            <div class="container-input">
+              <label for="name" class="labelText">Nome: </label>
+              <input type="text" id="nameFilter" placeholder="Buscar" name="text" class="input" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20px"
+                heigh="20px"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="#1e3050"
+                  d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
+                />
+              </svg>
+            </div>
+
+            <div class="container-input">
+              <label for="time" id="time" class="labelText">Prazo: </label>
+              <input
+                type="date"
+                placeholder="Buscar"
+                name="text"
+                class="input"
+                id="timeFilter"
+                
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20px"
+                heigh="20px"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="#1e3050"
+                  d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div class="statusClientContainer">
+            <div class="container-input">
+              <label for="status" id="status" class="labelText">Status: </label>
+              <select id="statusFilter" class="inputSelection">
+                <option value=""> Todos</option>
+                <option value="true">Concluido</option>
+                <option value="false">Em Andamento</option>
+              </select>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20px"
+                heigh="20px"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="#1e3050"
+                  d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
+                />
+              </svg>
+            </div>
+            <div class="container-input">
+              <label for="client" class="labelText">Cliente: </label>
+              <input
+                type="text"
+                placeholder="Buscar"
+                name="text"
+                class="input"
+                id="clientFilter"
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20px"
+                heigh="20px"
+                viewBox="0 0 512 512"
+              >
+                <path
+                  fill="#1e3050"
+                  d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr class="trHead">
+                <th class="tdIcon"></th>
+                <th class="tdTitle">Nome do Contrato</th>
+                <th class="tdTime">Prazo</th>
+                <th class="tdStatus">Status</th>
+                <th class="tdClient">Cliente</th>
+                <th style="border: none;height: 40px; width: 40px;border-radius: 15px;background-color: none;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                class="contractItem"
+                th:each="contract : ${listContract}"
+                th:data-id="${contract.id}"
+                th:data-title="${contract.title}"
+                th:data-time="${contract.time}"
+                th:data-status="${contract.concluded}"
+                th:data-client="${contract.client.name}"
+              >
+                <td class="tdIcon"><i class="fa-solid fa-handshake fa-2xl"></i></td>
+                <td th:text="${contract.title}"  class="tdTitle"></td>
+                <td th:text="${contract.time}" class="tdTime"></td>
+                <td class="tdStatus">
+                  <img th:if="${contract.concluded == true}" th:src="@{/icones/check_small.svg}" class="iconConcludedContract">
+                  <img th:if="${contract.concluded == false}" th:src="@{/icones/X.svg}" class="iconConcludedContract">
+                </td>
+                <td class="tdClient" th:text="${contract.client.name}"></td>
+                <td style="white-space: nowrap">
+                  <button
+                      disabled
+                      style="
+                          border: none;
+                          height: 40px;
+                          width: 40px;
+                          border-radius: 15px;
+                          background-color: transparent
+                          
+                      "
+                  >
+                  </button>
+              </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+        <div th:replace="fragments/interfaces/contract/modalAddContract :: div"></div>
+
+        <div th:replace="fragments/interfaces/contract/modalOptnsContract :: div"></div>
+
+        <div th:replace="fragments/interfaces/contract/modalEditContract :: div"></div>
+      </main>
+    </div>
+
+    <script th:src="@{/js/contract.js}"></script>
+    <script th:src="@{/js/darkTheme.js}"></script>
+    <script th:src="@{/js/logout.js}"></script>
+  </body>
+</html>

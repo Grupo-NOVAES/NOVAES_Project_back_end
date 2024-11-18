@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="EditModalFolder" id="EditModalFolder">
+        <div class="labelinput">
+          <form method="post" th:action="@{/directory/rename}">
+            <div class="label">
+              <label for="nameFolder">Renomear Diretorio</label>
+              <input
+                type="text"
+                name="newNameFolder"
+                id="nameFolder"
+                class="input"
+                placeholder="Novo Nome"
+                required
+                maxlength="40"
+              />
+            </div>
+            <input type="hidden" name="directoryId" id="directoryId" />
+            <div class="actions">
+              <button type="submit" class="savebtn" onclick="() =>{location.reload()}">Salvar</button>
+              <p onclick="hideModalEdit()">Sair</p>
+            </div>
+          </form>
+        </div>
+      </div>
+</body>
+</html>
