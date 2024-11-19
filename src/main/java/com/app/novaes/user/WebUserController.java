@@ -54,6 +54,7 @@ public class WebUserController {
 		
 		User user = userService.getUserAuthInfo();
     	modelAndView.addObject("user", user);
+    	modelAndView.addObject("imageProfile", userService.getProfilePhoto(user));
     
     	
     	if(userService.getTypeUser()) {
@@ -211,7 +212,7 @@ public class WebUserController {
 			}
 		}
 		
-		return "redirect:/profile";
+		return "redirect:/user/profile";
 	}
 	
 	@PutMapping("/editUser")
