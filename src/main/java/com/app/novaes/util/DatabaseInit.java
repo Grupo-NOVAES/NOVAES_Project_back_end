@@ -48,8 +48,8 @@ public class DatabaseInit implements CommandLineRunner{
 		Client client = new Client();
         if(employeeRepository.findByLogin("admin@gmail.com") == null) {
         	Employee admin = new Employee();
-        	admin.setName("Novaes");
-        	admin.setLastname("ADM");
+        	admin.setName("Adiministrador");
+        	admin.setLastname("Novaes");
         	admin.setLogin("admin@gmail.com");
         	admin.setPassword(passwordEncoder.encode("123456"));
         	admin.setPhoneNumber("(16) 99999-9999");
@@ -62,8 +62,8 @@ public class DatabaseInit implements CommandLineRunner{
         }
         if(employeeRepository.findByLogin("gerente@novaes.com") == null) {
         	Employee gerente = new Employee();
-        	gerente.setName("Novaes");
-        	gerente.setLastname("Employee");
+        	gerente.setName("Gerente");
+        	gerente.setLastname("Chefe");
         	gerente.setLogin("gerente@novaes.com");
         	gerente.setPassword(passwordEncoder.encode("123456"));
         	gerente.setPhoneNumber("(16) 99999-9999");
@@ -76,8 +76,8 @@ public class DatabaseInit implements CommandLineRunner{
         }
         if(employeeRepository.findByLogin("eng@novaes.com") == null) {
         	Employee employee = new Employee();
-        	employee.setName("Novaes");
-            employee.setLastname("Employee");
+        	employee.setName("Funcionario");
+            employee.setLastname("padrao");
             employee.setLogin("eng@novaes.com");
             employee.setPassword(passwordEncoder.encode("123456"));
             employee.setPhoneNumber("(16) 99999-9999");

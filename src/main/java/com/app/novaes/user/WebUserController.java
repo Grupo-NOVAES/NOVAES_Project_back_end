@@ -215,58 +215,47 @@ public class WebUserController {
 	}
 	
 	@PutMapping("/editUser")
-	public void editProfile(@RequestParam(value ="userId") Long id,
-							@RequestParam(value = "name") String name,
-							@RequestParam(value = "lastname") String lastname,
-							@RequestParam(value = "login") String login,
-							@RequestParam(value = "password") String password,
-							@RequestParam(value = "role") Role role,
-							@RequestParam(value ="phoneNumber") String phoneNumber) {
-		if (role == Role.USER) {
-			Client client = clientService.getClientById(id);
-			if (name != null) {
-				client.setName(name);
-			}
-			if (lastname != null) {
-				client.setLastname(lastname);
-			}
-			if (login != null) {
-				client.setLogin(login);
-			}
-			if(password != null) {
-				client.setPassword(passwordEncoder.encode(password));
-			}
-			if (role != null) {
-				client.setRole(role);
-			}
-			if(phoneNumber != null) {
-				client.setPhoneNumber(phoneNumber);
-			}
-			
-			clientService.addUser(client);
-		} else {
-			Employee employee = employeeService.getEmployeeById(id);
-			if (name != null) {
-				employee.setName(name);
-			}
-			if (lastname != null) {
-				employee.setLastname(lastname);
-			}
-			if (login != null) {
-				employee.setLogin(login);
-			}
-			if(password != null) {
-				employee.setPassword(passwordEncoder.encode(password));
-			}
-			if (role != null) {
-				employee.setRole(role);
-			}
-			if(phoneNumber != null) {
-				employee.setPhoneNumber(phoneNumber);
-			}
-			employeeService.addUser(employee);
-		}
+	public String editUser(
+	        @RequestParam(value = "userId") Long id,
+	        @RequestParam(value = "name", required = false) String name,
+	        @RequestParam(value = "lastname", required = false) String lastname,
+	        @RequestParam(value = "login", required = false) String login,
+	        @RequestParam(value = "password", required = false) String password,
+	        @RequestParam(value = "role", required = false) Role role,
+	        @RequestParam(value = "phoneNumber", required = false) String phoneNumber) {
+	    
+	    String requestCode;
 
+	    try {
+	        if (role == null) {
+	            requestCode = "4001"; // Role não pode ser nulo
+	            return "redirect:/admin/users?requestCode=" + requestCode;
+	        }
+
+	        if (role == Role.USER) {
+	            Client client = clientService.getClientById(id);
+	            if (client == null) {
+	                requestCode = "4002"; // Usuário não encontrado
+	                return "redirect:/admin/users?requestCode=" + requestCode;
+	            }
+	            userService.updateUserInfo(client, name, lastname, login, password, role, phoneNumber);
+	            clientService.addUser(client);
+	        } else {
+	            Employee employee = employeeService.getEmployeeById(id);
+	            if (employee == null) {
+	                requestCode = "4002"; // Usuário não encontrado
+	                return "redirect:/admin/users?requestCode=" + requestCode;
+	            }
+	            userService.updateUserInfo(employee, name, lastname, login, password, role, phoneNumber);
+	            employeeService.addUser(employee);
+	        }
+
+	        requestCode = "200"; // Sucesso
+	    } catch (Exception e) {
+	        requestCode = "500"; // Erro interno do servidor
+	    }
+
+	    return "redirect:/admin/users?requestCode=" + requestCode;
 	}
 	
 	@PutMapping("/updateProfilePhoto")

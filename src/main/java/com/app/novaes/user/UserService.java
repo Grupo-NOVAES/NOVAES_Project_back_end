@@ -61,6 +61,15 @@ public class UserService {
 	    if (role != null) user.setRole(role);
 	}
 	
+	protected void updateUserInfo(User user, String name, String lastname, String login, String password, Role role, String phoneNumber) {
+	    if (name != null) user.setName(name);
+	    if (lastname != null) user.setLastname(lastname);
+	    if (login != null) user.setLogin(login);
+	    if (password != null) user.setPassword(passwordEncoder.encode(password));
+	    if (role != null) user.setRole(role);
+	    if (phoneNumber != null) user.setPhoneNumber(phoneNumber);
+	}
+	
 	public boolean verifyIfAlreadyLoginExist(String login){
 		List<String> listLogins = userRepository.getAllLogins();
 		for(String loginFound : listLogins) {
