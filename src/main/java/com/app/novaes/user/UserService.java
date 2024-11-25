@@ -3,17 +3,19 @@ package com.app.novaes.user;
 import java.util.List;
 
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import com.app.novaes.client.ClientRepository;
 
 @Service
 public class UserService {
 	
 	private final UserRepository userRepository;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	
 	public UserService(UserRepository userRepository) {
@@ -49,6 +51,14 @@ public class UserService {
 
 	public List<User> getUserByRole(Role role){
 		return userRepository.findByRole(role);
+	}
+	
+	protected void updateUserInfo(User user, String name, String lastname, String login, String password, Role role) {
+	    if (name != null) user.setName(name);
+	    if (lastname != null) user.setLastname(lastname);
+	    if (login != null) user.setLogin(login);
+	    if (password != null) user.setPassword(passwordEncoder.encode(password));
+	    if (role != null) user.setRole(role);
 	}
 	
 	public boolean verifyIfAlreadyLoginExist(String login){
@@ -92,5 +102,4 @@ public class UserService {
 	public void deleteUser(Long userId) {
 		userRepository.deleteById(userId);
 	}
- 
 }

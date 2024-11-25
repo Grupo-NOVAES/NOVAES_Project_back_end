@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -173,46 +174,44 @@ public class WebUserController {
 	}
 	
 	@PostMapping("/editProfile")
-	public String editProfile(@RequestParam(value ="name")String name,
-							@RequestParam(value ="lastname")String lastname,
-							@RequestParam(value ="login", required = true)String login,
-							@RequestParam(value ="password", required = true)String password,
-							@RequestParam(value ="passwordConfirm", required = true)String passwordConfirm,
-							@RequestParam(value ="role")Role role) {
-		
-		if(password.equals(passwordConfirm)) {
-			if(role == Role.USER) {
-				Client client = clientService.getClientById(userService.getUserAuthInfo().getId());
-				if(name != null) {
-					client.setName(name);
-				}if(lastname != null) {
-					client.setLastname(lastname);
-				}if(login != null) {
-					client.setLogin(login);
-				}if(password != null) {
-					client.setPassword(passwordEncoder.encode(password));
-				}if(role != null) {
-					client.setRole(role);
-				}
-				clientService.addUser(client);
-			}else {
-				Employee employee = employeeService.getEmployeeById(userService.getUserAuthInfo().getId());
-				if(name != null) {
-					employee.setName(name);
-				}if(lastname != null) {
-					employee.setLastname(lastname);
-				}if(login != null) {
-					employee.setLogin(login);
-				}if(password != null) {
-					employee.setPassword(passwordEncoder.encode(password));
-				}if(role != null) {
-					employee.setRole(role);
-				}
-				employeeService.addUser(employee);
-			}
-		}
-		
-		return "redirect:/user/profile";
+	public String editProfile(
+	        @RequestParam(value = "name", required = false) String name,
+	        @RequestParam(value = "lastname", required = false) String lastname,
+	        @RequestParam(value = "login", required = true) String login,
+	        @RequestParam(value = "password", required = true) String password,
+	        @RequestParam(value = "passwordConfirm", required = true) String passwordConfirm,
+	        @RequestParam(value = "role", required = false) Role role) {
+	    
+	    String requestCode;
+
+	    try {
+	        if (!password.equals(passwordConfirm)) {
+	            requestCode = "4001";
+	            return "redirect:/user/profile?requestCode=" + requestCode;
+	        }
+	        if(password.length() < 6) {
+	        	requestCode = "4002";
+	        	return "redirect:/user/profile?requestCode=" + requestCode;
+	        }
+
+	        Long userId = userService.getUserAuthInfo().getId();
+
+	        if (role == Role.USER) {
+	            Client client = clientService.getClientById(userId);
+	            userService.updateUserInfo(client, name, lastname, login, password, role);
+	            clientService.addUser(client);
+	        } else {
+	            Employee employee = employeeService.getEmployeeById(userId);
+	            userService.updateUserInfo(employee, name, lastname, login, password, role);
+	            employeeService.addUser(employee);
+	        }
+
+	        requestCode = "200";
+	    } catch (Exception e) {
+	        requestCode = "500";
+	    }
+
+	    return "redirect:/user/profile?requestCode=" + requestCode;
 	}
 	
 	@PutMapping("/editUser")

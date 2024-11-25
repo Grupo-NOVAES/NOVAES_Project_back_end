@@ -40,9 +40,9 @@
             
             
 
-
+            <p hidden th:text="${param.requestCode}" id="requestCode"></p>
             <section id="left"  class="col-md-6">
-                <p>Meu Perfil</p>
+                <p id="titleMyProfile">Meu Perfil</p>
                 <form id="forms" method="post" th:action="@{/user/editProfile}">
                     <div class="names">
                         <input class="inputs-name" placeholder="Nome" th:value="${user.name}" name="name">
