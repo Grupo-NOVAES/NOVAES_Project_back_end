@@ -16,7 +16,7 @@
     <script src="https://kit.fontawesome.com/a56b5a1294.js" crossorigin="anonymous"></script>
     <title>Etapas</title>
 </head>
-<body>
+<body style="overflow: hidden;">
     <div th:replace="fragments/header :: header"></div>
 	  <div th:replace="fragments/nav :: nav"></div>
 
@@ -54,7 +54,7 @@
 		<div th:replace="fragments/interfaces/stage/modalAddStage :: div"></div>
 
 
-    <div class="table-container">
+    <div class="table-responsive">
       <table>
         <thead>
           <tr class="trHead">
@@ -63,12 +63,11 @@
             <th class="tdDescription">Descrição</th>
             <th class="dtDateHour">Prazo</th>
             <th class="dtStatus">Status</th>
-            <th style="white-space: nowrap" class="tdMenu">
-            </th>
+          </th>
           </tr>
         </thead>
         <tbody>
-          <tr  id="stages" class="folderItem" th:each="stages : ${listStages}" th:data-id="${stages.id}" th:data-name="${stages.title}">
+          <tr  id="stages" class="stageItem" th:each="stages : ${listStages}" th:data-id="${stages.id}" th:data-name="${stages.title}">
             <td class="tdIcon">
               <i class="fa-solid fa-clock fa-2xl"></i>
             </td>
@@ -79,16 +78,7 @@
                 <img th:if="${stages.status == true}" th:src="@{/icones/check_small.svg}" class="iconConcludedContract">
                 <img th:if="${stages.status == false}" th:src="@{/icones/X.svg}" class="iconConcludedContract">
             </td>
-            <td style="white-space: nowrap" class="tdMenu">
-              <button 
-                  disabled
-                  style=" border: none; 
-                          height: 40px; 
-                          width: 40px; 
-                          border-radius: 15px; 
-                          background-color: transparent;"></button>
-               </button>
-            </td>
+            
           </tr>
         </tbody>
       </table>
@@ -106,5 +96,6 @@
 <script th:src="@{/js/darkTheme.js}"></script>
 <script th:src="@{/js/logout.js}"></script>
 <script th:src="@{/js/stage.js}"></script>
+<script th:src="@{/js/header.js}"></script>
 </body>
 </html>

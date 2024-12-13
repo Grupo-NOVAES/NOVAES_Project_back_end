@@ -66,7 +66,7 @@ public class MobileArchiveController {
     @GetMapping("/directory/{id}")
     public List<DirectoryDTO> getDirectoryById(@PathVariable Long id) {
         Directory directory = directoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Directory not found"));
+                .orElseThrow(DirectoryNotFoundException :: new);
         
         List<DirectoryDTO> listDirectory = new ArrayList<>();
         
@@ -83,7 +83,7 @@ public class MobileArchiveController {
     @GetMapping("/directory/getNameDirectoryInRoot")
     public List<ReferencesDirectoryClientDTO> getNameByDirectoryInRoot(){
     	Directory root = directoryRepository.findById((long) 1)
-                .orElseThrow(() -> new RuntimeException("Directory not found"));
+                .orElseThrow(DirectoryNotFoundException :: new);
     	
     	List<ReferencesDirectoryClientDTO> listName = new ArrayList<>();
     	
@@ -121,7 +121,7 @@ public class MobileArchiveController {
     @PutMapping("/directory/{id}")
     public Directory updateDirectory(@PathVariable Long id, @RequestBody Directory directoryDetails) {
         Directory directory = directoryRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Directory not found"));
+                .orElseThrow(DirectoryNotFoundException :: new);
         directory.setName(directoryDetails.getName());
         return directoryRepository.save(directory);
     }
@@ -130,7 +130,7 @@ public class MobileArchiveController {
     @DeleteMapping("/directory/{id}")
     public void deleteDirectory(@PathVariable Long id) {
     	Directory directory = directoryRepository.findById(id)
-    			.orElseThrow(() -> new RuntimeException("Directory not found"));
+    			.orElseThrow(DirectoryNotFoundException :: new);
     	
     	if(directory.getName() == "root") {
     		new Exception("This directory it cannot be deleted");
@@ -158,7 +158,7 @@ public class MobileArchiveController {
     @GetMapping("/{id}")
     public ResponseEntity<?> getArchiveById(@PathVariable Long id) {
         Archive archive = archiveRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Archive not found"));
+                .orElseThrow(ArchiveNotFoundException :: new);
         
         ByteArrayResource resource = new ByteArrayResource(archive.getContent());
         
@@ -176,7 +176,7 @@ public class MobileArchiveController {
     @GetMapping("/getByDirectory/{id}")
     public List<ArchiveDTO> listAllArchiveWithoutContent(@PathVariable Long id) {
     	Directory directory = directoryRepository.findById(id)
-    			.orElseThrow(() -> new RuntimeException("Directory Not found"));
+    			.orElseThrow(DirectoryNotFoundException :: new);
     	
     	List<Archive> ListArchives = directory.getArchives();
     	List<ArchiveDTO> ArchivesWithoutContent = new ArrayList<>();
@@ -192,7 +192,7 @@ public class MobileArchiveController {
                                     @RequestParam("id_directory") Long directoryID) throws Exception {
 
         Directory directory = directoryRepository.findById(directoryID)
-                .orElseThrow(() -> new RuntimeException("Directory not found"));
+                .orElseThrow(DirectoryNotFoundException :: new);
         
         byte[] content = archiveData.getBytes();
         
@@ -210,7 +210,7 @@ public class MobileArchiveController {
     @PutMapping("/{id}")
     public Archive updateArchive(@PathVariable Long id, @RequestBody Archive archive) {
         Archive existingArchive = archiveRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Archive not found"));
+                .orElseThrow(ArchiveNotFoundException :: new);
 
         existingArchive.setName(archive.getName());
         existingArchive.setType(archive.getType());

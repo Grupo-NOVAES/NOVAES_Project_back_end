@@ -19,7 +19,7 @@
     ></script>
     <title>Usuários</title>
 </head>
-<body>
+<body style="overflow: hidden;">
     <!-- Agrupa os elementos que compõe o cabeçalho. -->
     <div th:replace="fragments/header :: header"></div>
 
@@ -63,7 +63,6 @@
                   <th class="tdSobrenome">Sobrenome</th>
                   <th class="tdLogin">Email</th>
                   <th class="tdTelefone">Telefone</th>
-                  <th style="border: none; height: 40px; width: 40px; border-radius: 15px; background-color: none;"></th>
                 </tr>
               </thead>
               <tbody id="userTableBody">
@@ -95,19 +94,7 @@
                   <td th:text="${user.lastname}" class="tdSobrenome"></td>
                   <td th:text="${user.login}" class="tdLogin"></td>
                   <td th:text="${user.phoneNumber}" class="tdTelefone"></td>
-                  <td style="white-space: nowrap">
-                    <button
-                      disabled
-                      style="
-                        border: none;
-                        height: 40px;
-                        width: 40px;
-                        border-radius: 15px;
-                        background-color: transparent;
-                      "
-                    >
-                    </button>
-                  </td>
+                  
                 </tr>
               </tbody>
             </table>
@@ -122,5 +109,6 @@
 <script th:src="@{/js/darkTheme.js}"></script>
 <script th:src="@{/js/logout.js}"></script>
 <script th:src="@{/js/user.js}"></script>
+<script th:src="@{/js/header.js}"></script>
 </body>
 </html>

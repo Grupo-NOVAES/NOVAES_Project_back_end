@@ -22,9 +22,9 @@ public class StageService {
 		Stage stage = stagesRepository.findById(id).orElseThrow(StageNotFoundException::new);
 		if(title != null) {
 			stage.setTitle(title);
-		}if(description != null) {
+		}else if(description != null) {
 			stage.setDescription(description);
-		}if(dateHour != null) {
+		}else if(dateHour != null) {
 			stage.setDateHour(dateHour);
 		}
 		stagesRepository.save(stage);

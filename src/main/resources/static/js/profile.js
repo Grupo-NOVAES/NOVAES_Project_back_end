@@ -1,6 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
     const inputs = document.querySelectorAll('input');
     const button = document.querySelector('.CartBtnEdit');
+    const requestCode = document.getElementById("requestCode");
+
+    if(requestCode.textContent == "200"){
+        alert("Perfil atualziado com sucesso!");
+    }else if(requestCode.textContent == "4001"){
+        alert("As senhas não coecidem!");
+    }else if(requestCode.textContent == "4002"){
+        alert("a senha deve ter no minimo 6 caracteres")
+    }else if(requestCode.textContent == "500"){
+        alert("Ocorre um erro ao salvar as informações...")
+    }
     
     const initialValues = {};
     inputs.forEach(input => {

@@ -295,10 +295,6 @@ public class DirectoryAndArchivesService {
 		return false;
 		
 	}
-	
-	public void RefresePageDirectory() {
-		
-	}
 
 	public void renameFolder(Long directoryId, String newNameFolder) {
 		directoryRepository.updateDirectoryName(directoryId , newNameFolder);

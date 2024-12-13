@@ -36,6 +36,8 @@ public class SecurityConfig {
 
     @Autowired
     private PersistentLoginRepository persistentLoginRepository;
+    
+    private static final String ROLE_ADMIN = "ADMIN";
 
     
     @Bean
@@ -50,7 +52,7 @@ public class SecurityConfig {
                                 "/img/**",
                                 "/icones/**"
                         ).permitAll()
-                        .requestMatchers(HttpMethod.DELETE , "/directory/delete/**","/archive/delete/**","/user/delete/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE , "/directory/delete/**","/archive/delete/**","/user/delete/**").hasRole(ROLE_ADMIN)
                         .anyRequest().authenticated()
                 )
                 .headers(headers -> headers
@@ -87,9 +89,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.POST, "/client" , "/employee").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET , "/api/user" , "/api/contract").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE).hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.POST, "/client" , "/employee").hasRole(ROLE_ADMIN)
+                        .requestMatchers(HttpMethod.GET , "/api/user" , "/api/contract").hasRole(ROLE_ADMIN)
+                        .requestMatchers(HttpMethod.DELETE).hasRole(ROLE_ADMIN)
                         .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin

@@ -56,6 +56,13 @@ main {
   border: solid 2px #b5b5b5;
 }
 
+.btnCreate {
+  display: flex;
+  justify-content: flex-end;
+  width: 40%;
+  align-items: center;
+}
+
 .CartBtn {
   width: 175px;
   height: 30px;
@@ -109,10 +116,9 @@ main {
   transition-duration: .5s;
 }
 
-.CartBtn:hover .text {
+.CartBtn:hover .textBtn {
   transform: translate(10px,0px);
   transition-duration: .5s;
-  font-size: 8px;
 }
 
 .CartBtn:active {
@@ -153,7 +159,6 @@ tbody {
   width: 100%;
   overflow-y: auto;
   max-height: 100%; /* Controla a altura do conteúdo rolável */
-
 }
 
 table thead .trHead {
@@ -172,8 +177,7 @@ table thead .trHead {
 }
 
 .thName {
-  text-align: center;
-  width: 90%;
+  padding-right: 40px;
 }
 
 .tdName {
@@ -190,7 +194,7 @@ table thead .trHead {
 
 tr {
   height: 60px;
-  width: 80x;
+  width: 80px;
   box-shadow: 0px 1px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
@@ -566,6 +570,9 @@ tr {
   border-radius: 10px;
   color: white;
   transition: all 0.3s;
+}
+.browse-button .btnFindFile{
+  color: #ffffff;
 }
 
 .browse-button:hover {
