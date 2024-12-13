@@ -155,7 +155,7 @@ function downloadFile() {
 
 function showModalActionsFiles(button) {
     const contextmenu = document.getElementById('ModalOptionsFile');
-    selectedFileId = button.closest('tr').getAttribute('data-file-id');
+    let selectedFileId = button.closest('tr').getAttribute('data-file-id');
 
     const rect = button.getBoundingClientRect();
 

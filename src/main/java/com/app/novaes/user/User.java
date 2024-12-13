@@ -27,8 +27,6 @@ import java.util.Base64;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo_usuario", discriminatorType = DiscriminatorType.STRING)
 public class User implements UserDetails{
-	
-	public User() {}
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

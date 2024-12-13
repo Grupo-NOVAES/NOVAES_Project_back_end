@@ -145,7 +145,6 @@ main{
     align-items: center;
     border-radius: 20px;
     box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
-    background: linear-gradient(#b3dfe7, rgb(226, 226, 226), rgb(255, 255, 255));
     margin-bottom: 30px;
 }
 .input-container {
@@ -234,9 +233,6 @@ label, button{
     background-color: #032433;
     color: #083C52;
     transform: scale(1.04);
-}
-#btn_funcionario{
-    color: red;
 }
 #link_cadastro{
     text-decoration: none;
@@ -374,6 +370,7 @@ footer{
     #form_main{
         background-color: rgb(255, 255, 255);
         box-shadow: none;
+        width: 100%;
     }
     .text{
         margin: 20px;
@@ -388,9 +385,6 @@ footer{
     #titulo_footer{
         margin-left: 22%;
         size: 12pt;
-    }
-    #form_main{
-        width: 100%;
     }
 }
 
