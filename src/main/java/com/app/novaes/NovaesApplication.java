@@ -8,6 +8,7 @@ public class NovaesApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(NovaesApplication.class, args);
+		System.out.println("=== Startup Completed ===");
 	}
 
 }
