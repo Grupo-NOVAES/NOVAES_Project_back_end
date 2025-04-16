@@ -1,0 +1,5 @@
+{"properties": [{
+  "name": "railway.start_timeout",
+  "type": "java.lang.String",
+  "description": "A description for 'railway.start_timeout'"
+}]}
